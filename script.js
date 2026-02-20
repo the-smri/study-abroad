@@ -153,9 +153,267 @@
   };
 
   const setupTools = () => {
-    doc.querySelectorAll("#tools .tool").forEach((tool) => {
+    const tools = Array.from(doc.querySelectorAll("#tools .tool"));
+    if (!tools.length) return;
+
+    const modal = doc.createElement("div");
+    modal.className = "tool-modal";
+    modal.hidden = true;
+    modal.innerHTML = `
+      <div class="tool-modal-card" role="dialog" aria-modal="true" aria-labelledby="toolModalTitle">
+        <div class="tool-modal-head">
+          <h5 id="toolModalTitle">টুল</h5>
+          <button type="button" class="tool-close" aria-label="বন্ধ করুন">×</button>
+        </div>
+        <div class="tool-body" id="toolModalBody"></div>
+      </div>
+    `;
+    doc.body.appendChild(modal);
+
+    const titleEl = modal.querySelector("#toolModalTitle");
+    const bodyEl = modal.querySelector("#toolModalBody");
+    const closeBtn = modal.querySelector(".tool-close");
+
+    const closeModal = () => {
+      modal.hidden = true;
+      bodyEl.innerHTML = "";
+    };
+
+    closeBtn?.addEventListener("click", closeModal);
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    const formatMoney = (value, currency) =>
+      `${currency} ${Math.round(value).toLocaleString("en-US")}`;
+
+    const openCostCalculator = () => {
+      titleEl.textContent = "খরচ ক্যালকুলেটর";
+      bodyEl.innerHTML = `
+        <div class="tool-grid">
+          <div class="tool-field">
+            <label>দেশ</label>
+            <select id="costCountry">
+              <option value="USD">যুক্তরাষ্ট্র</option>
+              <option value="CAD">কানাডা</option>
+              <option value="GBP">যুক্তরাজ্য</option>
+              <option value="AUD">অস্ট্রেলিয়া</option>
+              <option value="EUR">জার্মানি/ইউরোপ</option>
+              <option value="CNY">চীন</option>
+            </select>
+          </div>
+          <div class="tool-field">
+            <label>বার্ষিক টিউশন</label>
+            <input id="costTuition" type="number" min="0" value="20000" />
+          </div>
+          <div class="tool-field">
+            <label>মাসিক জীবনযাত্রা খরচ</label>
+            <input id="costLiving" type="number" min="0" value="1200" />
+          </div>
+          <div class="tool-field">
+            <label>কোর্স সময়কাল (বছর)</label>
+            <input id="costYears" type="number" min="1" step="0.5" value="2" />
+          </div>
+          <div class="tool-field">
+            <label>স্কলারশিপ/ডিসকাউন্ট (মোট)</label>
+            <input id="costScholarship" type="number" min="0" value="0" />
+          </div>
+        </div>
+        <div class="tool-actions">
+          <button type="button" class="tool-btn primary" id="costCalcBtn">হিসাব করুন</button>
+          <button type="button" class="tool-btn ghost" id="costResetBtn">রিসেট</button>
+        </div>
+        <div class="tool-result" id="costResult">আপনার তথ্য দিয়ে হিসাব করুন।</div>
+      `;
+
+      const country = bodyEl.querySelector("#costCountry");
+      const tuition = bodyEl.querySelector("#costTuition");
+      const living = bodyEl.querySelector("#costLiving");
+      const years = bodyEl.querySelector("#costYears");
+      const scholarship = bodyEl.querySelector("#costScholarship");
+      const result = bodyEl.querySelector("#costResult");
+
+      bodyEl.querySelector("#costCalcBtn")?.addEventListener("click", () => {
+        const y = Math.max(Number(years.value) || 0, 0);
+        const t = Math.max(Number(tuition.value) || 0, 0);
+        const l = Math.max(Number(living.value) || 0, 0);
+        const s = Math.max(Number(scholarship.value) || 0, 0);
+        const currency = country.value;
+
+        const tuitionTotal = t * y;
+        const livingTotal = l * 12 * y;
+        const gross = tuitionTotal + livingTotal;
+        const net = Math.max(gross - s, 0);
+        const monthlyNeed = y ? net / (12 * y) : 0;
+
+        result.innerHTML = `
+          মোট টিউশন: <b>${formatMoney(tuitionTotal, currency)}</b><br/>
+          মোট জীবনযাত্রা খরচ: <b>${formatMoney(livingTotal, currency)}</b><br/>
+          মোট আনুমানিক খরচ: <b>${formatMoney(gross, currency)}</b><br/>
+          স্কলারশিপ বাদে নেট খরচ: <b>${formatMoney(net, currency)}</b><br/>
+          মাসিক গড় বাজেট: <b>${formatMoney(monthlyNeed, currency)}</b>
+        `;
+      });
+
+      bodyEl.querySelector("#costResetBtn")?.addEventListener("click", () => {
+        tuition.value = "20000";
+        living.value = "1200";
+        years.value = "2";
+        scholarship.value = "0";
+        country.value = "USD";
+        result.textContent = "আপনার তথ্য দিয়ে হিসাব করুন।";
+      });
+    };
+
+    const openIeltsChecker = () => {
+      titleEl.textContent = "আইইএলটিএস চেকার";
+      bodyEl.innerHTML = `
+        <div class="tool-grid">
+          <div class="tool-field">
+            <label>Overall Score</label>
+            <input id="ieltsOverall" type="number" min="0" max="9" step="0.5" value="6.5" />
+          </div>
+          <div class="tool-field">
+            <label>Lowest Band</label>
+            <input id="ieltsBand" type="number" min="0" max="9" step="0.5" value="6.0" />
+          </div>
+        </div>
+        <div class="tool-actions">
+          <button type="button" class="tool-btn primary" id="ieltsCheckBtn">রেজাল্ট দেখুন</button>
+        </div>
+        <div class="tool-result" id="ieltsResult">স্কোর দিয়ে উপযোগী দেশ/প্রোগ্রাম দেখুন।</div>
+      `;
+
+      bodyEl.querySelector("#ieltsCheckBtn")?.addEventListener("click", () => {
+        const overall = Number(bodyEl.querySelector("#ieltsOverall")?.value || 0);
+        const band = Number(bodyEl.querySelector("#ieltsBand")?.value || 0);
+        const result = bodyEl.querySelector("#ieltsResult");
+        let tips = [];
+
+        if (overall >= 7 && band >= 6.5) {
+          tips = ["যুক্তরাষ্ট্র (Top বিশ্ববিদ্যালয়)", "যুক্তরাজ্য (Russell Group)", "কানাডা (Masters/Research)", "অস্ট্রেলিয়া (Skilled programs)"];
+        } else if (overall >= 6.5 && band >= 6) {
+          tips = ["কানাডা (College/University)", "যুক্তরাজ্য (অনেক Masters প্রোগ্রাম)", "অস্ট্রেলিয়া (বেশিরভাগ UG/PG)", "জার্মানি (English-taught programs)"];
+        } else if (overall >= 6 && band >= 5.5) {
+          tips = ["কানাডা/UK এর pathway বা college route", "অস্ট্রেলিয়ার কিছু প্রোগ্রাম", "চীনের English medium programs"];
+        } else {
+          tips = ["প্রথমে IELTS স্কোর উন্নত করুন", "প্রস্তুতি নিন: Writing + Speaking", "প্রি-মাস্টার্স/পাথওয়ে প্রোগ্রাম বিবেচনা করুন"];
+        }
+
+        result.innerHTML = `<b>আপনার স্কোর অনুযায়ী সম্ভাব্য অপশন:</b><ul>${tips.map((item) => `<li>${item}</li>`).join("")}</ul>`;
+      });
+    };
+
+    const openVisaTimeline = () => {
+      titleEl.textContent = "ভিসা টাইমলাইন";
+      bodyEl.innerHTML = `
+        <div class="tool-grid">
+          <div class="tool-field">
+            <label>দেশ</label>
+            <select id="visaCountry">
+              <option value="কানাডা">কানাডা</option>
+              <option value="যুক্তরাষ্ট্র">যুক্তরাষ্ট্র</option>
+              <option value="যুক্তরাজ্য">যুক্তরাজ্য</option>
+              <option value="অস্ট্রেলিয়া">অস্ট্রেলিয়া</option>
+              <option value="জার্মানি">জার্মানি</option>
+              <option value="চীন">চীন</option>
+            </select>
+          </div>
+          <div class="tool-field">
+            <label>ইনটেক মাস</label>
+            <select id="visaIntake">
+              <option value="সেপ্টেম্বর">সেপ্টেম্বর</option>
+              <option value="জানুয়ারি">জানুয়ারি</option>
+              <option value="মে">মে</option>
+            </select>
+          </div>
+        </div>
+        <div class="tool-actions">
+          <button type="button" class="tool-btn primary" id="visaPlanBtn">টাইমলাইন তৈরি করুন</button>
+        </div>
+        <div class="tool-result" id="visaResult">দেশ ও ইনটেক নির্বাচন করে টাইমলাইন জেনারেট করুন।</div>
+      `;
+
+      bodyEl.querySelector("#visaPlanBtn")?.addEventListener("click", () => {
+        const country = bodyEl.querySelector("#visaCountry")?.value || "দেশ";
+        const intake = bodyEl.querySelector("#visaIntake")?.value || "ইনটেক";
+        const result = bodyEl.querySelector("#visaResult");
+
+        result.innerHTML = `
+          <b>${country} - ${intake} ইনটেক টাইমলাইন</b>
+          <ul>
+            <li>ইনটেকের ১০-১২ মাস আগে: কোর্স/বিশ্ববিদ্যালয় shortlisting</li>
+            <li>ইনটেকের ৮-৯ মাস আগে: IELTS + SOP + LOR প্রস্তুতি</li>
+            <li>ইনটেকের ৬-৭ মাস আগে: আবেদন সাবমিট ও অফার লেটার সংগ্রহ</li>
+            <li>ইনটেকের ৪-৫ মাস আগে: ফান্ড/ডকুমেন্ট ফাইনালাইজ</li>
+            <li>ইনটেকের ৩-৪ মাস আগে: ভিসা আবেদন + বায়োমেট্রিকস</li>
+            <li>ইনটেকের ১-২ মাস আগে: টিকিট, বাসস্থান, প্রি-ডিপারচার</li>
+          </ul>
+        `;
+      });
+    };
+
+    const openPdfGuide = () => {
+      titleEl.textContent = "পিডিএফ গাইড";
+      bodyEl.innerHTML = `
+        <div class="tool-grid">
+          <div class="tool-field">
+            <label>দেশ</label>
+            <select id="guideCountry">
+              <option value="যুক্তরাষ্ট্র">যুক্তরাষ্ট্র</option>
+              <option value="কানাডা">কানাডা</option>
+              <option value="যুক্তরাজ্য">যুক্তরাজ্য</option>
+              <option value="অস্ট্রেলিয়া">অস্ট্রেলিয়া</option>
+              <option value="জার্মানি">জার্মানি</option>
+              <option value="চীন">চীন</option>
+            </select>
+          </div>
+          <div class="tool-field">
+            <label>গাইড টাইপ</label>
+            <select id="guideType">
+              <option value="ভিসা চেকলিস্ট">ভিসা চেকলিস্ট</option>
+              <option value="SOP নমুনা">SOP নমুনা</option>
+              <option value="স্কলারশিপ গাইড">স্কলারশিপ গাইড</option>
+              <option value="ডকুমেন্ট টেমপ্লেট">ডকুমেন্ট টেমপ্লেট</option>
+            </select>
+          </div>
+        </div>
+        <div class="tool-actions">
+          <button type="button" class="tool-btn primary" id="guideDownloadBtn">গাইড ডাউনলোড</button>
+        </div>
+        <div class="tool-result" id="guideResult">দেশ ও গাইড টাইপ বেছে ডাউনলোড করুন।</div>
+      `;
+
+      bodyEl.querySelector("#guideDownloadBtn")?.addEventListener("click", () => {
+        const country = bodyEl.querySelector("#guideCountry")?.value || "দেশ";
+        const type = bodyEl.querySelector("#guideType")?.value || "গাইড";
+        const result = bodyEl.querySelector("#guideResult");
+        const content = `বিদেশে পড়তে চাই\nদেশ: ${country}\nগাইড: ${type}\n\nচেকলিস্ট:\n1) পাসপোর্ট\n2) Academic documents\n3) ভাষা পরীক্ষার স্কোর\n4) SOP/LOR\n5) ফাইন্যান্স প্রুফ\n`;
+        const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = doc.createElement("a");
+        link.href = url;
+        link.download = `${country}-${type}.txt`;
+        link.click();
+        URL.revokeObjectURL(url);
+        result.textContent = `${country} - ${type} গাইড ডাউনলোড হয়েছে।`;
+      });
+    };
+
+    const openTool = (key) => {
+      modal.hidden = false;
+      if (key === "cost-calculator") openCostCalculator();
+      else if (key === "ielts-checker") openIeltsChecker();
+      else if (key === "visa-timeline") openVisaTimeline();
+      else if (key === "pdf-guide") openPdfGuide();
+    };
+
+    tools.forEach((tool) => {
       tool.style.cursor = "pointer";
       tool.addEventListener("click", () => {
+        const key = tool.getAttribute("data-tool") || "";
+        if (!key) return;
+        openTool(key);
         const title = tool.querySelector("b")?.textContent.trim() || "টুল";
         showToast(`${title} চালু হয়েছে`);
       });

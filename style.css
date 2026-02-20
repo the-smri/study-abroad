@@ -559,6 +559,13 @@
       border: 1px solid #dce8ff;
       padding: 12px;
       margin-bottom: 10px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .tools .tool:hover {
+      transform: translateY(-2px);
+      border-color: #9ab8ef;
+      box-shadow: 0 10px 16px rgba(26, 85, 180, 0.14);
     }
 
     .tools .tool b {
@@ -571,6 +578,135 @@
       color: #58729a;
       font-size: 17px;
       line-height: 1.5;
+    }
+
+    .tool-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 22, 48, 0.56);
+      display: grid;
+      place-items: center;
+      z-index: 1100;
+      padding: 14px;
+    }
+
+    .tool-modal[hidden] {
+      display: none;
+    }
+
+    .tool-modal-card {
+      width: min(740px, 100%);
+      background: #fff;
+      border: 1px solid #d7e4fb;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 28px 55px rgba(11, 38, 86, 0.35);
+    }
+
+    .tool-modal-head {
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(130deg, #f5f8ff, #ecf3ff);
+      border-bottom: 1px solid #dee7f8;
+    }
+
+    .tool-modal-head h5 {
+      margin: 0;
+      color: #1f3d74;
+      font-size: 19px;
+    }
+
+    .tool-close {
+      border: 0;
+      border-radius: 8px;
+      background: #dce8ff;
+      color: #19468f;
+      width: 30px;
+      height: 30px;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .tool-body {
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .tool-field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .tool-field label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #2e4775;
+    }
+
+    .tool-field input,
+    .tool-field select {
+      border: 1px solid #cfe0ff;
+      border-radius: 8px;
+      padding: 9px 10px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .tool-field input:focus,
+    .tool-field select:focus {
+      border-color: #3f7be1;
+      box-shadow: 0 0 0 3px rgba(63, 123, 225, 0.16);
+    }
+
+    .tool-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tool-btn {
+      border: 0;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .tool-btn.primary {
+      background: linear-gradient(135deg, #1a68de, #0f4fb0);
+      color: #fff;
+    }
+
+    .tool-btn.ghost {
+      background: #eff5ff;
+      color: #244f97;
+    }
+
+    .tool-result {
+      border: 1px solid #d5e3fb;
+      border-radius: 10px;
+      background: #f9fbff;
+      padding: 10px;
+      color: #304b78;
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 58px;
+    }
+
+    .tool-result ul {
+      margin: 0;
+      padding-left: 18px;
     }
 
     .toast {
@@ -676,6 +812,7 @@
       .cards-grid,
       .stats-grid,
       .partner-logos { justify-content: center; }
+      .tool-grid { grid-template-columns: 1fr; }
       .hero-copy p { font-size: 17px; }
       .country-card h4 { font-size: 20px; }
       .country-card p { min-height: auto; }
