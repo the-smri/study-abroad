@@ -420,6 +420,85 @@
     });
   };
 
+  const setupResources = () => {
+    const section = doc.getElementById("resources");
+    if (!section) return;
+
+    const pills = Array.from(section.querySelectorAll(".resource-pills .pill"));
+    const cards = Array.from(section.querySelectorAll(".resources-grid .resource-card"));
+    let activeFilter = "";
+
+    const applyFilter = () => {
+      cards.forEach((card) => {
+        const type = card.getAttribute("data-resource-type") || "";
+        const visible = !activeFilter || activeFilter === type;
+        card.classList.toggle("is-hidden", !visible);
+      });
+    };
+
+    const setActivePill = (value) => {
+      pills.forEach((pill) => {
+        const pillValue = pill.getAttribute("data-resource-filter") || "";
+        const shouldBeActive =
+          value === ""
+            ? pillValue === "all"
+            : pillValue === value;
+        pill.classList.toggle("active", shouldBeActive);
+      });
+    };
+
+    pills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        const value = pill.getAttribute("data-resource-filter") || "";
+        activeFilter = value === "all" ? "" : value;
+        setActivePill(activeFilter);
+        applyFilter();
+      });
+    });
+
+    setActivePill("");
+    applyFilter();
+
+    section.querySelectorAll(".resource-action").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const card = btn.closest(".resource-card");
+        const title = card?.querySelector("h4")?.textContent.trim() || "রিসোর্স";
+        const action = btn.getAttribute("data-action") || "";
+
+        if (action === "open-guide") {
+          showToast(`${title} গাইড টুলস থেকে ডাউনলোড করতে পারবেন`);
+          return;
+        }
+
+        showToast(`${title} - মূল পয়েন্ট দেখানো হয়েছে`);
+      });
+    });
+
+    const planBtn = section.querySelector("#resourcePlanBtn");
+    const result = section.querySelector("#resourcePlanResult");
+    const country = section.querySelector("#rCountry");
+    const intake = section.querySelector("#rIntake");
+    const profile = section.querySelector("#rProfile");
+    if (!planBtn || !result || !country || !intake || !profile) return;
+
+    planBtn.addEventListener("click", () => {
+      const c = country.value;
+      const i = intake.value;
+      const p = profile.value;
+
+      result.innerHTML = `
+        <b>${c} - ${i} (${p}) পার্সোনাল প্ল্যান</b>
+        <ul>
+          <li>মাস ১-২: বিশ্ববিদ্যালয় শর্টলিস্ট, IELTS/যোগ্যতা মূল্যায়ন</li>
+          <li>মাস ৩-৪: SOP, LOR, CV এবং ডকুমেন্ট সেট তৈরি</li>
+          <li>মাস ৫-৬: আবেদন সাবমিট, ফি ও অফার ট্র্যাকিং</li>
+          <li>মাস ৭+: ভিসা ফাইল, ফান্ডিং, প্রি-ডিপারচার চেকলিস্ট</li>
+        </ul>
+      `;
+    });
+  };
+
   const setupFlags = () => {
     const countriesSection = doc.getElementById("countries");
     if (!countriesSection) return;
@@ -453,6 +532,7 @@
   setupAuthButtons();
   setupCountryFilter();
   setupCards();
+  setupResources();
   setupTools();
   setupFlags();
 })();

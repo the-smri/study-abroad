@@ -14,7 +14,9 @@
     <section class="hero-panel">
       <nav class="nav">
         <div class="brand">
-          <div class="brand-mark" aria-hidden="true"></div>
+          <div class="brand-mark" aria-hidden="true">
+            <img src="images/icons/logo-color.svg" alt="" />
+          </div>
           <div>
             <h1>বিদেশে পড়তে চাই</h1>
             <p>শিক্ষা পরামর্শক প্ল্যাটফর্ম</p>
@@ -261,44 +263,152 @@
 
     <section id="resources" class="section">
       <div class="section-head">
-        <p>রিসোর্স</p>
-        <h3>আপনার প্রয়োজনীয় সবকিছু এক প্ল্যাটফর্মে</h3>
+        <p>রিসোর্স হাব</p>
+        <h3>হালনাগাদ তথ্য, চেকলিস্ট ও প্রস্তুতি টুল</h3>
         <div class="muted-note">
-          অ্যাডমিশন রোডম্যাপ, বিশ্ববিদ্যালয় শর্টলিস্টিং, ভিসা ডকুমেন্ট টেমপ্লেট
-          এবং প্র্যাকটিক্যাল স্টুডেন্ট প্রস্তুতি - সবকিছু এক জায়গায়।
+          অ্যাডমিশন ডেডলাইন, ডকুমেন্ট টেমপ্লেট, ভিসা স্টেপ, ইন্টারভিউ প্রস্তুতি এবং ক্যারিয়ার প্ল্যান
+          এখন আরও বিস্তারিত ও কার্যকরভাবে সাজানো।
         </div>
       </div>
 
-      <div class="cards-grid">
-        <article class="country-card">
-          <div class="country-photo roadmap"></div>
-          <h4>অ্যাডমিশন রোডম্যাপ</h4>
-          <p>এইচএসসি/আন্ডারগ্র্যাডের পর কোন ইনটেক টার্গেট করবেন, ধাপে ধাপে পরিকল্পনা গাইড।</p>
-          <span class="tag">১০ মিনিটে শুরু</span>
+      <div class="resource-highlights">
+        <div class="r-highlight"><b>১২০+</b><span>ডকুমেন্ট টেমপ্লেট</span></div>
+        <div class="r-highlight"><b>৭৮+</b><span>দেশভিত্তিক আপডেট নোট</span></div>
+        <div class="r-highlight"><b>২৪/৭</b><span>চেকলিস্ট অ্যাক্সেস</span></div>
+        <div class="r-highlight"><b>১৫ ধাপ</b><span>স্ট্যান্ডার্ড ভিসা ট্র্যাক</span></div>
+      </div>
+
+      <div class="resource-pills">
+        <span class="pill active" data-resource-filter="all">সব রিসোর্স</span>
+        <span class="pill" data-resource-filter="admission">অ্যাডমিশন</span>
+        <span class="pill" data-resource-filter="visa">ভিসা</span>
+        <span class="pill" data-resource-filter="scholarship">স্কলারশিপ</span>
+        <span class="pill" data-resource-filter="career">ক্যারিয়ার</span>
+      </div>
+
+      <div class="resources-grid">
+        <article class="resource-card" data-resource-type="admission">
+          <div class="resource-head">
+            <h4>অ্যাডমিশন রোডম্যাপ</h4>
+            <span class="tag">আপডেটেড ২০২৬</span>
+          </div>
+          <p>ইনটেকভিত্তিক ৬-১২ মাসের স্টেপ-বাই-স্টেপ পরিকল্পনা।</p>
+          <ul>
+            <li>প্রোফাইল ইভ্যালুয়েশন ও দেশ নির্বাচন</li>
+            <li>ইউনিভার্সিটি শর্টলিস্ট + ডেডলাইন ট্র্যাকার</li>
+            <li>SOP/LOR/CV কাস্টম ড্রাফট স্ট্রাকচার</li>
+          </ul>
+          <div class="resource-actions">
+            <button type="button" class="tool-btn primary resource-action" data-action="quick-view">কুইক ভিউ</button>
+            <button type="button" class="tool-btn ghost resource-action" data-action="open-guide">গাইড খুলুন</button>
+          </div>
         </article>
-        <article class="country-card">
-          <div class="country-photo visa"></div>
-          <h4>ভিসা ডকুমেন্টেশন</h4>
-          <p>ব্যাংক স্টেটমেন্ট, এফিডেভিট, SOP এবং এম্বাসি ফাইল সাজানোর স্ট্যান্ডার্ড ফরম্যাট।</p>
-          <span class="tag">হালনাগাদ চেকলিস্ট</span>
+
+        <article class="resource-card" data-resource-type="visa">
+          <div class="resource-head">
+            <h4>ভিসা ডকুমেন্টেশন কিট</h4>
+            <span class="tag">চেকলিস্ট</span>
+          </div>
+          <p>দেশভেদে ডকুমেন্ট ফরম্যাট, ফাইন্যান্স ফাইলিং ও এম্বাসি প্রস্তুতি।</p>
+          <ul>
+            <li>ব্যাংক স্টেটমেন্ট ও ফান্ড সোর্সিং ফরম্যাট</li>
+            <li>ভিসা ফাইল অর্ডার ও স্ক্যানিং স্ট্যান্ডার্ড</li>
+            <li>বায়োমেট্রিক ও ইন্টারভিউ ডে চেকপয়েন্ট</li>
+          </ul>
+          <div class="resource-actions">
+            <button type="button" class="tool-btn primary resource-action" data-action="quick-view">কুইক ভিউ</button>
+            <button type="button" class="tool-btn ghost resource-action" data-action="open-guide">গাইড খুলুন</button>
+          </div>
         </article>
-        <article class="country-card">
-          <div class="country-photo interview"></div>
-          <h4>ইন্টারভিউ প্রস্তুতি</h4>
-          <p>মক প্রশ্ন, আত্মবিশ্বাসী উত্তর কাঠামো এবং দেশভিত্তিক ভিসা টিপস।</p>
-          <span class="tag">প্র্যাকটিস সেট</span>
+
+        <article class="resource-card" data-resource-type="scholarship">
+          <div class="resource-head">
+            <h4>স্কলারশিপ ম্যাচিং প্ল্যান</h4>
+            <span class="tag">মেরিট + নিড</span>
+          </div>
+          <p>প্রোফাইল অনুযায়ী স্কলারশিপ শর্টলিস্টিং ও অ্যাপ্লিকেশন কৌশল।</p>
+          <ul>
+            <li>দেশভিত্তিক ফান্ডেড ও আংশিক স্কিম</li>
+            <li>ডেডলাইন, প্রয়োজনীয় স্কোর ও ডকুমেন্ট</li>
+            <li>Scholarship essay outline ও common mistakes</li>
+          </ul>
+          <div class="resource-actions">
+            <button type="button" class="tool-btn primary resource-action" data-action="quick-view">কুইক ভিউ</button>
+            <button type="button" class="tool-btn ghost resource-action" data-action="open-guide">গাইড খুলুন</button>
+          </div>
         </article>
-        <article class="country-card">
-          <div class="country-photo career"></div>
-          <h4>ক্যারিয়ার পরিকল্পনা</h4>
-          <p>পড়াশোনা শেষে জব স্ট্র্যাটেজি, CV প্রস্তুতি এবং ইন্টার্নশিপ রুট পরিকল্পনা।</p>
-          <span class="tag">ক্যারিয়ার রেডি</span>
+
+        <article class="resource-card" data-resource-type="career">
+          <div class="resource-head">
+            <h4>ক্যারিয়ার ও ওয়ার্ক পথনির্দেশ</h4>
+            <span class="tag">পোস্ট-স্টাডি</span>
+          </div>
+          <p>স্টাডির পর জব সার্চ, CV অপ্টিমাইজেশন এবং ওয়ার্ক ভিসা রুট।</p>
+          <ul>
+            <li>Country-wise part-time/job market snapshot</li>
+            <li>Graduate visa থেকে work permit ট্রানজিশন</li>
+            <li>LinkedIn CV checklist ও interview framework</li>
+          </ul>
+          <div class="resource-actions">
+            <button type="button" class="tool-btn primary resource-action" data-action="quick-view">কুইক ভিউ</button>
+            <button type="button" class="tool-btn ghost resource-action" data-action="open-guide">গাইড খুলুন</button>
+          </div>
         </article>
-        <article class="country-card">
-          <div class="country-photo pr"></div>
-          <h4>পিআর পথনির্দেশ</h4>
-          <p>কানাডা, অস্ট্রেলিয়া, ইউরোপে পোস্ট-স্টাডি থেকে রেসিডেন্সি ট্রানজিশন সারাংশ।</p>
-          <span class="tag">দীর্ঘমেয়াদি পরিকল্পনা</span>
+      </div>
+
+      <div class="resource-workbench">
+        <article class="panel resource-builder">
+          <h4>পার্সোনাল স্টাডি প্ল্যান বিল্ডার</h4>
+          <div class="tool-grid">
+            <div class="tool-field">
+              <label for="rCountry">টার্গেট দেশ</label>
+              <select id="rCountry">
+                <option value="যুক্তরাষ্ট্র">যুক্তরাষ্ট্র</option>
+                <option value="কানাডা">কানাডা</option>
+                <option value="যুক্তরাজ্য">যুক্তরাজ্য</option>
+                <option value="অস্ট্রেলিয়া">অস্ট্রেলিয়া</option>
+                <option value="জার্মানি">জার্মানি</option>
+                <option value="চীন">চীন</option>
+              </select>
+            </div>
+            <div class="tool-field">
+              <label for="rIntake">ইনটেক</label>
+              <select id="rIntake">
+                <option value="Fall 2026">Fall 2026</option>
+                <option value="Spring 2027">Spring 2027</option>
+                <option value="Summer 2027">Summer 2027</option>
+              </select>
+            </div>
+            <div class="tool-field">
+              <label for="rProfile">প্রোফাইল ফোকাস</label>
+              <select id="rProfile">
+                <option value="Scholarship">Scholarship</option>
+                <option value="Budget">Budget</option>
+                <option value="Top Ranking">Top Ranking</option>
+                <option value="PR Path">PR Path</option>
+              </select>
+            </div>
+          </div>
+          <div class="tool-actions">
+            <button type="button" class="tool-btn primary" id="resourcePlanBtn">স্টাডি প্ল্যান তৈরি করুন</button>
+          </div>
+          <div class="tool-result" id="resourcePlanResult">দেশ, ইনটেক ও প্রোফাইল নির্বাচন করে আপনার কাস্টম প্ল্যান দেখুন।</div>
+        </article>
+
+        <article class="panel resource-faq">
+          <h4>দ্রুত জিজ্ঞাসা (FAQ)</h4>
+          <details>
+            <summary>কত আগে থেকে অ্যাডমিশন প্রস্তুতি শুরু করা উচিত?</summary>
+            <p>আদর্শভাবে ৮-১২ মাস আগে শুরু করুন, যাতে স্কোর, SOP/LOR এবং ফান্ডিং প্রস্তুতি সময়মতো সম্পন্ন হয়।</p>
+          </details>
+          <details>
+            <summary>একই সাথে কতটি বিশ্ববিদ্যালয়ে আবেদন করা ভালো?</summary>
+            <p>সাধারণত ৬-১০টি অপশন: ২-৩টি ambitious, ২-৩টি মাঝারি এবং ২-৪টি safe choice রাখা সবচেয়ে কার্যকর।</p>
+          </details>
+          <details>
+            <summary>ভিসার জন্য কোন ডকুমেন্টে বেশি ভুল হয়?</summary>
+            <p>ফান্ড সোর্স ব্যাখ্যা, ডকুমেন্ট আপডেট তারিখ, এবং SOP/Study plan consistency-তে বেশি ভুল হয়।</p>
+          </details>
         </article>
       </div>
     </section>
