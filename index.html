@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>বিদেশে পড়তে চাই | বিদেশে উচ্চশিক্ষা</title>
+  
+  <link rel="icon" type="image/svg+xml" href="images/icons/logo-color.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -97,9 +98,33 @@
             <img src="https://flagcdn.com/w40/eu.png" alt="ইউরোপের পতাকা" />
             <span>ইউরোপ</span>
           </div>
+          <div class="flag-chip" data-filter="europe">
+            <img src="https://flagcdn.com/w40/fr.png" alt="ফ্রান্সের পতাকা" />
+            <span>ফ্রান্স</span>
+          </div>
+          <div class="flag-chip" data-filter="europe">
+            <img src="https://flagcdn.com/w40/it.png" alt="ইতালির পতাকা" />
+            <span>ইতালি</span>
+          </div>
+          <div class="flag-chip" data-filter="europe">
+            <img src="https://flagcdn.com/w40/dk.png" alt="ডেনমার্কের পতাকা" />
+            <span>ডেনমার্ক</span>
+          </div>
           <div class="flag-chip" data-filter="china">
             <img src="https://flagcdn.com/w40/cn.png" alt="চীনের পতাকা" />
             <span>চীন</span>
+          </div>
+          <div class="flag-chip" data-filter="japan">
+            <img src="https://flagcdn.com/w40/jp.png" alt="জাপানের পতাকা" />
+            <span>জাপান</span>
+          </div>
+          <div class="flag-chip" data-filter="south-korea">
+            <img src="https://flagcdn.com/w40/kr.png" alt="দক্ষিণ কোরিয়ার পতাকা" />
+            <span>দক্ষিণ কোরিয়া</span>
+          </div>
+          <div class="flag-chip" data-filter="india">
+            <img src="https://flagcdn.com/w40/in.png" alt="ভারতের পতাকা" />
+            <span>ভারত</span>
           </div>
           <div class="flag-chip" data-filter="australia">
             <img src="https://flagcdn.com/w40/au.png" alt="অস্ট্রেলিয়ার পতাকা" />
@@ -167,7 +192,7 @@
         <p>পৃথিবীর যেকোনো প্রান্তে</p>
         <h3>জনপ্রিয় স্টাডি ডেস্টিনেশনসমূহ</h3>
         <div class="muted-note">
-          যুক্তরাষ্ট্র, কানাডা, যুক্তরাজ্য, অস্ট্রেলিয়া, জার্মানি, ইতালি, সুইডেন, ডেনমার্ক, চীন, মালয়েশিয়া -
+          যুক্তরাষ্ট্র, কানাডা, যুক্তরাজ্য, অস্ট্রেলিয়া, জার্মানি, ফ্রান্স, ইতালি, সুইডেন, ডেনমার্ক, চীন, জাপান, দক্ষিণ কোরিয়া, ভারত -
           প্রতিটি দেশের জন্য টিউশন ফি, ভিসা প্রসেস, স্কলারশিপ, ওয়ার্ক পারমিট এবং পিআর পথ একসাথে।
         </div>
       </div>
@@ -180,6 +205,9 @@
         <span class="pill" data-filter="usa">যুক্তরাষ্ট্র</span>
         <span class="pill" data-filter="australia">অস্ট্রেলিয়া</span>
         <span class="pill" data-filter="china">চীন</span>
+        <span class="pill" data-filter="japan">জাপান</span>
+        <span class="pill" data-filter="south-korea">দক্ষিণ কোরিয়া</span>
+        <span class="pill" data-filter="india">ভারত</span>
       </div>
 
       <div class="cards-grid">
@@ -218,12 +246,61 @@
           <span class="tag">টিউশন: EUR 1k-3k/Sem</span>
           <a class="details-link" href="germany.html">বিস্তারিত দেখুন</a>
         </article>
+        <article class="country-card" data-country="europe" data-url="france.html">
+          <div class="country-photo france"></div>
+          <h4>ফ্রান্স</h4>
+          <p>ইংরেজি ও ফরাসি ট্র্যাক, কম টিউশন পাবলিক অপশন এবং গবেষণা-সমৃদ্ধ মাস্টার্স সুযোগ।</p>
+          <span class="tag">টিউশন: EUR 2.8k-10k</span>
+          <a class="details-link" href="france.html">বিস্তারিত দেখুন</a>
+        </article>
+        <article class="country-card" data-country="europe" data-url="italy.html">
+          <div class="country-photo italy"></div>
+          <h4>ইতালি</h4>
+          <p>আঞ্চলিক স্কলারশিপ, ISEE-ভিত্তিক ফি কমানোর সুযোগ এবং সাশ্রয়ী ইউরোপ স্টাডি পথ।</p>
+          <span class="tag">টিউশন: EUR 1k-4k</span>
+          <a class="details-link" href="italy.html">বিস্তারিত দেখুন</a>
+        </article>
+        <article class="country-card" data-country="europe" data-url="sweden.html">
+          <div class="country-photo sweden"></div>
+          <h4>সুইডেন</h4>
+          <p>ইনোভেশন-ফোকাসড শিক্ষা, টেক ক্যারিয়ার ইকোসিস্টেম এবং উচ্চমানের গবেষণা পরিবেশ।</p>
+          <span class="tag">টিউশন: SEK 80k-170k</span>
+          <a class="details-link" href="sweden.html">বিস্তারিত দেখুন</a>
+        </article>
+        <article class="country-card" data-country="europe" data-url="denmark.html">
+          <div class="country-photo denmark"></div>
+          <h4>ডেনমার্ক</h4>
+          <p>স্টুডেন্ট-ফ্রেন্ডলি শিক্ষা ব্যবস্থা, প্রজেক্ট-ভিত্তিক লার্নিং এবং শক্তিশালী গ্রিন-টেক সুযোগ।</p>
+          <span class="tag">টিউশন: DKK 45k-135k</span>
+          <a class="details-link" href="denmark.html">বিস্তারিত দেখুন</a>
+        </article>
         <article class="country-card" data-country="china" data-url="china.html">
           <div class="country-photo china"></div>
           <h4>চীন</h4>
           <p>কম খরচে মানসম্মত শিক্ষা, বিস্তৃত CSC স্কলারশিপ এবং দ্রুত বর্ধনশীল ক্যারিয়ার সুযোগ।</p>
           <span class="tag">টিউশন: CNY 20k-45k</span>
           <a class="details-link" href="china.html">বিস্তারিত দেখুন</a>
+        </article>
+        <article class="country-card" data-country="japan" data-url="japan.html">
+          <div class="country-photo japan"></div>
+          <h4>জাপান</h4>
+          <p>উচ্চ প্রযুক্তিনির্ভর শিক্ষা, MEXT স্কলারশিপ এবং গবেষণা-কেন্দ্রিক প্রোগ্রামের জন্য জনপ্রিয়।</p>
+          <span class="tag">টিউশন: JPY 500k-1.2M</span>
+          <a class="details-link" href="japan.html">বিস্তারিত দেখুন</a>
+        </article>
+        <article class="country-card" data-country="south-korea" data-url="south-korea.html">
+          <div class="country-photo south-korea"></div>
+          <h4>দক্ষিণ কোরিয়া</h4>
+          <p>প্রযুক্তি ও ইনোভেশন-কেন্দ্রিক বিশ্ববিদ্যালয়, GKS স্কলারশিপ এবং স্মার্ট ক্যাম্পাস পরিবেশ।</p>
+          <span class="tag">টিউশন: KRW 4M-12M</span>
+          <a class="details-link" href="south-korea.html">বিস্তারিত দেখুন</a>
+        </article>
+        <article class="country-card" data-country="india" data-url="india.html">
+          <div class="country-photo india"></div>
+          <h4>ভারত</h4>
+          <p>সাশ্রয়ী টিউশন, SAARC সুবিধা এবং শক্তিশালী মেডিকেল, আইটি ও ম্যানেজমেন্ট স্টাডি অপশন।</p>
+          <span class="tag">টিউশন: INR 150k-600k</span>
+          <a class="details-link" href="india.html">বিস্তারিত দেখুন</a>
         </article>
       </div>
 
@@ -442,7 +519,14 @@
           <a href="uk.html">যুক্তরাজ্য</a>
           <a href="australia.html">অস্ট্রেলিয়া</a>
           <a href="germany.html">জার্মানি</a>
+          <a href="france.html">ফ্রান্স</a>
+          <a href="italy.html">ইতালি</a>
+          <a href="sweden.html">সুইডেন</a>
+          <a href="denmark.html">ডেনমার্ক</a>
           <a href="china.html">চীন</a>
+          <a href="japan.html">জাপান</a>
+          <a href="south-korea.html">দক্ষিণ কোরিয়া</a>
+          <a href="india.html">ভারত</a>
         </div>
 
         <div class="footer-contact">
@@ -484,3 +568,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+

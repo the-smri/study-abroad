@@ -1,0 +1,24 @@
+﻿<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="10" y1="10" x2="110" y2="110" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2563EB"/>
+      <stop offset="0.5" stop-color="#0EA5E9"/>
+      <stop offset="1" stop-color="#14B8A6"/>
+    </linearGradient>
+    <linearGradient id="globe" x1="34" y1="46" x2="86" y2="94" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E8F3FF"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="8" y="8" width="104" height="104" rx="26" fill="url(#bg)"/>
+
+  <circle cx="60" cy="70" r="26" fill="url(#globe)"/>
+  <path d="M60 44V96M34 70H86M40 58C46 62 54 64 60 64C66 64 74 62 80 58M40 82C46 78 54 76 60 76C66 76 74 78 80 82" stroke="#2B6EDB" stroke-width="3" stroke-linecap="round"/>
+
+  <path d="M30 38L60 25L90 38L60 51L30 38Z" fill="#FFD166"/>
+  <path d="M42 46V54C42 61 50 66 60 66C70 66 78 61 78 54V46L60 55L42 46Z" fill="#FFE29A"/>
+
+  <path d="M76 31L96 24C98 23 100 25 99 27L98 30C97.8 30.8 97.2 31.4 96.4 31.7L86 35L90 43C90.8 44.6 89.3 46.4 87.6 45.8L82.3 44C81.6 43.8 81 43.3 80.7 42.6L76.9 35.4L68.4 38.2C67.6 38.5 66.6 38.5 65.8 38.1L62.4 36.4C60.8 35.6 60.9 33.3 62.6 32.6L72.5 28.5L68.9 22.2C68.1 20.8 69.2 19.2 70.8 19.4L74.4 19.8C75.2 19.9 75.8 20.3 76.2 21L80.2 27.9L89.7 24.4C90.5 24.1 91.3 24.1 92.1 24.4L95.1 25.6C96.9 26.3 96.9 28.9 95.1 29.6L76 36.8V31Z" fill="#FFFFFF"/>
+  <path d="M75 48C81 52 89 53 95 50" stroke="#FFFFFF" stroke-opacity="0.9" stroke-width="3" stroke-linecap="round"/>
+</svg>

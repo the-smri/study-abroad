@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>জার্মানিতে উচ্চশিক্ষা গাইড</title>
+  
+  <link rel="icon" type="image/svg+xml" href="images/icons/logo-color.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -11,20 +12,32 @@
 </head>
 <body>
   <main class="container">
-        <header class="sub-header">
-      <div class="sub-brand">
-        <a href="index.html">বিদেশে পড়তে চাই</a>
-        <span>দেশভিত্তিক স্টাডি গাইড</span>
+            <nav class="nav country-nav">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <img src="images/icons/logo-color.svg" alt="" />
+        </div>
+        <div>
+          <h1>বিদেশে পড়তে চাই</h1>
+          <p>শিক্ষা পরামর্শক প্ল্যাটফর্ম</p>
+        </div>
       </div>
-      <nav class="sub-nav" aria-label="পেজ নেভিগেশন">
-        <a href="index.html">হোম</a>
-        <a href="index.html#countries">ডেস্টিনেশন</a>
-        <a href="index.html#scholarship">স্কলারশিপ</a>
-        <a href="index.html#resources">রিসোর্স</a>
-        <a href="index.html#tools">টুলস</a>
-      </nav>
-      <a class="back-link" href="index.html">← হোমে ফিরে যান</a>
-    </header>
+
+      <button id="menuToggle" class="menu-toggle" aria-label="মেনু খুলুন">মেনু</button>
+
+      <ul id="menu" class="menu">
+        <li><a href="index.html#home">হোম</a></li>
+        <li><a href="index.html#countries">ডেস্টিনেশন</a></li>
+        <li><a href="index.html#scholarship">স্কলারশিপ</a></li>
+        <li><a href="index.html#resources">রিসোর্স</a></li>
+        <li><a href="index.html#tools">টুলস</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a class="btn outline" href="index.html">হোমে ফিরুন</a>
+        <a class="btn primary" href="#">লগইন</a>
+      </div>
+    </nav>
     <section class="hero"><div class="hero-copy"><div class="flag-pill"><img src="https://flagcdn.com/w40/de.png" alt="Germany" /> জার্মানি</div><h1>জার্মানিতে পড়াশোনা: কম টিউশন, উচ্চ মান</h1><p>পাবলিক বিশ্ববিদ্যালয়ে কম বা প্রায়-শূন্য টিউশন, শক্তিশালী ইঞ্জিনিয়ারিং ইকোসিস্টেম এবং EU-ক্যারিয়ারের জন্য জার্মানি দুর্দান্ত অপশন।</p></div><div class="hero-photo" style="background-image:url('https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1400&q=80');"></div></section>
 
     <section class="grid"><article class="card"><h2>খরচ</h2><div class="stats"><div class="stat"><b>EUR 0-3,000</b><span>বার্ষিক টিউশন (পাবলিক)</span></div><div class="stat"><b>EUR 850-1,300</b><span>মাসিক জীবনযাত্রা</span></div><div class="stat"><b>2 বছর</b><span>Masters সাধারণ সময়</span></div></div></article><article class="card"><h3>ইনটেক</h3><ul><li>Winter (October)</li><li>Summer (April)</li><li>কিছু প্রোগ্রামে সীমিত ইনটেক</li></ul></article></section>
@@ -87,8 +100,11 @@
       </div>
     </footer>
   </main>
+  <script src="script.js"></script>
 </body>
 </html>
+
+
 
 
 

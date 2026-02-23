@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>যুক্তরাজ্যে উচ্চশিক্ষা গাইড</title>
+  
+  <link rel="icon" type="image/svg+xml" href="images/icons/logo-color.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -11,20 +12,32 @@
 </head>
 <body>
   <main class="container">
-        <header class="sub-header">
-      <div class="sub-brand">
-        <a href="index.html">বিদেশে পড়তে চাই</a>
-        <span>দেশভিত্তিক স্টাডি গাইড</span>
+            <nav class="nav country-nav">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <img src="images/icons/logo-color.svg" alt="" />
+        </div>
+        <div>
+          <h1>বিদেশে পড়তে চাই</h1>
+          <p>শিক্ষা পরামর্শক প্ল্যাটফর্ম</p>
+        </div>
       </div>
-      <nav class="sub-nav" aria-label="পেজ নেভিগেশন">
-        <a href="index.html">হোম</a>
-        <a href="index.html#countries">ডেস্টিনেশন</a>
-        <a href="index.html#scholarship">স্কলারশিপ</a>
-        <a href="index.html#resources">রিসোর্স</a>
-        <a href="index.html#tools">টুলস</a>
-      </nav>
-      <a class="back-link" href="index.html">← হোমে ফিরে যান</a>
-    </header>
+
+      <button id="menuToggle" class="menu-toggle" aria-label="মেনু খুলুন">মেনু</button>
+
+      <ul id="menu" class="menu">
+        <li><a href="index.html#home">হোম</a></li>
+        <li><a href="index.html#countries">ডেস্টিনেশন</a></li>
+        <li><a href="index.html#scholarship">স্কলারশিপ</a></li>
+        <li><a href="index.html#resources">রিসোর্স</a></li>
+        <li><a href="index.html#tools">টুলস</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a class="btn outline" href="index.html">হোমে ফিরুন</a>
+        <a class="btn primary" href="#">লগইন</a>
+      </div>
+    </nav>
     <section class="hero">
       <div class="hero-copy"><div class="flag-pill"><img src="https://flagcdn.com/w40/gb.png" alt="UK" /> যুক্তরাজ্য</div><h1>যুক্তরাজ্যে পড়াশোনা: দ্রুত ডিগ্রি গাইড</h1><p>এক বছরের মাস্টার্স, শক্তিশালী একাডেমিক রেপুটেশন, Graduate Route ভিসা এবং আন্তর্জাতিক নেটওয়ার্কের জন্য UK একটি শক্তিশালী অপশন।</p></div>
       <div class="hero-photo" style="background-image:url('https://images.unsplash.com/photo-1526129318478-62ed807ebdf9?auto=format&fit=crop&w=1400&q=80');"></div>
@@ -90,8 +103,11 @@
       </div>
     </footer>
   </main>
+  <script src="script.js"></script>
 </body>
 </html>
+
+
 
 
 
