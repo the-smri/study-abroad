@@ -18,7 +18,7 @@
 
     body {
       margin: 0;
-      font-family: "Hind Siliguri", "Poppins", sans-serif;
+      font-family: "Hind Siliguri", sans-serif;
       background: linear-gradient(180deg, #e9eef8 0%, #dfe7f4 100%);
       color: var(--ink);
     }
@@ -137,7 +137,7 @@
 
     .btn.primary {
       color: #fff;
-      background: linear-gradient(135deg, var(--blue-2), var(--blue));
+      background: linear-gradient(135deg, #0f4fb0, #1a68de);
       box-shadow: 0 10px 22px rgba(24, 97, 210, 0.28);
     }
 
@@ -316,7 +316,7 @@
 
     .trust {
       margin-top: 20px;
-      background: linear-gradient(135deg, #0f4fb0, #1a68de);
+      background: linear-gradient(135deg, var(--blue-2), var(--blue));
       border-radius: 14px;
       padding: 14px;
       display: flex;
@@ -419,8 +419,11 @@
     .stats-grid {
       margin-top: 26px;
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 16px;
+      max-width: 980px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .stat {
@@ -521,6 +524,30 @@
       grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 14px;
       margin-top: 18px;
+    }
+
+    .countries-more-wrap {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .countries-more-btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--blue-2));
+      box-shadow: 0 10px 20px rgba(23, 64, 130, 0.24);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .countries-more-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px rgba(23, 64, 130, 0.28);
     }
 
     .resource-highlights {
@@ -1303,3 +1330,4 @@
       .footer-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; align-items: flex-start; }
     }
+

@@ -16,7 +16,7 @@
 
 body {
   margin: 0;
-  font-family: "Hind Siliguri", "Poppins", sans-serif;
+  font-family: "Hind Siliguri", sans-serif;
   background: linear-gradient(180deg, #eef3fc 0%, #e4ebf8 100%);
   color: var(--ink);
 }
@@ -102,7 +102,7 @@ body {
 }
 
 .menu a:hover {
-  color: var(--blue);
+  color: #143676;
   background: rgba(255, 255, 255, 0.55);
 }
 
@@ -168,7 +168,7 @@ body {
   text-decoration: none;
   font-size: 20px;
   font-weight: 800;
-  color: #143676;
+  color: var(--blue);
 }
 
 .sub-brand span {
@@ -593,3 +593,4 @@ li {
     grid-template-columns: 1fr;
   }
 }
+

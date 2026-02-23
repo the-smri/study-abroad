@@ -80,9 +80,12 @@
 
     const pills = Array.from(countriesSection.querySelectorAll(".pill-row .pill"));
     const cards = Array.from(countriesSection.querySelectorAll(".cards-grid > .country-card"));
+    const moreBtn = countriesSection.querySelector("#countriesMoreBtn");
     if (!pills.length || !cards.length) return;
 
     let activeFilter = "";
+    let isExpanded = false;
+    const maxVisible = 5;
     const allPill = pills.find((pill) => (pill.getAttribute("data-filter") || "") === "all");
 
     const setActivePill = (filterValue) => {
@@ -97,11 +100,27 @@
     };
 
     const applyFilter = () => {
-      cards.forEach((card) => {
+      const matchedCards = cards.filter((card) => {
         const country = card.getAttribute("data-country") || "";
-        const visible = !activeFilter || activeFilter === country;
+        return !activeFilter || activeFilter === country;
+      });
+
+      cards.forEach((card) => card.classList.add("is-hidden"));
+
+      matchedCards.forEach((card, index) => {
+        const visible = isExpanded || index < maxVisible;
         card.classList.toggle("is-hidden", !visible);
       });
+
+      if (!moreBtn) return;
+
+      if (matchedCards.length <= maxVisible) {
+        moreBtn.style.display = "none";
+        return;
+      }
+
+      moreBtn.style.display = "inline-block";
+      moreBtn.textContent = isExpanded ? "কম দেখুন" : "বিস্তারিত দেখুন";
     };
 
     pills.forEach((pill) => {
@@ -114,11 +133,18 @@
               ? ""
               : value;
         activeFilter = next;
+        isExpanded = false;
 
         setActivePill(next);
         applyFilter();
         showToast(next ? `${pill.textContent.trim()} ডেস্টিনেশন দেখানো হচ্ছে` : "সব ডেস্টিনেশন দেখানো হচ্ছে");
       });
+    });
+
+    moreBtn?.addEventListener("click", () => {
+      isExpanded = !isExpanded;
+      applyFilter();
+      showToast(isExpanded ? "আরও ডেস্টিনেশন দেখানো হচ্ছে" : "সংক্ষিপ্ত তালিকা দেখানো হচ্ছে");
     });
 
     // Initial state: show all cards under "সব দেশ".
