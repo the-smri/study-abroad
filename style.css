@@ -1346,7 +1346,7 @@
         border-radius: 24px 24px 0 0;
       }
       .hero-panel { padding: 16px; }
-      .nav-actions .btn.outline { display: none; }
+      .nav-actions .btn.outline:not(.search-trigger) { display: none; }
       .student-life {
         grid-template-columns: 1fr;
         padding: 14px;

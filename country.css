@@ -591,7 +591,7 @@ li {
     padding: 10px;
   }
 
-  .nav-actions .btn.outline {
+  .nav-actions .btn.outline:not(.search-trigger) {
     display: none;
   }
 
