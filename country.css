@@ -602,6 +602,13 @@ li {
   .sub-footer-grid {
     grid-template-columns: 1fr;
   }
+
+  .sub-footer::before {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    opacity: 0.4;
+  }
 }
 
 

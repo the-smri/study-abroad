@@ -1171,6 +1171,27 @@
       color: #1a60c7;
     }
 
+    .footer-links.countries {
+      gap: 10px;
+    }
+
+    .footer-country-groups {
+      display: grid;
+      gap: 8px;
+    }
+
+    .footer-country-groups p {
+      margin: 0;
+      color: #56709c;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .footer-country-groups a {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
     .footer-contact p {
       margin: 0 0 9px;
       color: #4e6187;
@@ -1352,6 +1373,12 @@
       .section { padding-top: 42px; }
       .footer-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .site-footer::before {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        opacity: 0.42;
+      }
     }
 
 
