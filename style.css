@@ -10,6 +10,8 @@
       --green: #1fbf75;
       --orange: #f8a01a;
       --radius: 30px;
+      --card-a: linear-gradient(145deg, #e6f4ff 0%, #fdf4e8 100%);
+      --card-b: linear-gradient(145deg, #d9ecf6 0%, #f2dce7 100%);
     }
 
     * {
@@ -281,7 +283,7 @@
     .quick-panel {
       margin: 0;
       border-radius: 18px;
-      background: rgba(255, 255, 255, 0.92);
+      background: var(--card-a);
       color: #152c57;
       padding: 16px 16px 14px;
       box-shadow: 0 12px 26px rgba(8, 27, 61, 0.2);
@@ -443,33 +445,54 @@
     }
 
     .stat {
+      position: relative;
       border: 1px solid var(--line);
-      background: linear-gradient(140deg, rgba(43, 125, 250, 0.14) 0%, rgba(31, 191, 117, 0.11) 100%);
+      background: var(--card-a);
       border-radius: 16px;
       padding: 20px 12px;
       text-align: center;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .stat::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      padding: 2px;
+      background: linear-gradient(120deg, #2b7dfa, #21b3a3, #ff9f43, #a855f7);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
     }
 
     .stat:nth-child(2) {
-      background: linear-gradient(140deg, rgba(248, 160, 26, 0.14) 0%, rgba(241, 94, 48, 0.11) 100%);
+      background: var(--card-b);
     }
 
     .stat:nth-child(3) {
-      background: linear-gradient(140deg, rgba(26, 104, 222, 0.13) 0%, rgba(168, 85, 247, 0.11) 100%);
+      background: var(--card-a);
     }
 
     .stat:nth-child(4) {
-      background: linear-gradient(140deg, rgba(31, 191, 117, 0.14) 0%, rgba(45, 212, 191, 0.11) 100%);
+      background: var(--card-b);
     }
 
     .stat:nth-child(5) {
-      background: linear-gradient(140deg, rgba(142, 69, 210, 0.13) 0%, rgba(43, 125, 250, 0.11) 100%);
+      background: var(--card-a);
     }
 
     .stat:hover {
       transform: translateY(-4px);
       box-shadow: 0 14px 24px rgba(33, 83, 160, 0.14);
+    }
+
+    .stat:hover::before {
+      opacity: 1;
     }
 
     .stat .icon {
@@ -577,21 +600,21 @@
       border: 1px solid #d8e5fb;
       border-radius: 14px;
       padding: 12px;
-      background: linear-gradient(140deg, rgba(43, 125, 250, 0.14) 0%, rgba(31, 191, 117, 0.12) 100%);
+      background: var(--card-a);
       backdrop-filter: blur(2px);
       text-align: center;
     }
 
     .r-highlight:nth-child(2) {
-      background: linear-gradient(140deg, rgba(248, 160, 26, 0.14) 0%, rgba(241, 94, 48, 0.12) 100%);
+      background: var(--card-b);
     }
 
     .r-highlight:nth-child(3) {
-      background: linear-gradient(140deg, rgba(26, 104, 222, 0.13) 0%, rgba(168, 85, 247, 0.12) 100%);
+      background: var(--card-a);
     }
 
     .r-highlight:nth-child(4) {
-      background: linear-gradient(140deg, rgba(31, 191, 117, 0.14) 0%, rgba(45, 212, 191, 0.12) 100%);
+      background: var(--card-b);
     }
 
     .r-highlight b {
@@ -625,7 +648,7 @@
     .resource-card {
       border: 1px solid var(--line);
       border-radius: 16px;
-      background: linear-gradient(145deg, #ffffff 0%, #eef5ff 100%);
+      background: var(--card-a);
       padding: 14px;
       box-shadow: 0 12px 20px rgba(24, 63, 128, 0.08);
       display: grid;
@@ -633,6 +656,18 @@
       position: relative;
       overflow: hidden;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .resource-card:nth-child(2) {
+      background: var(--card-b);
+    }
+
+    .resource-card:nth-child(3) {
+      background: var(--card-a);
+    }
+
+    .resource-card:nth-child(4) {
+      background: var(--card-b);
     }
 
     .resource-card::before {
@@ -723,7 +758,7 @@
     .resource-faq details {
       border: 1px solid #d8e4f8;
       border-radius: 12px;
-      background: #f9fbff;
+      background: var(--card-b);
       padding: 10px 12px;
     }
 
@@ -745,10 +780,14 @@
       border: 1px solid var(--line);
       border-radius: 14px;
       padding: 12px;
-      background: linear-gradient(145deg, #ffffff 0%, #f1f7ff 100%);
+      background: var(--card-a);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       position: relative;
       overflow: hidden;
+    }
+
+    .country-card:nth-child(even) {
+      background: var(--card-b);
     }
 
     .country-card::before {
@@ -861,12 +900,12 @@
     .panel {
       border: 1px solid var(--line);
       border-radius: 16px;
-      background: #fff;
+      background: var(--card-a);
       padding: 18px;
     }
 
     .panel.tools {
-      background: linear-gradient(145deg, rgba(33, 109, 220, 0.12) 0%, rgba(27, 192, 145, 0.12) 100%);
+      background: var(--card-b);
       border-color: #cdddf8;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
     }
@@ -886,7 +925,7 @@
 
     .tools .tool {
       border-radius: 10px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(231, 241, 255, 0.9) 100%);
+      background: var(--card-a);
       border: 1px solid #dce8ff;
       padding: 12px;
       margin-bottom: 10px;
@@ -901,18 +940,18 @@
     }
 
     .tools .tool:nth-child(2) {
-      background: linear-gradient(135deg, rgba(255, 245, 230, 0.95) 0%, rgba(255, 229, 206, 0.92) 100%);
-      border-color: #ffd8b5;
+      background: var(--card-b);
+      border-color: #f0c3ce;
     }
 
     .tools .tool:nth-child(3) {
-      background: linear-gradient(135deg, rgba(237, 255, 249, 0.95) 0%, rgba(212, 247, 236, 0.92) 100%);
-      border-color: #c4ecdc;
+      background: var(--card-a);
+      border-color: #bcd3f3;
     }
 
     .tools .tool:nth-child(4) {
-      background: linear-gradient(135deg, rgba(247, 240, 255, 0.95) 0%, rgba(230, 220, 255, 0.92) 100%);
-      border-color: #dbc9ff;
+      background: var(--card-b);
+      border-color: #d8cddd;
     }
 
     .tools .tool b {
@@ -943,7 +982,7 @@
 
     .tool-modal-card {
       width: min(740px, 100%);
-      background: #fff;
+      background: var(--card-a);
       border: 1px solid #d7e4fb;
       border-radius: 14px;
       overflow: hidden;
@@ -1725,7 +1764,7 @@ html[data-theme="night"] .theme-toggle-dot {
 
 .search-modal-card {
   width: min(760px, 100%);
-  background: #fff;
+  background: var(--card-b);
   border: 1px solid #d7e4fb;
   border-radius: 14px;
   overflow: hidden;

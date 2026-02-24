@@ -8,6 +8,8 @@
   --line: #e4ecf9;
   --good: #1fa66d;
   --warn: #e59d1c;
+  --card-a: linear-gradient(145deg, #e6f4ff 0%, #fdf4e8 100%);
+  --card-b: linear-gradient(145deg, #d9ecf6 0%, #f2dce7 100%);
 }
 
 * {
@@ -262,10 +264,14 @@ body {
 }
 
 .card {
-  background: var(--panel);
+  background: var(--card-a);
   border-radius: 16px;
   border: 1px solid var(--line);
   padding: 18px;
+}
+
+.grid .card:nth-child(even) {
+  background: var(--card-b);
 }
 
 .card h2 {
@@ -305,7 +311,7 @@ li {
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 10px;
-  background: #fbfdff;
+  background: var(--card-b);
 }
 
 .stat b {
@@ -928,7 +934,7 @@ html[data-theme="night"] .theme-toggle-dot {
 
 .search-modal-card {
   width: min(760px, 100%);
-  background: #fff;
+  background: var(--card-b);
   border: 1px solid #d7e4fb;
   border-radius: 14px;
   overflow: hidden;
