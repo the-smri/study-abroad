@@ -1320,7 +1320,42 @@
       .menu-toggle { display: inline-block; }
       .nav {
         position: relative;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        gap: 8px;
+      }
+      .brand {
+        min-width: 0;
+        flex: 1;
+      }
+      .brand h1 {
+        font-size: 16px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .brand p { display: none; }
+      .nav-actions {
+        gap: 6px;
+        flex-wrap: nowrap;
+      }
+      .nav-actions .btn.primary {
+        padding: 8px 11px;
+        font-size: 13px;
+      }
+      .search-trigger {
+        width: 42px;
+        height: 42px;
+        border-width: 1px;
+        justify-content: center;
+      }
+      .search-trigger-text { display: none; }
+      .search-trigger-orb {
+        width: 40px;
+        height: 40px;
+      }
+      .search-icon-svg {
+        width: 21px;
+        height: 21px;
       }
 
       .hero-copy h2 { font-size: clamp(30px, 8vw, 52px); }
