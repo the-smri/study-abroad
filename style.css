@@ -145,10 +145,13 @@
       display: none;
       border: 1px solid #ccdaef;
       border-radius: 8px;
-      padding: 8px 10px;
+      width: 42px;
+      height: 38px;
+      padding: 0;
       background: #fff;
       color: #254376;
-      font-size: 16px;
+      font-size: 22px;
+      line-height: 1;
       cursor: pointer;
     }
 
@@ -238,6 +241,19 @@
       padding: 8px 14px;
       border: 1px solid rgba(255, 255, 255, 0.25);
       backdrop-filter: blur(6px);
+      animation: badgeZoom 1.8s ease-in-out infinite;
+    }
+
+    @keyframes badgeZoom {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.08);
+      }
+      100% {
+        transform: scale(1);
+      }
     }
 
     .hero-portrait {
@@ -1580,23 +1596,6 @@ html[data-theme="night"] .theme-toggle-dot {
     color: #38bdf8;
     filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.4));
   }
-
-  .mobile-fab {
-    position: absolute;
-    right: 14px;
-    top: -18px;
-    width: 36px;
-    height: 36px;
-    border: 0;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #38bdf8, #818cf8);
-    color: #07111f;
-    font-size: 24px;
-    font-weight: 800;
-    line-height: 1;
-    box-shadow: 0 10px 22px rgba(56, 189, 248, 0.4);
-    cursor: pointer;
-  }
 }
 
 @media (min-width: 861px) {
@@ -1604,4 +1603,7 @@ html[data-theme="night"] .theme-toggle-dot {
     display: none;
   }
 }
+
+
+
 

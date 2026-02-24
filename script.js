@@ -95,9 +95,6 @@
           )
           .join("")}
       </div>
-      <button type="button" class="mobile-fab" id="mobileQuickBtn" aria-label="কুইক অ্যাকশন">
-        +
-      </button>
     `;
 
     doc.body.appendChild(nav);
@@ -113,16 +110,6 @@
         nav.querySelectorAll(".mobile-tab").forEach((el) => el.classList.remove("active"));
         tab.classList.add("active");
       });
-    });
-
-    const quickBtn = doc.getElementById("mobileQuickBtn");
-    quickBtn?.addEventListener("click", () => {
-      if (isHomePage) {
-        const target = doc.getElementById("countries");
-        target?.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-        window.location.href = "index.html#countries";
-      }
     });
 
     const activeId = isHomePage ? "home" : "countries";
@@ -198,7 +185,9 @@
 
     let activeFilter = "";
     let isExpanded = false;
-    const maxVisible = 5;
+    const isMobileView = () => window.matchMedia("(max-width: 860px)").matches;
+    const getMaxVisible = () => (isMobileView() ? 4 : 5);
+    const isGermanyCard = (card) => (card.getAttribute("data-url") || "").toLowerCase() === "germany.html";
     const allPill = pills.find((pill) => (pill.getAttribute("data-filter") || "") === "all");
 
     const setActivePill = (filterValue) => {
@@ -215,8 +204,13 @@
     const applyFilter = () => {
       const matchedCards = cards.filter((card) => {
         const country = card.getAttribute("data-country") || "";
-        return !activeFilter || activeFilter === country;
+        const filterMatch = !activeFilter || activeFilter === country;
+        if (!filterMatch) return false;
+        if (isMobileView() && isGermanyCard(card)) return false;
+        return true;
       });
+
+      const maxVisible = getMaxVisible();
 
       cards.forEach((card) => card.classList.add("is-hidden"));
 
@@ -265,6 +259,11 @@
       setActivePill("");
     }
     applyFilter();
+
+    window.addEventListener("resize", () => {
+      isExpanded = false;
+      applyFilter();
+    });
   };
 
   const setupCards = () => {
