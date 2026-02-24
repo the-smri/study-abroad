@@ -2,6 +2,7 @@
   const doc = document;
   const root = doc.documentElement;
   const THEME_KEY = "study-abroad-theme";
+  const LANG_KEY = "study-abroad-lang";
 
   const setupTheme = () => {
     const savedTheme = localStorage.getItem(THEME_KEY);
@@ -38,6 +39,120 @@
     toggle.addEventListener("click", () => {
       const current = root.getAttribute("data-theme") === "night" ? "night" : "light";
       applyTheme(current === "night" ? "light" : "night");
+    });
+  };
+
+  const setupLanguage = () => {
+    const navActions = doc.querySelector(".nav-actions");
+    const savedLang = localStorage.getItem(LANG_KEY);
+    const initialLang = savedLang === "en" ? "en" : "bn";
+    const LANG_RELOAD_KEY = "study-abroad-lang-reload";
+    let translateLoaded = false;
+
+    const getCookie = (name) => {
+      const match = doc.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`));
+      return match ? decodeURIComponent(match[1]) : "";
+    };
+
+    const setGoogTransCookie = (targetLang) => {
+      const value = `/bn/${targetLang}`;
+      const encoded = encodeURIComponent(value);
+      const hostname = window.location.hostname;
+      doc.cookie = `googtrans=${encoded}; path=/; max-age=31536000`;
+      if (hostname && hostname.includes(".")) {
+        doc.cookie = `googtrans=${encoded}; path=/; domain=.${hostname}; max-age=31536000`;
+      }
+      return value;
+    };
+
+    const ensureGoogleTranslate = () => {
+      if (translateLoaded || doc.getElementById("googleTranslateScript")) return;
+      if (!doc.getElementById("google_translate_element")) {
+        const host = doc.createElement("div");
+        host.id = "google_translate_element";
+        host.className = "google-translate-host";
+        doc.body.appendChild(host);
+      }
+
+      window.googleTranslateElementInit = () => {
+        if (!window.google?.translate?.TranslateElement) return;
+        new window.google.translate.TranslateElement(
+          {
+            pageLanguage: "bn",
+            includedLanguages: "bn,en",
+            autoDisplay: false,
+            layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE
+          },
+          "google_translate_element"
+        );
+      };
+
+      const script = doc.createElement("script");
+      script.id = "googleTranslateScript";
+      script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      script.async = true;
+      doc.body.appendChild(script);
+      translateLoaded = true;
+    };
+
+    const applyGoogleLanguage = (lang, { reload = true } = {}) => {
+      const target = lang === "en" ? "en" : "bn";
+      const desired = setGoogTransCookie(target);
+      const currentCookie = getCookie("googtrans");
+
+      if (reload && currentCookie !== desired) {
+        const guard = sessionStorage.getItem(LANG_RELOAD_KEY);
+        if (!guard || guard !== desired) {
+          sessionStorage.setItem(LANG_RELOAD_KEY, desired);
+          window.location.reload();
+          return;
+        }
+      }
+      sessionStorage.removeItem(LANG_RELOAD_KEY);
+
+      ensureGoogleTranslate();
+      const select = doc.querySelector(".goog-te-combo");
+      if (select) {
+        const v = target;
+        if (select.value !== v) {
+          select.value = v;
+          select.dispatchEvent(new Event("change"));
+        }
+      }
+    };
+
+    const applyLanguage = (lang, { silent = false } = {}) => {
+      const nextLang = lang === "en" ? "en" : "bn";
+      root.setAttribute("data-lang", nextLang);
+      root.setAttribute("lang", nextLang);
+      localStorage.setItem(LANG_KEY, nextLang);
+
+      const toggle = doc.getElementById("langToggle");
+      if (toggle) {
+        const isEnglish = nextLang === "en";
+        toggle.textContent = isEnglish ? "BN" : "EN";
+        toggle.setAttribute("aria-pressed", String(isEnglish));
+        toggle.setAttribute("aria-label", isEnglish ? "বাংলা ভাষায় পরিবর্তন করুন" : "Switch to English");
+      }
+
+      applyGoogleLanguage(nextLang, { reload: !silent });
+      if (!silent) showToast(nextLang === "en" ? "Language switching to English..." : "ভাষা বাংলায় পরিবর্তন হচ্ছে...");
+    };
+
+    applyLanguage(initialLang, { silent: true });
+
+    if (!navActions || doc.getElementById("langToggle")) return;
+
+    const toggle = doc.createElement("button");
+    toggle.type = "button";
+    toggle.id = "langToggle";
+    toggle.className = "lang-toggle";
+    navActions.prepend(toggle);
+    applyLanguage(initialLang, { silent: true });
+
+    toggle.addEventListener("click", () => {
+      const current = root.getAttribute("data-lang") === "en" ? "en" : "bn";
+      applyLanguage(current === "en" ? "bn" : "en", { silent: false });
     });
   };
 
@@ -287,13 +402,29 @@
     const menuBtn = doc.getElementById("menuToggle");
     const menu = doc.getElementById("menu");
     if (!menuBtn || !menu) return;
+    const navActions = doc.querySelector(".nav-actions");
+
+    // Put auth links inside hamburger menu for small screens.
+    if (navActions && !menu.querySelector(".menu-auth-item")) {
+      const authLinks = Array.from(navActions.querySelectorAll("a.btn"))
+        .filter((link) => !link.classList.contains("search-trigger"));
+
+      authLinks.forEach((link) => {
+        const item = doc.createElement("li");
+        item.className = "menu-auth-item";
+        const cloned = link.cloneNode(true);
+        cloned.classList.add("menu-auth-link");
+        item.appendChild(cloned);
+        menu.appendChild(item);
+      });
+    }
 
     menuBtn.addEventListener("click", (event) => {
       event.stopPropagation();
       menu.classList.toggle("open");
     });
 
-    menu.querySelectorAll("a[href^='#']").forEach((link) => {
+    menu.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => menu.classList.remove("open"));
     });
 
@@ -832,6 +963,7 @@
   };
 
   setupTheme();
+  setupLanguage();
   setupGlobalSearch();
   setupMobileAppChrome();
   setupMenu();
