@@ -16,7 +16,7 @@
 
 body {
   margin: 0;
-  font-family: "Hind Siliguri", sans-serif;
+  font-family: "Noto Sans Bengali", "Hind Siliguri", "Nirmala UI", "Vrinda", sans-serif;
   background: linear-gradient(180deg, #eef3fc 0%, #e4ebf8 100%);
   color: var(--ink);
 }
@@ -594,3 +594,152 @@ li {
   }
 }
 
+
+
+
+.theme-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1200;
+  border: 1px solid #1f2e4d;
+  background: #0b1730;
+  color: #d8e4ff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 16px 30px rgba(6, 15, 32, 0.42);
+}
+
+.theme-toggle-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+}
+
+html[data-theme="night"] {
+  color-scheme: dark;
+  --bg: #0f172a;
+  --panel: #111827;
+  --ink: #e2e8f0;
+  --muted: #94a3b8;
+  --line: #223148;
+  --blue: #38bdf8;
+  --blue-2: #818cf8;
+  --good: #34d399;
+  --warn: #f59e0b;
+}
+
+html[data-theme="night"] body {
+  background: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+  color: var(--ink);
+}
+
+html[data-theme="night"] .country-nav,
+html[data-theme="night"] .hero,
+html[data-theme="night"] .card,
+html[data-theme="night"] .sub-footer,
+html[data-theme="night"] .stat,
+html[data-theme="night"] .table th,
+html[data-theme="night"] .table td {
+  background: #111827;
+  border-color: #25344c;
+}
+
+html[data-theme="night"] .menu,
+html[data-theme="night"] .menu.open,
+html[data-theme="night"] .btn.outline,
+html[data-theme="night"] .flag-pill,
+html[data-theme="night"] .table th,
+html[data-theme="night"] .steps li::before,
+html[data-theme="night"] .sub-social a,
+html[data-theme="night"] .sub-footer-form input,
+html[data-theme="night"] .sub-footer-form textarea {
+  background: #172033;
+  border-color: #2b3a54;
+  color: #dbe6f7;
+}
+
+html[data-theme="night"] .brand h1,
+html[data-theme="night"] .hero h1,
+html[data-theme="night"] .card h2,
+html[data-theme="night"] .card h3,
+html[data-theme="night"] .sub-footer h4,
+html[data-theme="night"] .sub-footer h5,
+html[data-theme="night"] .stat b {
+  color: #e2e8f0;
+}
+
+html[data-theme="night"] .brand p,
+html[data-theme="night"] .hero p,
+html[data-theme="night"] ul,
+html[data-theme="night"] .note,
+html[data-theme="night"] .stat span,
+html[data-theme="night"] .table td,
+html[data-theme="night"] .sub-footer p,
+html[data-theme="night"] .sub-footer-links a,
+html[data-theme="night"] .sub-footer-bottom span,
+html[data-theme="night"] .menu a {
+  color: #94a3b8;
+}
+
+html[data-theme="night"] .btn.primary,
+html[data-theme="night"] .back-link,
+html[data-theme="night"] .sub-footer-form button {
+  color: #081018;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  box-shadow: 0 12px 22px rgba(56, 189, 248, 0.24);
+}
+
+html[data-theme="night"] .footer-cta {
+  background: linear-gradient(130deg, #0f172a, #1e293b);
+  border: 1px solid #2a3954;
+}
+
+html[data-theme="night"] .footer-cta a {
+  background: #172033;
+  color: #dbe6f7;
+  border: 1px solid #2b3a54;
+}
+
+html[data-theme="night"] .badge.blue {
+  background: #38bdf8;
+  color: #081018;
+}
+
+html[data-theme="night"] .badge.good {
+  background: #34d399;
+  color: #081018;
+}
+
+html[data-theme="night"] .badge.warn {
+  background: #f59e0b;
+  color: #081018;
+}
+
+html[data-theme="night"] .theme-toggle {
+  background: #0b1220;
+  border-color: #2a3954;
+  color: #cbd5e1;
+}
+
+html[data-theme="night"] .theme-toggle-dot {
+  background: #f472b6;
+  box-shadow: 0 0 0 4px rgba(244, 114, 182, 0.22);
+}
+
+@media (max-width: 620px) {
+  .theme-toggle {
+    right: 12px;
+    bottom: 12px;
+    padding: 9px 11px;
+  }
+}

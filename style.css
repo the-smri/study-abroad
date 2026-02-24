@@ -18,7 +18,7 @@
 
     body {
       margin: 0;
-      font-family: "Hind Siliguri", sans-serif;
+      font-family: "Noto Sans Bengali", "Hind Siliguri", "Nirmala UI", "Vrinda", sans-serif;
       background: linear-gradient(180deg, #e9eef8 0%, #dfe7f4 100%);
       color: var(--ink);
     }
@@ -227,8 +227,8 @@
 
     .status-badge {
       position: absolute;
-      top: 16px;
-      left: 18px;
+      top: 20px;
+      left: 20px;
       z-index: 3;
       border-radius: 999px;
       background: rgba(8, 30, 69, 0.78);
@@ -245,7 +245,7 @@
       border-radius: 22px;
       border: 1px solid rgba(255, 255, 255, 0.38);
       background-image: linear-gradient(180deg, rgba(9, 29, 66, 0.08), rgba(9, 29, 66, 0.3)),
-        url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80");
+        url("./images/hero-bg.jpg");
       background-size: cover;
       background-position: center;
       box-shadow: 0 18px 36px rgba(7, 27, 64, 0.28);
@@ -999,10 +999,12 @@
       box-shadow: 0 0 0 3px rgba(63, 123, 225, 0.16);
     }
 
-    .tool-actions {
+    .tool-actions{ 
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
+      margin-top: 8px;
+      margin-bottom: 8px;
     }
 
     .tool-btn {
@@ -1331,3 +1333,179 @@
       .footer-bottom { flex-direction: column; align-items: flex-start; }
     }
 
+
+
+
+.theme-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1200;
+  border: 1px solid #1f2e4d;
+  background: #0b1730;
+  color: #d8e4ff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 16px 30px rgba(6, 15, 32, 0.42);
+}
+
+.theme-toggle-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+}
+
+html[data-theme="night"] {
+  color-scheme: dark;
+  --page-bg: #0f172a;
+  --panel: #111827;
+  --ink: #e2e8f0;
+  --muted: #94a3b8;
+  --line: #223148;
+  --soft: #172033;
+  --blue: #38bdf8;
+  --blue-2: #818cf8;
+  --green: #34d399;
+  --orange: #f59e0b;
+}
+
+html[data-theme="night"] body {
+  background: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+  color: var(--ink);
+}
+
+html[data-theme="night"] .site-wrap,
+html[data-theme="night"] .hero-panel,
+html[data-theme="night"] .panel,
+html[data-theme="night"] .country-card,
+html[data-theme="night"] .resource-card,
+html[data-theme="night"] .stat,
+html[data-theme="night"] .tool-modal-card,
+html[data-theme="night"] .site-footer,
+html[data-theme="night"] .footer-form-wrap,
+html[data-theme="night"] .r-highlight,
+html[data-theme="night"] .resource-faq details {
+  background: #111827;
+  border-color: #25344c;
+  box-shadow: none;
+}
+
+html[data-theme="night"] .menu,
+html[data-theme="night"] .menu.open,
+html[data-theme="night"] .btn.outline,
+html[data-theme="night"] .flag-chip,
+html[data-theme="night"] .tag,
+html[data-theme="night"] .tool-btn.ghost,
+html[data-theme="night"] .tool-result,
+html[data-theme="night"] .tool-field input,
+html[data-theme="night"] .tool-field select,
+html[data-theme="night"] .footer-form input,
+html[data-theme="night"] .footer-form textarea,
+html[data-theme="night"] .social-links a {
+  background: #172033;
+  border-color: #2b3a54;
+  color: #dbe6f7;
+}
+
+html[data-theme="night"] .brand h1,
+html[data-theme="night"] .section-head h3,
+html[data-theme="night"] .panel h4,
+html[data-theme="night"] .country-card h4,
+html[data-theme="night"] .resource-card h4,
+html[data-theme="night"] .footer-brand h4,
+html[data-theme="night"] .footer-links h5,
+html[data-theme="night"] .footer-contact h5,
+html[data-theme="night"] .footer-form-wrap h5,
+html[data-theme="night"] .tool-modal-head h5,
+html[data-theme="night"] .stat b {
+  color: #e2e8f0;
+}
+
+html[data-theme="night"] .brand p,
+html[data-theme="night"] .hero-copy p,
+html[data-theme="night"] .muted-note,
+html[data-theme="night"] .country-card p,
+html[data-theme="night"] .resource-card p,
+html[data-theme="night"] .resource-card ul,
+html[data-theme="night"] .feature-list,
+html[data-theme="night"] .tools .tool span,
+html[data-theme="night"] .footer-brand p,
+html[data-theme="night"] .footer-contact p,
+html[data-theme="night"] .footer-bottom p,
+html[data-theme="night"] .legal-links a,
+html[data-theme="night"] .tool-field label,
+html[data-theme="night"] .r-highlight span,
+html[data-theme="night"] .stat span,
+html[data-theme="night"] .section-head p {
+  color: #94a3b8;
+}
+
+html[data-theme="night"] .btn.primary,
+html[data-theme="night"] .details-link,
+html[data-theme="night"] .countries-more-btn,
+html[data-theme="night"] .tool-btn.primary,
+html[data-theme="night"] .footer-form .btn.primary {
+  color: #081018;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  box-shadow: 0 12px 22px rgba(56, 189, 248, 0.24);
+}
+
+html[data-theme="night"] .pill.active {
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  color: #071019;
+}
+
+html[data-theme="night"] .pill {
+  background: #172033;
+  color: #c6d4ec;
+}
+
+html[data-theme="night"] .tools .tool,
+html[data-theme="night"] .quick-panel,
+html[data-theme="night"] .insight-pill,
+html[data-theme="night"] .status-badge,
+html[data-theme="night"] .tool-modal-head,
+html[data-theme="night"] .footer-bottom,
+html[data-theme="night"] .site-footer,
+html[data-theme="night"] .resource-builder,
+html[data-theme="night"] .resource-faq {
+  border-color: #2a3954;
+}
+
+html[data-theme="night"] .tools .tool,
+html[data-theme="night"] .quick-panel,
+html[data-theme="night"] .tool-modal-head,
+html[data-theme="night"] .resource-faq details,
+html[data-theme="night"] .tool-result,
+html[data-theme="night"] .resource-card,
+html[data-theme="night"] .country-card {
+  background: #111827;
+}
+
+html[data-theme="night"] .theme-toggle {
+  background: #0b1220;
+  border-color: #2a3954;
+  color: #cbd5e1;
+}
+
+html[data-theme="night"] .theme-toggle-dot {
+  background: #f472b6;
+  box-shadow: 0 0 0 4px rgba(244, 114, 182, 0.22);
+}
+
+@media (max-width: 560px) {
+  .theme-toggle {
+    right: 12px;
+    bottom: 12px;
+    padding: 9px 11px;
+  }
+}

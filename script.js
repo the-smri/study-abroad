@@ -1,5 +1,46 @@
 ﻿(() => {
   const doc = document;
+  const root = doc.documentElement;
+  const THEME_KEY = "study-abroad-theme";
+
+  const setupTheme = () => {
+    const savedTheme = localStorage.getItem(THEME_KEY);
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialTheme = savedTheme || (prefersDark ? "night" : "light");
+
+    const applyTheme = (theme) => {
+      const nextTheme = theme === "night" ? "night" : "light";
+      root.setAttribute("data-theme", nextTheme);
+      localStorage.setItem(THEME_KEY, nextTheme);
+
+      const toggle = doc.getElementById("themeToggle");
+      if (toggle) {
+        const isNight = nextTheme === "night";
+        toggle.setAttribute("aria-pressed", String(isNight));
+        toggle.setAttribute("aria-label", isNight ? "লাইট মোড চালু করুন" : "ডার্ক মোড চালু করুন");
+        const label = toggle.querySelector(".theme-toggle-label");
+        if (label) label.textContent = isNight ? "Light" : "Night";
+      }
+    };
+
+    applyTheme(initialTheme);
+
+    const toggle = doc.createElement("button");
+    toggle.type = "button";
+    toggle.id = "themeToggle";
+    toggle.className = "theme-toggle";
+    toggle.innerHTML = `
+      <span class="theme-toggle-dot" aria-hidden="true"></span>
+      <span class="theme-toggle-label">Night</span>
+    `;
+    doc.body.appendChild(toggle);
+    applyTheme(initialTheme);
+
+    toggle.addEventListener("click", () => {
+      const current = root.getAttribute("data-theme") === "night" ? "night" : "light";
+      applyTheme(current === "night" ? "light" : "night");
+    });
+  };
 
   const showToast = (() => {
     const toast = doc.createElement("div");
@@ -553,6 +594,7 @@
     });
   };
 
+  setupTheme();
   setupMenu();
   setupSmoothAnchors();
   setupAuthButtons();
@@ -562,3 +604,5 @@
   setupTools();
   setupFlags();
 })();
+
+
