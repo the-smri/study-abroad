@@ -5,8 +5,7 @@
 
   const setupTheme = () => {
     const savedTheme = localStorage.getItem(THEME_KEY);
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initialTheme = savedTheme || (prefersDark ? "night" : "light");
+    const initialTheme = savedTheme || "light";
 
     const applyTheme = (theme) => {
       const nextTheme = theme === "night" ? "night" : "light";
@@ -57,6 +56,79 @@
       }, 2200);
     };
   })();
+
+  const setupMobileAppChrome = () => {
+    const existing = doc.getElementById("mobileAppNav");
+    if (existing) return;
+
+    const isHomePage = /index\.html$/i.test(window.location.pathname) || window.location.pathname.endsWith("/");
+    const nav = doc.createElement("nav");
+    nav.id = "mobileAppNav";
+    nav.className = "mobile-app-nav";
+    nav.setAttribute("aria-label", "মোবাইল অ্যাপ ন্যাভিগেশন");
+
+    const items = [
+      { id: "home", label: "হোম", href: isHomePage ? "#home" : "index.html#home" },
+      { id: "countries", label: "দেশ", href: isHomePage ? "#countries" : "index.html#countries" },
+      { id: "tools", label: "টুলস", href: isHomePage ? "#tools" : "index.html#tools" },
+      { id: "resources", label: "রিসোর্স", href: isHomePage ? "#resources" : "index.html#resources" },
+      { id: "profile", label: "প্রোফাইল", href: "#" }
+    ];
+
+    const iconSvg = (name) => {
+      if (name === "home") return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5V20a1 1 0 0 1-1 1h-4.8v-5.6H9.8V21H5a1 1 0 0 1-1-1z"/></svg>`;
+      if (name === "countries") return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 0c2.6 2.3 4.1 5.6 4.1 9S14.6 18.7 12 21m0-18C9.4 5.3 7.9 8.6 7.9 12s1.5 6.7 4.1 9M4 12h16"/></svg>`;
+      if (name === "tools") return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.4 6.2 3.4 3.4-8.8 8.8H5.6v-3.4zM13 7.6 16.4 4a2.4 2.4 0 0 1 3.4 3.4L16.4 11"/></svg>`;
+      if (name === "resources") return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h10a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2V6a2 2 0 0 1 2-2Zm0 0v12"/></svg>`;
+      return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Zm-7 8.4a7 7 0 0 1 14 0"/></svg>`;
+    };
+
+    nav.innerHTML = `
+      <div class="mobile-tabs">
+        ${items
+          .map(
+            (item) => `
+          <a class="mobile-tab" data-mobile-tab="${item.id}" href="${item.href}">
+            <span class="mobile-icon">${iconSvg(item.id)}</span>
+            <span class="mobile-label">${item.label}</span>
+          </a>`
+          )
+          .join("")}
+      </div>
+      <button type="button" class="mobile-fab" id="mobileQuickBtn" aria-label="কুইক অ্যাকশন">
+        +
+      </button>
+    `;
+
+    doc.body.appendChild(nav);
+
+    nav.querySelectorAll(".mobile-tab").forEach((tab) => {
+      tab.addEventListener("click", (event) => {
+        const href = tab.getAttribute("href") || "";
+        if (href === "#") {
+          event.preventDefault();
+          showToast("প্রোফাইল ফিচার শিগগিরই আসছে");
+          return;
+        }
+        nav.querySelectorAll(".mobile-tab").forEach((el) => el.classList.remove("active"));
+        tab.classList.add("active");
+      });
+    });
+
+    const quickBtn = doc.getElementById("mobileQuickBtn");
+    quickBtn?.addEventListener("click", () => {
+      if (isHomePage) {
+        const target = doc.getElementById("countries");
+        target?.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.location.href = "index.html#countries";
+      }
+    });
+
+    const activeId = isHomePage ? "home" : "countries";
+    const activeTab = nav.querySelector(`[data-mobile-tab="${activeId}"]`);
+    activeTab?.classList.add("active");
+  };
 
   const setupMenu = () => {
     const menuBtn = doc.getElementById("menuToggle");
@@ -595,6 +667,7 @@
   };
 
   setupTheme();
+  setupMobileAppChrome();
   setupMenu();
   setupSmoothAnchors();
   setupAuthButtons();
