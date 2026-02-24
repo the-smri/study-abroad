@@ -117,6 +117,172 @@
     activeTab?.classList.add("active");
   };
 
+  const setupGlobalSearch = () => {
+    const navActions = doc.querySelector(".nav-actions");
+    if (!navActions || doc.getElementById("globalSearchBtn")) return;
+
+    const searchBtn = doc.createElement("button");
+    searchBtn.type = "button";
+    searchBtn.id = "globalSearchBtn";
+    searchBtn.className = "btn outline search-trigger";
+    searchBtn.setAttribute("aria-label", "সার্চ");
+    searchBtn.innerHTML = `
+      <span class="search-trigger-orb" aria-hidden="true">
+        <svg class="search-icon-svg" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="7"></circle>
+          <line x1="16.2" y1="16.2" x2="21" y2="21"></line>
+        </svg>
+      </span>
+      <span class="search-trigger-text">সার্চ করুন</span>
+    `;
+    navActions.prepend(searchBtn);
+
+    const searchModal = doc.createElement("div");
+    searchModal.className = "search-modal";
+    searchModal.hidden = true;
+    searchModal.innerHTML = `
+      <div class="search-modal-card" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle">
+        <div class="search-head">
+          <h5 id="searchModalTitle">ওয়েবসাইট সার্চ</h5>
+          <button type="button" class="search-close" aria-label="বন্ধ করুন">×</button>
+        </div>
+        <div class="search-body">
+          <input id="globalSearchInput" type="search" placeholder="যেমন: ফ্রান্স, স্কলারশিপ, ভিসা, IELTS" autocomplete="off" />
+          <div id="globalSearchMeta" class="search-meta">কোনো কীওয়ার্ড লিখুন।</div>
+          <div id="globalSearchResults" class="search-results"></div>
+        </div>
+      </div>
+    `;
+    doc.body.appendChild(searchModal);
+
+    const input = searchModal.querySelector("#globalSearchInput");
+    const resultsEl = searchModal.querySelector("#globalSearchResults");
+    const metaEl = searchModal.querySelector("#globalSearchMeta");
+    const closeBtn = searchModal.querySelector(".search-close");
+    const scrollTargets = new Map();
+
+    const pageIndex = [
+      { url: "index.html", title: "হোম", keywords: "বিদেশে পড়তে চাই ডেস্টিনেশন স্কলারশিপ রিসোর্স টুলস" },
+      { url: "usa.html", title: "যুক্তরাষ্ট্র", keywords: "USA আমেরিকা ভিসা টিউশন OPT" },
+      { url: "canada.html", title: "কানাডা", keywords: "Canada SDS PGWP PR" },
+      { url: "uk.html", title: "যুক্তরাজ্য", keywords: "UK Graduate route মাস্টার্স" },
+      { url: "australia.html", title: "অস্ট্রেলিয়া", keywords: "Australia subclass post study work" },
+      { url: "germany.html", title: "জার্মানি", keywords: "Germany block account tuition" },
+      { url: "france.html", title: "ফ্রান্স", keywords: "France Campus France APS" },
+      { url: "italy.html", title: "ইতালি", keywords: "Italy ISEE scholarship" },
+      { url: "sweden.html", title: "সুইডেন", keywords: "Sweden innovation scholarship" },
+      { url: "denmark.html", title: "ডেনমার্ক", keywords: "Denmark green tech study" },
+      { url: "china.html", title: "চীন", keywords: "China CSC scholarship Mandarin" },
+      { url: "japan.html", title: "জাপান", keywords: "Japan MEXT visa language" },
+      { url: "south-korea.html", title: "দক্ষিণ কোরিয়া", keywords: "Korea GKS visa scholarship" },
+      { url: "india.html", title: "ভারত", keywords: "India study destination tuition" }
+    ];
+
+    const sectionIndex = [];
+    doc.querySelectorAll("main h1, main h2, main h3, main h4, main p, main li").forEach((node, idx) => {
+      const text = (node.textContent || "").trim();
+      if (!text || text.length < 6) return;
+      const key = `local-${idx}`;
+      scrollTargets.set(key, node);
+      sectionIndex.push({
+        id: key,
+        type: "section",
+        title: text.slice(0, 70),
+        text,
+        url: "#"
+      });
+    });
+
+    const dataset = [
+      ...pageIndex.map((p) => ({ type: "page", title: p.title, text: `${p.title} ${p.keywords}`, url: p.url })),
+      ...sectionIndex
+    ];
+
+    const normalize = (value) => value.toLowerCase().replace(/\s+/g, " ").trim();
+
+    const closeSearch = () => {
+      searchModal.hidden = true;
+    };
+
+    const openSearch = () => {
+      searchModal.hidden = false;
+      window.setTimeout(() => input?.focus(), 10);
+    };
+
+    const renderResults = (query) => {
+      const needle = normalize(query);
+      if (!needle) {
+        metaEl.textContent = "কোনো কীওয়ার্ড লিখুন।";
+        resultsEl.innerHTML = "";
+        return;
+      }
+
+      const ranked = dataset
+        .map((item) => {
+          const hay = normalize(item.text);
+          const title = normalize(item.title);
+          let score = 0;
+          if (title.startsWith(needle)) score += 30;
+          if (title.includes(needle)) score += 16;
+          if (hay.includes(needle)) score += 10;
+          needle.split(" ").forEach((token) => {
+            if (token && hay.includes(token)) score += 2;
+          });
+          return { ...item, score };
+        })
+        .filter((item) => item.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 10);
+
+      metaEl.textContent = ranked.length ? `${ranked.length}টি ফলাফল পাওয়া গেছে` : "কোনো ফলাফল পাওয়া যায়নি";
+
+      resultsEl.innerHTML = ranked
+        .map((item) => {
+          const tag = item.type === "page" ? "পেজ" : "সেকশন";
+          return `
+            <button type="button" class="search-result-item" data-search-type="${item.type}" data-search-id="${item.id || ""}" data-search-url="${item.url}">
+              <span class="search-result-title">${item.title}</span>
+              <span class="search-result-tag">${tag}</span>
+            </button>
+          `;
+        })
+        .join("");
+    };
+
+    searchBtn.addEventListener("click", openSearch);
+    closeBtn?.addEventListener("click", closeSearch);
+
+    searchModal.addEventListener("click", (event) => {
+      if (event.target === searchModal) closeSearch();
+    });
+
+    doc.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !searchModal.hidden) closeSearch();
+    });
+
+    input?.addEventListener("input", () => renderResults(input.value));
+
+    resultsEl?.addEventListener("click", (event) => {
+      const button = event.target.closest(".search-result-item");
+      if (!button) return;
+
+      const type = button.getAttribute("data-search-type");
+      const url = button.getAttribute("data-search-url") || "";
+      const id = button.getAttribute("data-search-id") || "";
+      closeSearch();
+
+      if (type === "section" && id) {
+        const target = scrollTargets.get(id);
+        target?.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+
+      if (url && url !== "#") {
+        window.location.href = url;
+      }
+    });
+  };
+
   const setupMenu = () => {
     const menuBtn = doc.getElementById("menuToggle");
     const menu = doc.getElementById("menu");
@@ -666,6 +832,7 @@
   };
 
   setupTheme();
+  setupGlobalSearch();
   setupMobileAppChrome();
   setupMenu();
   setupSmoothAnchors();
