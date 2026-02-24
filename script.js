@@ -177,6 +177,7 @@
     if (existing) return;
 
     const isHomePage = /index\.html$/i.test(window.location.pathname) || window.location.pathname.endsWith("/");
+    const isProfilePage = /profile\.html$/i.test(window.location.pathname);
     const nav = doc.createElement("nav");
     nav.id = "mobileAppNav";
     nav.className = "mobile-app-nav";
@@ -187,7 +188,7 @@
       { id: "countries", label: "দেশ", href: isHomePage ? "#countries" : "index.html#countries" },
       { id: "tools", label: "টুলস", href: isHomePage ? "#tools" : "index.html#tools" },
       { id: "resources", label: "রিসোর্স", href: isHomePage ? "#resources" : "index.html#resources" },
-      { id: "profile", label: "প্রোফাইল", href: "#" }
+      { id: "profile", label: "প্রোফাইল", href: isProfilePage ? "#home" : "profile.html" }
     ];
 
     const iconSvg = (name) => {
@@ -227,7 +228,7 @@
       });
     });
 
-    const activeId = isHomePage ? "home" : "countries";
+    const activeId = isProfilePage ? "profile" : (isHomePage ? "home" : "countries");
     const activeTab = nav.querySelector(`[data-mobile-tab="${activeId}"]`);
     activeTab?.classList.add("active");
   };
@@ -459,6 +460,9 @@
     const authLinks = doc.querySelectorAll(".nav-actions a");
     authLinks.forEach((link) => {
       link.addEventListener("click", (event) => {
+        const href = link.getAttribute("href") || "";
+        if (href && href !== "#") return;
+
         event.preventDefault();
         const label = link.textContent.trim();
 
@@ -962,6 +966,62 @@
     });
   };
 
+  const setupLogin = () => {
+    const loginBtn = doc.getElementById("loginBtn");
+    const loginModal = doc.getElementById("loginModal");
+    const closeLoginModal = doc.getElementById("closeLoginModal");
+    const loginForm = doc.getElementById("loginForm");
+    
+    // Sample credentials
+    const SAMPLE_EMAIL = "demo@example.com";
+    const SAMPLE_PASSWORD = "12345678";
+    const LOGIN_KEY = "user_logged_in";
+
+    if (loginBtn) {
+      loginBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        loginModal.style.display = "block";
+      });
+    }
+
+    if (closeLoginModal) {
+      closeLoginModal.addEventListener("click", () => {
+        loginModal.style.display = "none";
+      });
+    }
+
+    // Close modal when clicking outside of it
+    window.addEventListener("click", (e) => {
+      if (e.target === loginModal) {
+        loginModal.style.display = "none";
+      }
+    });
+
+    if (loginForm) {
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        
+        const email = doc.getElementById("email").value.trim();
+        const password = doc.getElementById("password").value.trim();
+
+        if (email === SAMPLE_EMAIL && password === SAMPLE_PASSWORD) {
+          // Store login state
+          localStorage.setItem(LOGIN_KEY, JSON.stringify({
+            email: email,
+            loginTime: new Date().toISOString()
+          }));
+          
+          // Redirect to profile page
+          window.location.href = "profile.html";
+        } else {
+          alert("ইমেইল বা পাসওয়ার্ড সঠিক নয়। নমুনা: demo@example.com / 12345678");
+          doc.getElementById("email").value = "";
+          doc.getElementById("password").value = "";
+        }
+      });
+    }
+  };
+
   setupTheme();
   setupLanguage();
   setupGlobalSearch();
@@ -974,6 +1034,7 @@
   setupResources();
   setupTools();
   setupFlags();
+  setupLogin();
 })();
 
 

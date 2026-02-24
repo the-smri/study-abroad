@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="images/icons/logo-color.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="country.css" />
+  <title>স্টুডেন্ট প্রোফাইল | বিদেশে পড়তে চাই</title>
+</head>
+<body>
+  <main class="container">
+    <nav class="nav country-nav">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <img src="images/icons/logo-color.svg" alt="" />
+        </div>
+        <div>
+          <h1>বিদেশে পড়তে চাই</h1>
+          <p>শিক্ষা পরামর্শক প্ল্যাটফর্ম</p>
+        </div>
+      </div>
+
+      <button id="menuToggle" class="menu-toggle" aria-label="মেনু খুলুন"><span aria-hidden="true">&#9776;</span></button>
+
+      <ul id="menu" class="menu">
+        <li><a href="index.html#home">হোম</a></li>
+        <li><a href="index.html#countries">ডেস্টিনেশন</a></li>
+        <li><a href="index.html#scholarship">স্কলারশিপ</a></li>
+        <li><a href="index.html#resources">রিসোর্স</a></li>
+        <li><a href="index.html#tools">টুলস</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <span id="userEmail" class="user-email"></span>
+        <a class="btn outline" href="index.html">হোমে ফিরুন</a>
+        <button class="btn primary" id="logoutBtn">লগআউট</button>
+      </div>
+    </nav>
+
+    <section id="home" class="hero">
+      <div class="hero-copy">
+        <div class="flag-pill">Student Dashboard</div>
+        <h1>বিদেশে পড়াশোনার জন্য আপনার সম্পূর্ণ স্টুডেন্ট প্রোফাইল</h1>
+        <p>ব্যক্তিগত তথ্য, একাডেমিক যোগ্যতা, ভাষা স্কোর, বাজেট, ডকুমেন্ট স্ট্যাটাস ও অ্যাপ্লিকেশন অগ্রগতি এক জায়গায় ট্র্যাক করুন।</p>
+      </div>
+      <div class="hero-photo" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80');"></div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>প্রোফাইল স্ট্যাটাস</h2>
+        <div class="stats">
+          <div class="stat"><b>82%</b><span>প্রোফাইল সম্পন্ন</span></div>
+          <div class="stat"><b>5</b><span>টার্গেট বিশ্ববিদ্যালয়</span></div>
+          <div class="stat"><b>3</b><span>চলমান আবেদন</span></div>
+        </div>
+        <p class="note">IELTS TRF, ব্যাংক সলভেন্সি ও SOP final draft আপডেট করলে প্রোফাইল 100% সম্পন্ন হবে।</p>
+      </article>
+      <article class="card">
+        <h3>পরবর্তী করণীয়</h3>
+        <ol class="steps">
+          <li>পাসপোর্ট ও একাডেমিক ডকুমেন্ট ভেরিফাই করুন</li>
+          <li>টেস্ট স্কোর যুক্ত করুন (IELTS/TOEFL/GRE)</li>
+          <li>দেশভিত্তিক বাজেট ও প্রোগ্রাম shortlist final করুন</li>
+          <li>ভিসা ফাইল checklist 100% complete করুন</li>
+        </ol>
+      </article>
+    </section>
+
+    <section id="onboarding" class="card profile-card">
+      <h2>ব্যক্তিগত তথ্য (Personal Information)</h2>
+      <form class="profile-form" action="#" method="post">
+        <div class="profile-grid">
+          <label class="profile-field">পূর্ণ নাম
+            <input type="text" name="full_name" placeholder="যেমন: আব্দুল্লাহ আল মামুন" />
+          </label>
+          <label class="profile-field">ইমেইল
+            <input type="email" name="email" placeholder="name@email.com" />
+          </label>
+          <label class="profile-field">মোবাইল নম্বর
+            <input type="tel" name="phone" placeholder="+8801XXXXXXXXX" />
+          </label>
+          <label class="profile-field">জন্ম তারিখ
+            <input type="date" name="dob" />
+          </label>
+          <label class="profile-field">পাসপোর্ট নম্বর
+            <input type="text" name="passport" placeholder="A12345678" />
+          </label>
+          <label class="profile-field">বর্তমান ঠিকানা
+            <input type="text" name="address" placeholder="শহর, জেলা" />
+          </label>
+        </div>
+      </form>
+    </section>
+
+    <section class="grid">
+      <article class="card profile-card">
+        <h2>একাডেমিক ব্যাকগ্রাউন্ড</h2>
+        <form class="profile-form" action="#" method="post">
+          <div class="profile-grid">
+            <label class="profile-field">সর্বশেষ ডিগ্রি
+              <select name="degree">
+                <option>Bachelor</option>
+                <option>Master</option>
+                <option>Diploma</option>
+                <option>HSC/A-Level</option>
+              </select>
+            </label>
+            <label class="profile-field">বিষয়/মেজর
+              <input type="text" name="major" placeholder="CSE / BBA / EEE" />
+            </label>
+            <label class="profile-field">CGPA / GPA
+              <input type="text" name="cgpa" placeholder="3.45 / 4.00" />
+            </label>
+            <label class="profile-field">গ্রাজুয়েশন বছর
+              <input type="number" name="grad_year" placeholder="2024" />
+            </label>
+            <label class="profile-field">কাজের অভিজ্ঞতা (বছর)
+              <input type="number" name="experience" placeholder="2" />
+            </label>
+            <label class="profile-field">পছন্দের স্টাডি লেভেল
+              <select name="study_level">
+                <option>Masters</option>
+                <option>Bachelors</option>
+                <option>PG Diploma</option>
+                <option>PhD</option>
+              </select>
+            </label>
+          </div>
+        </form>
+      </article>
+
+      <article class="card profile-card">
+        <h3>Language / Test Scores</h3>
+        <form class="profile-form" action="#" method="post">
+          <div class="profile-grid two-col">
+            <label class="profile-field">IELTS Overall
+              <input type="text" name="ielts" placeholder="6.5 / 7.0" />
+            </label>
+            <label class="profile-field">TOEFL / Duolingo
+              <input type="text" name="toefl" placeholder="Optional" />
+            </label>
+            <label class="profile-field">GRE / GMAT
+              <input type="text" name="gre" placeholder="Optional" />
+            </label>
+            <label class="profile-field">Test Date
+              <input type="date" name="test_date" />
+            </label>
+          </div>
+        </form>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card profile-card">
+        <h2>ডেস্টিনেশন ও বাজেট পছন্দ</h2>
+        <form class="profile-form" action="#" method="post">
+          <div class="profile-grid">
+            <label class="profile-field">টার্গেট দেশ (১)
+              <select name="country_1">
+                <option>Canada</option>
+                <option>USA</option>
+                <option>UK</option>
+                <option>Australia</option>
+                <option>Germany</option>
+              </select>
+            </label>
+            <label class="profile-field">টার্গেট দেশ (২)
+              <input type="text" name="country_2" placeholder="ঐচ্ছিক" />
+            </label>
+            <label class="profile-field">ইনটেক
+              <select name="intake">
+                <option>Fall 2026</option>
+                <option>Spring 2027</option>
+                <option>Fall 2027</option>
+              </select>
+            </label>
+            <label class="profile-field">বার্ষিক টিউশন বাজেট
+              <input type="text" name="tuition_budget" placeholder="USD 15k - 25k" />
+            </label>
+            <label class="profile-field">মাসিক লিভিং বাজেট
+              <input type="text" name="living_budget" placeholder="USD 700 - 1200" />
+            </label>
+            <label class="profile-field">ফান্ডিং সোর্স
+              <select name="funding">
+                <option>Self-funded</option>
+                <option>Family Sponsor</option>
+                <option>Scholarship</option>
+                <option>Education Loan</option>
+              </select>
+            </label>
+          </div>
+        </form>
+      </article>
+
+      <article class="card">
+        <h3>ডকুমেন্ট স্ট্যাটাস</h3>
+        <table class="table">
+          <thead>
+            <tr><th>ডকুমেন্ট</th><th>স্ট্যাটাস</th><th>মন্তব্য</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Passport</td><td><span class="badge good">Complete</span></td><td>Valid until 2031</td></tr>
+            <tr><td>Transcripts</td><td><span class="badge good">Complete</span></td><td>All semesters uploaded</td></tr>
+            <tr><td>IELTS TRF</td><td><span class="badge warn">Pending</span></td><td>Test date selected</td></tr>
+            <tr><td>SOP</td><td><span class="badge blue">In Review</span></td><td>Draft version submitted</td></tr>
+            <tr><td>Bank Statement</td><td><span class="badge warn">Pending</span></td><td>Need latest 6 months</td></tr>
+          </tbody>
+        </table>
+      </article>
+    </section>
+
+    <section class="card">
+      <h2>অ্যাপ্লিকেশন ট্র্যাকার</h2>
+      <table class="table">
+        <thead>
+          <tr><th>বিশ্ববিদ্যালয়</th><th>প্রোগ্রাম</th><th>ডেডলাইন</th><th>অবস্থা</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>University of Windsor</td><td>MEng Electrical</td><td>15 Jan 2027</td><td><span class="badge blue">Submitted</span></td></tr>
+          <tr><td>Conestoga College</td><td>PG Diploma - IT</td><td>20 Feb 2027</td><td><span class="badge good">Offer Received</span></td></tr>
+          <tr><td>University of Hertfordshire</td><td>MSc Data Science</td><td>05 Mar 2027</td><td><span class="badge warn">Drafting Docs</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>ভিসা রেডিনেস চেকলিস্ট</h2>
+        <ol class="steps">
+          <li>Offer letter + Tuition deposit confirmation</li>
+          <li>Financial support documents finalization</li>
+          <li>SOP/Study plan country guideline অনুযায়ী আপডেট</li>
+          <li>Medical + Biometric appointment complete</li>
+          <li>Embassy interview Q/A practice complete</li>
+        </ol>
+      </article>
+      <article class="card">
+        <h3>Counselor Note</h3>
+        <p class="note">আপনার প্রোফাইল Canada/UK pathway এর জন্য strong. IELTS 7.0 এবং ফান্ডিং ডকুমেন্ট complete হলে 4-6 সপ্তাহের মধ্যে multiple offer সম্ভাবনা রয়েছে।</p>
+        <p class="note">Next Review Meeting: <b>Saturday, 7:30 PM</b></p>
+        <div class="profile-actions">
+          <a class="btn primary" href="#">মিটিং বুক করুন</a>
+          <a class="btn outline" href="#">পিডিএফ এক্সপোর্ট</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    // Check if user is logged in
+    const LOGIN_KEY = "user_logged_in";
+    const loginData = localStorage.getItem(LOGIN_KEY);
+
+    if (!loginData) {
+      alert("আপনাকে প্রথমে লগইন করতে হবে।");
+      window.location.href = "index.html";
+    } else {
+      try {
+        const userData = JSON.parse(loginData);
+        const userEmailElement = document.getElementById("userEmail");
+        if (userEmailElement) {
+          userEmailElement.textContent = "স্বাগতম, " + userData.email;
+        }
+      } catch (e) {
+        console.error("Error parsing login data:", e);
+      }
+    }
+
+    // Setup logout button
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", () => {
+        localStorage.removeItem(LOGIN_KEY);
+        alert("আপনি সফলভাবে লগআউট করেছেন।");
+        window.location.href = "index.html";
+      });
+    }
+  </script>
+</body>
+</html>

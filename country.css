@@ -1130,6 +1130,275 @@ html[data-theme="night"] .search-result-tag {
   color: #a5bddf;
 }
 
+/* User Email Styling */
+.user-email {
+  display: inline-block;
+  padding: 8px 12px;
+  background: var(--blue);
+  color: white;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+html[data-theme="night"] .user-email {
+  background: var(--blue);
+  color: white;
+}
+
+/* Profile Form Styling */
+.profile-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f5f9ff 100%) !important;
+  border: 2px solid #e0e8f5 !important;
+}
+
+.profile-form {
+  width: 100%;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 600;
+  color: #1d2b4d;
+  cursor: text;
+}
+
+.profile-field input,
+.profile-field select,
+.profile-field textarea {
+  padding: 10px 14px;
+  border: 2px solid #d0dce8;
+  border-radius: 16px;
+  font: inherit;
+  font-size: 15px;
+  background: #ffffff;
+  color: #1d2b4d;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(29, 43, 77, 0.06);
+}
+
+.profile-field input::placeholder,
+.profile-field select::placeholder {
+  color: #8a99b1;
+}
+
+.profile-field input:focus,
+.profile-field select:focus,
+.profile-field textarea:focus {
+  outline: none;
+  border-color: #1a68de;
+  box-shadow: 0 0 0 4px rgba(26, 104, 222, 0.12), 0 4px 12px rgba(26, 104, 222, 0.15);
+  transform: translateY(-2px);
+}
+
+.profile-field input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 4px;
+  opacity: 0.6;
+  filter: invert(0.3);
+  transition: opacity 0.2s;
+}
+
+.profile-field input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Color gradient borders for different field types */
+.profile-field input[type="text"] {
+  border: 2px solid #1a68de;
+  background: linear-gradient(#ffffff, #ffffff) padding-box, linear-gradient(180deg, #1a68de, #0f4fb0) border-box;
+}
+
+.profile-field input[type="email"] {
+  border: 2px solid #1fbf75;
+  background: linear-gradient(#ffffff, #ffffff) padding-box, linear-gradient(180deg, #1fbf75, #158f5c) border-box;
+}
+
+.profile-field input[type="tel"] {
+  border: 2px solid #f8a01a;
+  background: linear-gradient(#ffffff, #ffffff) padding-box, linear-gradient(180deg, #f8a01a, #d67f14) border-box;
+}
+
+.profile-field input[type="date"] {
+  border: 2px solid #9c27b0;
+  background: linear-gradient(#ffffff, #ffffff) padding-box, linear-gradient(180deg, #9c27b0, #7b1fa2) border-box;
+}
+
+.profile-field input[type="number"] {
+  border: 2px solid #2196f3;
+  background: linear-gradient(#ffffff, #ffffff) padding-box, linear-gradient(180deg, #2196f3, #1565c0) border-box;
+}
+
+.profile-field select {
+  border: 2px solid #ff5722;
+  background: linear-gradient(#ffffff, #ffffff) padding-box, linear-gradient(180deg, #ff5722, #d84315) border-box;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a68de' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 18px;
+  padding-right: 40px;
+  appearance: none;
+}
+
+.profile-field textarea {
+  border: 2px solid #00bcd4;
+  background: linear-gradient(#ffffff, #ffffff) padding-box, linear-gradient(180deg, #00bcd4, #0097a7) border-box;
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+}
+
+.profile-field input:hover,
+.profile-field select:hover,
+.profile-field textarea:hover {
+  box-shadow: 0 2px 12px rgba(26, 104, 222, 0.12);
+}
+
+/* Profile actions styling */
+.profile-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.profile-actions .btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.profile-actions .btn.primary {
+  background: linear-gradient(135deg, #1a68de, #0f4fb0);
+  color: white;
+  box-shadow: 0 4px 12px rgba(26, 104, 222, 0.3);
+}
+
+.profile-actions .btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(26, 104, 222, 0.4);
+}
+
+.profile-actions .btn.outline {
+  border: 2px solid #1a68de;
+  color: #1a68de;
+  background: transparent;
+}
+
+.profile-actions .btn.outline:hover {
+  background: #f1f6ff;
+  transform: translateY(-2px);
+}
+
+/* Dark mode support */
+html[data-theme="night"] .profile-card {
+  background: linear-gradient(135deg, #111827 0%, #1a2b3f 100%) !important;
+  border-color: #2a3954 !important;
+}
+
+html[data-theme="night"] .profile-field {
+  color: #e2e8f0;
+}
+
+html[data-theme="night"] .profile-field input,
+html[data-theme="night"] .profile-field select,
+html[data-theme="night"] .profile-field textarea {
+  background: #0f1620;
+  border-color: #2a3954;
+  color: #e2e8f0;
+}
+
+html[data-theme="night"] .profile-field input[type="text"] {
+  background: linear-gradient(#0f1620, #0f1620) padding-box, linear-gradient(180deg, #1a68de, #0f4fb0) border-box;
+}
+
+html[data-theme="night"] .profile-field input[type="email"] {
+  background: linear-gradient(#0f1620, #0f1620) padding-box, linear-gradient(180deg, #1fbf75, #158f5c) border-box;
+}
+
+html[data-theme="night"] .profile-field input[type="tel"] {
+  background: linear-gradient(#0f1620, #0f1620) padding-box, linear-gradient(180deg, #f8a01a, #d67f14) border-box;
+}
+
+html[data-theme="night"] .profile-field input[type="date"] {
+  background: linear-gradient(#0f1620, #0f1620) padding-box, linear-gradient(180deg, #9c27b0, #7b1fa2) border-box;
+}
+
+html[data-theme="night"] .profile-field input[type="number"] {
+  background: linear-gradient(#0f1620, #0f1620) padding-box, linear-gradient(180deg, #2196f3, #1565c0) border-box;
+}
+
+html[data-theme="night"] .profile-field select {
+  background: linear-gradient(#0f1620, #0f1620) padding-box, linear-gradient(180deg, #ff5722, #d84315) border-box;
+}
+
+html[data-theme="night"] .profile-field textarea {
+  background: linear-gradient(#0f1620, #0f1620) padding-box, linear-gradient(180deg, #00bcd4, #0097a7) border-box;
+}
+
+html[data-theme="night"] .profile-field input::placeholder,
+html[data-theme="night"] .profile-field select::placeholder {
+  color: #7a8a9e;
+}
+
+html[data-theme="night"] .profile-field input:focus,
+html[data-theme="night"] .profile-field select:focus,
+html[data-theme="night"] .profile-field textarea:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12), 0 4px 12px rgba(56, 189, 248, 0.15);
+}
+
+html[data-theme="night"] .profile-field input:hover,
+html[data-theme="night"] .profile-field select:hover,
+html[data-theme="night"] .profile-field textarea:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 2px 12px rgba(56, 189, 248, 0.12);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .profile-field input,
+  .profile-field select,
+  .profile-field textarea {
+    padding: 9px 12px;
+    font-size: 16px;
+  }
+
+  .profile-actions {
+    flex-direction: column;
+  }
+
+  .profile-actions .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-email {
+    display: block;
+    margin-bottom: 10px;
+  }
+}
+
 @media (max-width: 620px) {
   .search-trigger {
     width: 46px;
