@@ -411,8 +411,8 @@ li {
   margin-top: 16px;
   border: 1px solid var(--line);
   border-radius: 16px;
-  padding: 16px;
-  background: #ffffff;
+  padding: 12px;
+  background: linear-gradient(145deg, #eef7ff 0%, #e8f2ff 52%, #f4edff 100%);
   position: relative;
   overflow: hidden;
 }
@@ -421,13 +421,8 @@ li {
   content: "";
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(135deg, rgba(32, 99, 196, 0.22) 0%, rgba(22, 163, 74, 0.18) 100%),
-    url("images/footer-bg-image.jpg");
-  background-size: cover;
-  background-position: center;
-  opacity: 0.18;
-  filter: saturate(1.08) contrast(1.02);
+  background: linear-gradient(120deg, rgba(43, 125, 250, 0.1), rgba(168, 85, 247, 0.09));
+  opacity: 0.52;
   pointer-events: none;
 }
 
@@ -439,17 +434,17 @@ li {
 .sub-footer-grid {
   display: grid;
   grid-template-columns: 1.2fr 0.9fr 0.9fr 1.1fr;
-  gap: 14px;
+  gap: 10px;
 }
 
 .sub-footer h4,
 .sub-footer h5 {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   color: #163d84;
 }
 
 .sub-footer h4 {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .sub-footer h5 {
@@ -459,8 +454,8 @@ li {
 .sub-footer p {
   margin: 0;
   color: #566a91;
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 .sub-footer-links {
@@ -525,9 +520,9 @@ li {
 }
 
 .sub-footer-bottom {
-  margin-top: 14px;
+  margin-top: 10px;
   border-top: 1px solid var(--line);
-  padding-top: 10px;
+  padding-top: 8px;
   display: flex;
   justify-content: space-between;
   gap: 10px;
