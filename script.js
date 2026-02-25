@@ -971,15 +971,25 @@
     const loginModal = doc.getElementById("loginModal");
     const closeLoginModal = doc.getElementById("closeLoginModal");
     const loginForm = doc.getElementById("loginForm");
+    const createAccountBtn = doc.getElementById("createAccountBtn");
+    const modalTitle = doc.getElementById("modalTitle");
+    const sampleHint = doc.getElementById("sampleHint");
+    const createAccountPrompt = doc.getElementById("createAccountPrompt");
     
     // Sample credentials
     const SAMPLE_EMAIL = "demo@example.com";
     const SAMPLE_PASSWORD = "12345678";
     const LOGIN_KEY = "user_logged_in";
+    const REGISTERED_ACCOUNTS_KEY = "registered_accounts";
 
     if (loginBtn) {
       loginBtn.addEventListener("click", (e) => {
         e.preventDefault();
+        // Reset to login form view
+        loginForm.style.display = "block";
+        createAccountPrompt.style.display = "block";
+        modalTitle.textContent = "লগইন";
+        sampleHint.style.display = "block";
         loginModal.style.display = "block";
       });
     }
@@ -997,21 +1007,144 @@
       }
     });
 
+    // Handle create account button
+    if (createAccountBtn) {
+      createAccountBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        showCreateAccountForm();
+      });
+    }
+
+    function showCreateAccountForm() {
+      loginForm.style.display = "none";
+      createAccountPrompt.style.display = "none";
+      sampleHint.style.display = "none";
+      modalTitle.textContent = "অ্যাকাউন্ট তৈরি করুন";
+      
+      // Create account form HTML
+      const createFormHTML = `
+        <form id="createAccountForm">
+          <div class="form-group">
+            <label for="createEmail">ইমেইল:</label>
+            <input type="email" id="createEmail" name="email" required placeholder="name@email.com">
+          </div>
+          <div class="form-group">
+            <label for="createPassword">পাসওয়ার্ড:</label>
+            <input type="password" id="createPassword" name="password" required placeholder="কমপক্ষে ৮ অক্ষর">
+          </div>
+          <div class="form-group">
+            <label for="createName">নাম:</label>
+            <input type="text" id="createName" name="name" required placeholder="আপনার নাম">
+          </div>
+          <button type="submit" class="btn primary" style="width: 100%; margin-bottom: 10px;">অ্যাকাউন্ট তৈরি করুন</button>
+          <button type="button" id="backToLoginBtn" class="btn outline" style="width: 100%; background: none; border: 1px solid #ccc; cursor: pointer;">লগইনে ফিরে যান</button>
+        </form>
+      `;
+      
+      // Remove existing create form if any
+      const existingForm = doc.getElementById("createAccountForm");
+      if (existingForm) {
+        existingForm.remove();
+      }
+      
+      // Insert new form after close button
+      const closeBtn = loginForm.parentElement.querySelector(".close-btn");
+      const newForm = doc.createElement("div");
+      newForm.innerHTML = createFormHTML;
+      loginForm.parentElement.insertBefore(newForm.firstElementChild, createAccountPrompt);
+      
+      // Handle back to login button
+      const backToLoginBtn = doc.getElementById("backToLoginBtn");
+      if (backToLoginBtn) {
+        backToLoginBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          // Remove create form
+          const createForm = doc.getElementById("createAccountForm");
+          if (createForm) {
+            createForm.remove();
+          }
+          // Show login form
+          loginForm.style.display = "block";
+          createAccountPrompt.style.display = "block";
+          sampleHint.style.display = "block";
+          modalTitle.textContent = "লগইন";
+        });
+      }
+      
+      // Handle create account form submission
+      const createForm = doc.getElementById("createAccountForm");
+      if (createForm) {
+        createForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          
+          const email = doc.getElementById("createEmail").value.trim();
+          const password = doc.getElementById("createPassword").value.trim();
+          const name = doc.getElementById("createName").value.trim();
+          
+          if (password.length < 8) {
+            alert("পাসওয়ার্ড কমপক্ষে ৮ অক্ষর হতে হবে।");
+            return;
+          }
+          
+          // Get or create registered accounts list
+          let accounts = JSON.parse(localStorage.getItem(REGISTERED_ACCOUNTS_KEY) || "[]");
+          
+          // Check if email already exists
+          if (accounts.some(acc => acc.email === email)) {
+            alert("এই ইমেইল ইতিমধ্যে নিবন্ধিত। অন্য ইমেইল ব্যবহার করুন।");
+            return;
+          }
+          
+          // Add new account
+          accounts.push({
+            email: email,
+            password: password,
+            name: name,
+            createdAt: new Date().toISOString()
+          });
+          
+          localStorage.setItem(REGISTERED_ACCOUNTS_KEY, JSON.stringify(accounts));
+          
+          alert("অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে! এখন লগইন করুন।");
+          
+          // Clear form and go back to login
+          createForm.remove();
+          loginForm.style.display = "block";
+          createAccountPrompt.style.display = "block";
+          sampleHint.style.display = "block";
+          modalTitle.textContent = "লগইন";
+          doc.getElementById("email").value = "";
+          doc.getElementById("password").value = "";
+        });
+      }
+    }
+
     if (loginForm) {
       loginForm.addEventListener("submit", (e) => {
         e.preventDefault();
         
         const email = doc.getElementById("email").value.trim();
         const password = doc.getElementById("password").value.trim();
+        
+        // Check registered accounts
+        let accounts = JSON.parse(localStorage.getItem(REGISTERED_ACCOUNTS_KEY) || "[]");
+        const user = accounts.find(acc => acc.email === email && acc.password === password);
 
         if (email === SAMPLE_EMAIL && password === SAMPLE_PASSWORD) {
-          // Store login state
+          // Sample credentials
           localStorage.setItem(LOGIN_KEY, JSON.stringify({
             email: email,
-            loginTime: new Date().toISOString()
+            loginTime: new Date().toISOString(),
+            name: "ডেমো ইউজার"
           }));
-          
-          // Redirect to profile page
+          window.location.href = "profile.html";
+        } else if (user) {
+          // Registered user
+          localStorage.setItem(LOGIN_KEY, JSON.stringify({
+            email: email,
+            loginTime: new Date().toISOString(),
+            name: user.name
+          }));
           window.location.href = "profile.html";
         } else {
           alert("ইমেইল বা পাসওয়ার্ড সঠিক নয়। নমুনা: demo@example.com / 12345678");

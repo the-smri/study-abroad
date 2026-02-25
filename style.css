@@ -67,28 +67,29 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      padding-bottom: 6px;
+      gap: 0px;
+      padding-bottom: 2px;
       padding-top: 2px;
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
+      width: 100%;
+      padding-left: 10%;
+      padding-right: 10%;
+      box-sizing: border-box;
       background: linear-gradient(135deg, #ffffff 0%, #f7fbff 65%, #eff5ff 100%);
       z-index: 100;
       border-radius: 0;
       box-shadow: 0 2px 8px rgba(37, 73, 138, 0.08);
-      max-width: 100%;
-      padding-left: 16px;
-      padding-right: 16px;
       height: 60px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
-      min-width: 160px;
+      gap: 0px;
+      min-width: auto;
     }
 
     .brand-mark {
@@ -114,7 +115,7 @@
 
     .bta-logo-main {
       height: auto;
-      width: 100px;
+      width: 110px;
       display: block;
     }
 
@@ -152,8 +153,8 @@
     .menu {
       list-style: none;
       display: flex;
-      margin: 0;
-      padding: 8px 8px;
+      margin-top: 12px ;
+      padding: 12px 8px;
       gap: 12px;
       font-size: 16px;
       font-weight: 500;
