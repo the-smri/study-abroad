@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Scholarships — Find Your Dream Scholarship Abroad</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/scholarships.css">
+</head>
+<body>
+  <main class="site-wrap">
+    <section class="hero-panel">
+      <nav class="nav">
+        <div class="brand">
+          <div class="brand-logo">
+            <img src="images/btalogo-canva (2).png" alt="BD to Abroad" class="bta-logo-main" />
+          </div>
+        </div>
+
+        <button id="menuToggle" class="menu-toggle" aria-label="মেনু খুলুন"><span aria-hidden="true">☰</span></button>
+
+        <ul id="menu" class="menu">
+          <li><a href="index.html">হোম</a></li>
+          <li><a href="#countries">ডেস্টিনেশন</a></li>
+          <li><a href="scholarships.html" class="active">স্কলারশিপ</a></li>
+          <li><a href="#resources">রিসোর্স</a></li>
+          <li><a href="#tools">টুলস</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="btn primary" id="loginBtn">লগইন</button>
+        </div>
+      </nav>
+
+      <!-- Hero -->
+      <div class="hero-copy">
+        <h1>Find Your Dream Scholarship Abroad</h1>
+        <p class="sub">Explore fully funded, partial, and merit-based scholarships worldwide.</p>
+
+      <form id="searchForm" class="search-bar">
+        <input id="qCountry" name="country" placeholder="Search by country" autocomplete="off">
+        <select id="qDegree" name="degree">
+          <option value="">Any degree</option>
+          <option value="Undergraduate">Bachelor</option>
+          <option value="Masters">Masters</option>
+          <option value="PhD">PhD</option>
+          <option value="Postdoc">Postdoctoral</option>
+        </select>
+        <input id="qSubject" name="subject" placeholder="Search by subject">
+        <button type="submit" class="btn">Search</button>
+      </form>
+
+      <div class="filters">
+        <label><input type="checkbox" id="filterFull"> Fully Funded</label>
+        <label><input type="checkbox" id="filterNoIELTS"> No IELTS</label>
+        <label><input type="checkbox" id="filterDeadlineSoon"> Deadline Soon</label>
+        <label><input type="checkbox" id="filterGov"> Government</label>
+      </div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+      <h2>Scholarship Categories</h2>
+      <div class="category-grid">
+        <div class="cat">Undergraduate</div>
+        <div class="cat">Masters</div>
+        <div class="cat">PhD</div>
+        <div class="cat">Postdoctoral</div>
+        <div class="cat">USA</div>
+        <div class="cat">UK</div>
+        <div class="cat">Canada</div>
+        <div class="cat">Australia</div>
+      </div>
+    </section>
+
+    <!-- Featured -->
+    <section class="featured">
+      <h2>Featured Scholarships</h2>
+      <div id="featuredList" class="cards"></div>
+    </section>
+
+    <!-- Deadline Alerts -->
+    <section class="alerts">
+      <h2>Scholarships Closing Soon</h2>
+      <ul id="closingSoon"></ul>
+    </section>
+
+    <!-- Resources & Tips (brief) -->
+    <section class="resources">
+      <h2>Free Resources</h2>
+      <div class="resource-grid">
+        <a href="#">Sample SOP (Download)</a>
+        <a href="#">CV Template (Download)</a>
+        <a href="#">Motivation Letter Sample</a>
+        <a href="#">Scholarship Checklist (PDF)</a>
+      </div>
+    </section>
+
+    <!-- Subscribe -->
+    <section class="subscribe">
+      <h2>Get Scholarship Updates Weekly</h2>
+      <form id="subscribeForm">
+        <input type="email" id="subEmail" placeholder="Your email">
+        <button class="btn">Subscribe</button>
+        <a class="whatsapp" href="#">Join on WhatsApp</a>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Details modal -->
+  <div id="detailsModal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <button id="closeModal" class="modal-close">Close</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="js/scholarships.js"></script>
+</body>
+</html>
