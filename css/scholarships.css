@@ -703,3 +703,237 @@
     font-size: 14px;
   }
 }
+
+/* ===== Dark Mode Support ===== */
+
+/* Hero */
+html[data-theme="night"] .sch-hero-title {
+  color: #e2e8f0;
+}
+
+html[data-theme="night"] .sch-hero-title span {
+  color: #38bdf8;
+}
+
+html[data-theme="night"] .sch-hero-subtitle {
+  color: #94a3b8;
+}
+
+/* Search Bar */
+html[data-theme="night"] .sch-search-bar {
+  background: rgba(17, 24, 39, 0.8);
+  border-color: #25344c;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme="night"] .sch-search-field input,
+html[data-theme="night"] .sch-search-field select {
+  background: #172033;
+  border-color: #2b3a54;
+  color: #dbe6f7;
+}
+
+html[data-theme="night"] .sch-search-field input::placeholder {
+  color: #7a8fa8;
+}
+
+html[data-theme="night"] .sch-search-field input:focus,
+html[data-theme="night"] .sch-search-field select:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.14);
+}
+
+/* Filter Chips */
+html[data-theme="night"] .sch-filter-chip {
+  background: #172033;
+  border-color: #2b3a54;
+  color: #c6d4ec;
+}
+
+html[data-theme="night"] .sch-filter-chip:hover {
+  background: #1e293b;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme="night"] .sch-filter-chip input[type="checkbox"] {
+  accent-color: #38bdf8;
+}
+
+/* Category Cards */
+html[data-theme="night"] .sch-cat-card {
+  background: linear-gradient(145deg, #111827 0%, #1a2744 100%);
+  border-color: #25344c;
+}
+
+html[data-theme="night"] .sch-cat-card:nth-child(even) {
+  background: linear-gradient(145deg, #0f1b30 0%, #1e2a45 100%);
+}
+
+html[data-theme="night"] .sch-cat-card h4 {
+  color: #e2e8f0;
+}
+
+html[data-theme="night"] .sch-cat-card p {
+  color: #94a3b8;
+}
+
+html[data-theme="night"] .sch-cat-icon img {
+  border-color: #2b3a54;
+}
+
+/* Scholarship Cards */
+html[data-theme="night"] .sch-card {
+  background: linear-gradient(145deg, #111827 0%, #1a2744 100%);
+  border-color: #25344c;
+}
+
+html[data-theme="night"] .sch-card:nth-child(even) {
+  background: linear-gradient(145deg, #0f1b30 0%, #1e2a45 100%);
+}
+
+html[data-theme="night"] .sch-card h3 {
+  color: #e2e8f0;
+}
+
+html[data-theme="night"] .sch-card .meta {
+  color: #94a3b8;
+}
+
+html[data-theme="night"] .sch-card .desc {
+  color: #94a3b8;
+}
+
+html[data-theme="night"] .sch-actions .btn.view {
+  color: #081018;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  box-shadow: 0 8px 18px rgba(56, 189, 248, 0.22);
+}
+
+html[data-theme="night"] .sch-actions .countdown {
+  background: #172033;
+  color: #38bdf8;
+  border-color: #2b3a54;
+}
+
+/* Closing Soon */
+html[data-theme="night"] .sch-closing-wrap {
+  background: linear-gradient(145deg, #0f1b30 0%, #1e2a45 100%);
+  border-color: #25344c;
+}
+
+html[data-theme="night"] .sch-closing-list li {
+  background: rgba(17, 24, 39, 0.7);
+  border-color: #25344c;
+  color: #c6d4ec;
+}
+
+/* Resource Items */
+html[data-theme="night"] .sch-resource-item {
+  background: linear-gradient(145deg, #111827 0%, #1a2744 100%);
+  border-color: #25344c;
+  color: #dbe6f7;
+}
+
+html[data-theme="night"] .sch-resource-item:nth-child(even) {
+  background: linear-gradient(145deg, #0f1b30 0%, #1e2a45 100%);
+}
+
+html[data-theme="night"] .sch-resource-item h4 {
+  color: #e2e8f0;
+}
+
+html[data-theme="night"] .sch-resource-item p {
+  color: #94a3b8;
+}
+
+html[data-theme="night"] .sch-resource-item .tag {
+  background: #172033;
+  color: #38bdf8;
+  border-color: #2b3a54;
+}
+
+/* Subscribe Panel */
+html[data-theme="night"] .sch-subscribe-panel {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  border: 1px solid #2a3954;
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="night"] .sch-subscribe-content h3 {
+  color: #e2e8f0;
+}
+
+html[data-theme="night"] .sch-subscribe-content p {
+  color: rgba(226, 232, 240, 0.7);
+}
+
+html[data-theme="night"] .sch-subscribe-form input[type="email"] {
+  background: rgba(23, 32, 51, 0.6);
+  border-color: rgba(148, 163, 184, 0.3);
+  color: #e2e8f0;
+}
+
+html[data-theme="night"] .sch-subscribe-form input[type="email"]::placeholder {
+  color: rgba(148, 163, 184, 0.5);
+}
+
+html[data-theme="night"] .sch-subscribe-form .btn.primary {
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  color: #081018;
+}
+
+html[data-theme="night"] .sch-whatsapp-btn {
+  background: rgba(23, 32, 51, 0.5);
+  border-color: rgba(148, 163, 184, 0.25);
+  color: #c6d4ec;
+}
+
+html[data-theme="night"] .sch-whatsapp-btn:hover {
+  background: rgba(56, 189, 248, 0.15);
+}
+
+/* Modal */
+html[data-theme="night"] .sch-modal-content {
+  background: #111827;
+  border-color: #25344c;
+  box-shadow: 0 28px 55px rgba(0, 0, 0, 0.5);
+}
+
+html[data-theme="night"] .sch-modal-close {
+  background: #172033;
+  color: #c6d4ec;
+}
+
+html[data-theme="night"] .sch-modal-close:hover {
+  background: #1e293b;
+}
+
+html[data-theme="night"] .sch-modal-content h2 {
+  color: #e2e8f0;
+}
+
+html[data-theme="night"] .sch-modal-content h4 {
+  color: #c6d4ec;
+  border-bottom-color: #25344c;
+}
+
+html[data-theme="night"] .sch-modal-content p {
+  color: #94a3b8;
+}
+
+html[data-theme="night"] .sch-modal-content ul,
+html[data-theme="night"] .sch-modal-content ol {
+  color: #94a3b8;
+}
+
+html[data-theme="night"] .sch-modal-content .apply {
+  color: #081018;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  box-shadow: 0 10px 22px rgba(56, 189, 248, 0.24);
+}
+
+html[data-theme="night"] #modalCountdown {
+  background: #172033;
+  color: #38bdf8;
+  border-color: #2b3a54;
+}

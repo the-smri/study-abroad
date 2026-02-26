@@ -1672,11 +1672,155 @@ html[data-theme="night"] {
   --blue-2: #818cf8;
   --green: #34d399;
   --orange: #f59e0b;
+  --card-a: linear-gradient(145deg, #111827 0%, #1a2744 100%);
+  --card-b: linear-gradient(145deg, #0f1b30 0%, #1e2a45 100%);
 }
 
 html[data-theme="night"] body {
   background: linear-gradient(180deg, #020617 0%, #0f172a 100%);
   color: var(--ink);
+}
+
+html[data-theme="night"] .nav {
+  background: linear-gradient(135deg, #111827 0%, #0f172a 65%, #111827 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme="night"] .hero-panel {
+  background: linear-gradient(135deg, #111827 0%, #0f1b30 65%, #111827 100%);
+}
+
+html[data-theme="night"] .hero-copy h2 {
+  color: #e2e8f0;
+}
+
+html[data-theme="night"] .hero-copy h2 span {
+  color: #38bdf8;
+}
+
+html[data-theme="night"] .menu a {
+  color: #c6d4ec;
+}
+
+html[data-theme="night"] .menu a:hover {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+}
+
+html[data-theme="night"] .menu-toggle {
+  background: #172033;
+  border-color: #2b3a54;
+  color: #dbe6f7;
+}
+
+html[data-theme="night"] .trust {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border: 1px solid #2a3954;
+}
+
+html[data-theme="night"] .flag-chip {
+  background: #172033;
+  color: #c6d4ec;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme="night"] .stat .icon {
+  background: #172033;
+  border-color: #2b3a54;
+}
+
+html[data-theme="night"] .stat:nth-child(2) .icon,
+html[data-theme="night"] .stat:nth-child(3) .icon,
+html[data-theme="night"] .stat:nth-child(4) .icon,
+html[data-theme="night"] .stat:nth-child(5) .icon {
+  background: #172033;
+  border-color: #2b3a54;
+}
+
+html[data-theme="night"] .r-highlight b {
+  color: #38bdf8;
+}
+
+html[data-theme="night"] .resource-builder h4,
+html[data-theme="night"] .resource-faq h4 {
+  color: #e2e8f0;
+}
+
+html[data-theme="night"] .resource-faq summary {
+  color: #c6d4ec;
+}
+
+html[data-theme="night"] .resource-faq p {
+  color: #94a3b8;
+}
+
+html[data-theme="night"] .tools .tool b {
+  color: #e2e8f0;
+}
+
+html[data-theme="night"] .tools .tool {
+  background: #172033;
+  border-color: #2b3a54;
+}
+
+html[data-theme="night"] .tools .tool:nth-child(2),
+html[data-theme="night"] .tools .tool:nth-child(3),
+html[data-theme="night"] .tools .tool:nth-child(4) {
+  background: #172033;
+  border-color: #2b3a54;
+}
+
+html[data-theme="night"] .quick-panel {
+  background: linear-gradient(145deg, #111827, #1a2744);
+  color: #c6d4ec;
+}
+
+html[data-theme="night"] .quick-panel h4 {
+  color: #38bdf8;
+}
+
+html[data-theme="night"] .quick-panel ul {
+  color: #94a3b8;
+}
+
+html[data-theme="night"] .insight-pill {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(129, 140, 248, 0.3));
+  border-color: rgba(56, 189, 248, 0.2);
+}
+
+html[data-theme="night"] .footer-form label {
+  color: #c6d4ec;
+}
+
+html[data-theme="night"] .footer-links a {
+  color: #94a3b8;
+}
+
+html[data-theme="night"] .footer-links a:hover {
+  color: #38bdf8;
+}
+
+html[data-theme="night"] .footer-country-groups p {
+  color: #7a8fa8;
+}
+
+html[data-theme="night"] .footer-country-groups a {
+  color: #94a3b8;
+}
+
+html[data-theme="night"] .site-footer::before {
+  background: linear-gradient(120deg, rgba(56, 189, 248, 0.06), rgba(129, 140, 248, 0.06));
+}
+
+html[data-theme="night"] .media-core {
+  background: linear-gradient(145deg, #1e293b 0%, #1a3a5c 56%, #0f172a 100%);
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="night"] .status-badge {
+  background: rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.3);
 }
 
 html[data-theme="night"] .site-wrap,
@@ -1871,6 +2015,21 @@ html[data-theme="night"] .theme-toggle-dot {
   .mobile-tab.active .mobile-icon {
     color: #38bdf8;
     filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.4));
+  }
+
+  html[data-theme="night"] .mobile-app-nav {
+    background: linear-gradient(180deg, #111827 0%, #0f172a 100%);
+    border-color: #2a3954;
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  html[data-theme="night"] .mobile-tab {
+    color: #7a8fa8;
+  }
+
+  html[data-theme="night"] .mobile-tab.active {
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.1);
   }
 }
 
