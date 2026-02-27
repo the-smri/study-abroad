@@ -191,7 +191,9 @@
 
     const isHomePage =
       /index\.html$/i.test(window.location.pathname) ||
-      window.location.pathname.endsWith("/");
+      window.location.pathname.endsWith("/") ||
+      window.location.pathname === "";
+    const isResourcePage = /resources\.html$/i.test(window.location.pathname);
     const isProfilePage = /profile\.html$/i.test(window.location.pathname);
     const nav = doc.createElement("nav");
     nav.id = "mobileAppNav";
@@ -212,12 +214,12 @@
       {
         id: "tools",
         label: "টুলস",
-        href: isHomePage ? "#tools" : "index.html#tools",
+        href: isResourcePage ? "#tools" : "resources.html#tools",
       },
       {
         id: "resources",
         label: "রিসোর্স",
-        href: isHomePage ? "#resources" : "index.html#resources",
+        href: isResourcePage ? "#resources" : "resources.html",
       },
       {
         id: "profile",
@@ -271,9 +273,11 @@
 
     const activeId = isProfilePage
       ? "profile"
-      : isHomePage
-        ? "home"
-        : "countries";
+      : isResourcePage
+        ? "resources"
+        : isHomePage
+          ? "home"
+          : "countries";
     const activeTab = nav.querySelector(`[data-mobile-tab="${activeId}"]`);
     activeTab?.classList.add("active");
   };
