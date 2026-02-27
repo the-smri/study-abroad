@@ -26,8 +26,8 @@
         toggle.setAttribute("data-en-aria-label", enLabel);
         toggle.setAttribute("aria-label", isEnglish ? enLabel : bnLabel);
         
-        const label = toggle.querySelector(".theme-toggle-label");
-        if (label) label.textContent = isNight ? "Light" : "Night";
+        const icon = toggle.querySelector(".theme-toggle-icon");
+        if (icon) icon.textContent = isNight ? "☀️" : "🌙";
       }
     };
 
@@ -39,7 +39,7 @@
     toggle.className = "theme-toggle";
     toggle.innerHTML = `
       <span class="theme-toggle-dot" aria-hidden="true"></span>
-      <span class="theme-toggle-label">Night</span>
+      <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
     `;
     doc.body.appendChild(toggle);
     applyTheme(initialTheme);
@@ -194,6 +194,7 @@
       window.location.pathname.endsWith("/") ||
       window.location.pathname === "";
     const isResourcePage = /resources\.html$/i.test(window.location.pathname);
+    const isToolsPage = /tools\.html$/i.test(window.location.pathname);
     const isProfilePage = /profile\.html$/i.test(window.location.pathname);
     const nav = doc.createElement("nav");
     nav.id = "mobileAppNav";
@@ -214,12 +215,12 @@
       {
         id: "tools",
         label: "টুলস",
-        href: isResourcePage ? "#tools" : "resources.html#tools",
+        href: isToolsPage ? "#tools" : "tools.html#tools",
       },
       {
         id: "resources",
         label: "রিসোর্স",
-        href: isResourcePage ? "#resources" : "resources.html",
+        href: isResourcePage ? "#resources" : "resources.html#resources",
       },
       {
         id: "profile",
@@ -273,6 +274,8 @@
 
     const activeId = isProfilePage
       ? "profile"
+      : isToolsPage
+        ? "tools"
       : isResourcePage
         ? "resources"
         : isHomePage

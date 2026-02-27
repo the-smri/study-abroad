@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>টুলস — বিদেশে পড়তে চাই | BD to Abroad</title>
+  <meta name="description" content="বিদেশে পড়াশোনার জন্য ইন্টারেক্টিভ টুলস: দেশ তুলনা, খরচ ক্যালকুলেটর, IELTS চেকার, ভিসা টাইমলাইন এবং ডাউনলোডেবল গাইড।" />
+  <link rel="icon" type="image/svg+xml" href="images/icons/logo-color.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="tools-page">
+  <main class="site-wrap">
+    <section class="hero-panel tools-hero">
+      <nav class="nav">
+        <div class="brand">
+          <div class="brand-logo">
+            <img src="images/btalogo-canva (2).png" alt="BD to Abroad" class="bta-logo-main" />
+          </div>
+        </div>
+
+        <button id="menuToggle" class="menu-toggle" aria-label="মেনু খুলুন"><span aria-hidden="true">&#9776;</span></button>
+
+        <ul id="menu" class="menu">
+          <li><a href="index.html" data-en="Home">হোম</a></li>
+          <li><a href="index.html#countries" data-en="Destinations">ডেস্টিনেশন</a></li>
+          <li><a href="scholarships.html" data-en="Scholarships">স্কলারশিপ</a></li>
+          <li><a href="resources.html" data-en="Resources">রিসোর্স</a></li>
+          <li><a href="tools.html" class="active" data-en="Tools">টুলস</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="resources.html" class="btn primary" data-en="Back to Resources">রিসোর্সে ফিরে যান</a>
+        </div>
+      </nav>
+
+      <div class="section-head" style="margin-top: 60px;">
+        <p data-en="Interactive Tools">ইন্টারেক্টিভ টুলস</p>
+        <h3 data-en="Detailed Planning Workspace">ডিটেইল প্ল্যানিং ওয়ার্কস্পেস</h3>
+      </div>
+    </section>
+
+    <section id="tools-section" class="section">
+      <div class="row-two">
+        <aside id="tools" class="panel tools">
+          <h4 data-en="Tools">টুলস</h4>
+          <div id="comparison-tool" class="tool" data-tool="comparison-tool">
+            <b data-en="Country Comparison">দেশ তুলনা</b>
+            <span data-en="Compare tuition, living cost, PR and visa success.">টিউশন, লিভিং কস্ট, পিআর এবং ভিসা সাকসেস তুলনা করুন।</span>
+          </div>
+          <div id="cost-calculator" class="tool" data-tool="cost-calculator">
+            <b data-en="Cost Calculator">খরচ ক্যালকুলেটর</b>
+            <span data-en="Country-specific tuition + living cost estimate.">দেশভিত্তিক টিউশন + লিভিং কস্টের আনুমানিক হিসাব।</span>
+          </div>
+          <div id="ielts-checker" class="tool" data-tool="ielts-checker">
+            <b data-en="IELTS Checker">IELTS চেকার</b>
+            <span data-en="Find probable universities/colleges by score.">স্কোর অনুযায়ী সম্ভাব্য বিশ্ববিদ্যালয়/কলেজ তালিকা।</span>
+          </div>
+          <div id="visa-timeline" class="tool" data-tool="visa-timeline">
+            <b data-en="Visa Timeline">ভিসা টাইমলাইন</b>
+            <span data-en="Step-by-step guide from offer letter to biometrics.">অফার লেটার থেকে বায়োমেট্রিকস পর্যন্ত ধাপে ধাপে গাইড।</span>
+          </div>
+          <div id="pdf-guide" class="tool" data-tool="pdf-guide">
+            <b data-en="PDF Guide">PDF গাইড</b>
+            <span data-en="Download country guides, SOP samples and checklists.">দেশভিত্তিক গাইড, SOP নমুনা এবং চেকলিস্ট ডাউনলোড করুন।</span>
+          </div>
+        </aside>
+
+        <div id="comparison-inline" class="comparison-inline-wrap">
+          <div class="panel comparison-empty-state">
+            <p class="comparison-empty-text" data-en="Choose a tool from the left panel to start.">শুরু করতে বাম দিক থেকে একটি টুল বেছে নিন।</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="comparison" class="comparison-section">
+        <div class="panel comparison-panel">
+          <div class="comparison-header">
+            <h4 data-en="Country Comparison Tool">দেশ তুলনা টুল</h4>
+            <button type="button" class="close-comparison" id="closeComparison">&times;</button>
+          </div>
+          <div class="comparison-controls">
+            <div class="control-group">
+              <label data-en="Select Countries">দেশ নির্বাচন করুন</label>
+              <div class="country-selectors">
+                <select id="compare1">
+                  <option value="usa" data-en="USA">যুক্তরাষ্ট্র</option>
+                  <option value="canada" data-en="Canada" selected>কানাডা</option>
+                  <option value="uk" data-en="UK">যুক্তরাজ্য</option>
+                  <option value="australia" data-en="Australia">অস্ট্রেলিয়া</option>
+                  <option value="germany" data-en="Germany">জার্মানি</option>
+                </select>
+                <span class="vs">VS</span>
+                <select id="compare2">
+                  <option value="usa" data-en="USA" selected>যুক্তরাষ্ট্র</option>
+                  <option value="canada" data-en="Canada">কানাডা</option>
+                  <option value="uk" data-en="UK">যুক্তরাজ্য</option>
+                  <option value="australia" data-en="Australia">অস্ট্রেলিয়া</option>
+                  <option value="germany" data-en="Germany">জার্মানি</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="comparison-results" id="comparisonTable"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

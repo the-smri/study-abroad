@@ -28,7 +28,7 @@
           <li><a href="index.html#countries" data-en="Destinations">ডেস্টিনেশন</a></li>
           <li><a href="scholarships.html" data-en="Scholarships">স্কলারশিপ</a></li>
           <li><a href="resources.html" class="active" data-en="Resources">রিসোর্স</a></li>
-          <li><a href="#tools" data-en="Tools">টুলস</a></li>
+          <li><a href="tools.html" data-en="Tools">টুলস</a></li>
         </ul>
 
         <div class="nav-actions">
@@ -44,81 +44,6 @@
 
     <!-- Detailed Content will be moved here -->
     
-    <section id="tools-section" class="section">
-      <div class="section-head">
-        <p data-en="Smart Planning">স্মার্ট প্ল্যানিং</p>
-        <h3 data-en="Interactive Decision Tools">ইন্টারঅ্যাক্টিভ ডিসিশন টুলস</h3>
-      </div>
-      
-      <div class="row-two">
-        <aside id="tools" class="panel tools">
-          <h4 data-en="Tools">টুলস</h4>
-          <div class="tool" data-tool="comparison-tool">
-            <b data-en="Country Comparison">দেশ তুলনা</b>
-            <span data-en="Compare tuition, living cost, PR & visa success.">টিউশন, লিভিং কস্ট, পিআর ও ভিসা সাকসেস তুলনা।</span>
-          </div>
-          <div class="tool" data-tool="cost-calculator">
-            <b data-en="Cost Calculator">খরচ ক্যালকুলেটর</b>
-            <span data-en="Estimated country-specific tuition + living costs.">দেশভিত্তিক টিউশন + জীবনযাত্রার আনুমানিক খরচ।</span>
-          </div>
-          <div class="tool" data-tool="ielts-checker">
-            <b data-en="IELTS Checker">আইইএলটিএস চেকার</b>
-            <span data-en="Probable universities/colleges lists according to score.">স্কোর অনুযায়ী সম্ভাব্য বিশ্ববিদ্যালয়/কলেজ তালিকা।</span>
-          </div>
-          <div class="tool" data-tool="visa-timeline">
-            <b data-en="Visa Timeline">ভিসা টাইমলাইন</b>
-            <span data-en="Step-by-step guide from offer letter to biometrics.">অফার লেটার থেকে বায়োমেট্রিকস পর্যন্ত ধাপে ধাপে গাইড।</span>
-          </div>
-          <div class="tool" data-tool="pdf-guide">
-            <b data-en="PDF Guide">পিডিএফ গাইড</b>
-            <span data-en="Country-specific guides, SOP samples, scholarship checklists.">দেশভিত্তিক গাইড, SOP নমুনা, স্কলারশিপ চেকলিস্ট।</span>
-          </div>
-        </aside>
-
-        <div id="comparison-inline" class="comparison-inline-wrap">
-           <!-- Comparison will open here or stay in section below -->
-           <div class="panel" style="background: var(--soft); padding: 30px; border-radius: 12px; display: flex; align-items: center; justify-content: center; height: 100%; border: 1px dashed var(--line);">
-              <p data-en="Select a tool from the left to start planning." style="color: var(--muted); text-align: center;">বাম পাশ থেকে একটি টুল সিলেক্ট করে আপনার পরিকল্পনা শুরু করুন।</p>
-           </div>
-        </div>
-      </div>
-
-      <!-- Country Comparison Section (Hidden by default, shown by JS) -->
-      <div id="comparison" class="comparison-section" style="display: none; margin-top: 2rem;">
-        <div class="panel comparison-panel">
-          <div class="comparison-header">
-            <h4 data-en="Country Comparison Tool">দেশ তুলনা টুল</h4>
-            <button type="button" class="close-comparison" id="closeComparison">&times;</button>
-          </div>
-          <div class="comparison-controls">
-            <div class="control-group">
-              <label data-en="Select Countries">দেশ নির্বাচন করুন</label>
-              <div class="country-selectors">
-                <select id="compare1">
-                  <option value="usa" data-en="USA">যুক্তরাষ্ট্র</option>
-                  <option value="canada" data-en="Canada" selected>কানাডা</option>
-                  <option value="uk" data-en="UK">যুক্তরাজ্য</option>
-                  <option value="australia" data-en="Australia">অস্ট্রেলিয়া</option>
-                  <option value="germany" data-en="Germany">জার্মানি</option>
-                </select>
-                <span class="vs">VS</span>
-                <select id="compare2">
-                  <option value="usa" data-en="USA" selected>যুক্তরাষ্ট্র</option>
-                  <option value="canada" data-en="Canada">কানাডা</option>
-                  <option value="uk" data-en="UK">যুক্তরাজ্য</option>
-                  <option value="australia" data-en="Australia">অস্ট্রেলিয়া</option>
-                  <option value="germany" data-en="Germany">জার্মানি</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="comparison-results" id="comparisonTable">
-            <!-- Dynamic Table will be inserted here -->
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section id="resources" class="section">
       <div class="section-head">
         <p data-en="Step-by-Step Guides">ধাপে ধাপে গাইড</p>
@@ -296,6 +221,23 @@
       </div>
     </section>
 
+
+    <section id="support" class="section">
+      <div class="section-head">
+        <p data-en="Scholarship & Admission Support">Scholarship & Admission Support</p>
+        <h3 data-en="Complete Guidance For Application Success">Complete Guidance For Application Success</h3>
+      </div>
+      <article class="panel support-summary">
+        <ul class="feature-list">
+          <li data-en="Merit-based and need-based scholarship shortlist.">Merit-based and need-based scholarship shortlist.</li>
+          <li data-en="SOP, LOR, CV and financial document review.">SOP, LOR, CV and financial document review.</li>
+          <li data-en="Country-specific visa checklist and interview preparation.">Country-specific visa checklist and interview preparation.</li>
+          <li data-en="Application deadline tracker and intake planning.">Application deadline tracker and intake planning.</li>
+          <li data-en="Post-study work permit and PR pathway summary.">Post-study work permit and PR pathway summary.</li>
+        </ul>
+      </article>
+    </section>
+
     <!-- Visa Approved Sample Vault Section -->
     <section id="sample-vault" class="section">
       <div class="section-head">
@@ -368,7 +310,7 @@
           <a href="index.html#countries" data-en="Destinations">ডেস্টিনেশন</a>
           <a href="scholarships.html" data-en="Scholarships">স্কলারশিপ</a>
           <a href="resources.html" data-en="Resources">রিসোর্স</a>
-          <a href="#tools" data-en="Tools">টুলস</a>
+          <a href="tools.html" data-en="Tools">টুলস</a>
         </div>
 
         <div class="footer-links countries">

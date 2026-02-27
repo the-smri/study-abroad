@@ -1634,7 +1634,8 @@
 
 .theme-toggle {
   position: fixed;
-  right: 16px;
+  left: 16px;
+  right: auto;
   bottom: 16px;
   z-index: 1200;
   border: 1px solid #1f2e4d;
@@ -1658,6 +1659,11 @@
   border-radius: 50%;
   background: #38bdf8;
   box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+}
+
+.theme-toggle-icon {
+  line-height: 1;
+  font-size: 15px;
 }
 
 html[data-theme="night"] {
@@ -1945,7 +1951,8 @@ html[data-theme="night"] .theme-toggle-dot {
 
 @media (max-width: 560px) {
   .theme-toggle {
-    right: 12px;
+    left: 12px;
+    right: auto;
     bottom: 104px;
     padding: 9px 11px;
   }
@@ -2960,6 +2967,159 @@ html[data-theme="night"] .blog-news-video iframe {
   animation: fadeIn 0.4s ease-out;
 }
 
+.support-summary .feature-list {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.tools-preview-cta {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.tools-page .tools-hero {
+  min-height: auto;
+  padding-bottom: 40px;
+}
+
+.tools-page .comparison-empty-state {
+  background: var(--soft);
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 30px;
+}
+
+.tools-page .comparison-empty-text {
+  margin: 0;
+  color: var(--muted);
+  text-align: center;
+}
+
+.tools-page .comparison-section {
+  display: none;
+  margin-top: 2rem;
+}
+
+@media (max-width: 860px) {
+  .tools-preview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.resources-page .resources-hero {
+  min-height: auto;
+  padding-bottom: 40px;
+}
+
+.resources-page .resources-hero-head {
+  margin-top: 60px;
+  margin-bottom: 10px;
+  text-align: left;
+  color: #16386f;
+  max-width: 760px;
+}
+
+.resources-page .resources-hero-title {
+  margin: 0 0 12px;
+  font-size: clamp(34px, 4vw, 48px);
+  line-height: 1.15;
+}
+
+.resources-page .resources-hero-subtitle {
+  margin: 0;
+  max-width: 700px;
+  color: #4a5f84;
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+.resources-page .resources-page-head {
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.resources-page .resources-page-head p {
+  font-size: 22px;
+}
+
+.resources-page .resources-page-head h3 {
+  font-size: clamp(30px, 3vw, 44px);
+}
+
+.resources-page .resource-pills {
+  justify-content: flex-start;
+}
+
+.resources-page .comparison-empty-state {
+  background: var(--soft);
+  padding: 30px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  border: 1px dashed var(--line);
+}
+
+.resources-page .comparison-empty-text {
+  margin: 0;
+  color: var(--muted);
+  text-align: left;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 460px;
+}
+
+.resources-page .comparison-section {
+  display: none;
+  margin-top: 2rem;
+}
+
+.resources-page #sample-vault .cards-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.resources-page .muted-note {
+  margin: 12px 0 0;
+  text-align: left;
+  max-width: 780px;
+  font-size: 18px;
+}
+
+.resources-page .vault-view-btn {
+  width: 100%;
+}
+
+@media (max-width: 860px) {
+  .resources-page .resources-hero-head,
+  .resources-page .resources-page-head,
+  .resources-page .comparison-empty-text,
+  .resources-page .muted-note {
+    text-align: center;
+  }
+
+  .resources-page .resources-hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .resources-page .resource-pills {
+    justify-content: center;
+  }
+
+  .resources-page #sample-vault .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .comparison-panel {
   background: var(--panel);
   border: 1px solid var(--line);
@@ -3066,6 +3226,7 @@ html[data-theme="night"] .blog-news-video iframe {
   position: fixed;
   bottom: 25px;
   right: 25px;
+  left: auto;
   width: 60px;
   height: 60px;
   background: linear-gradient(135deg, #6366f1, #a855f7);
@@ -3080,6 +3241,13 @@ html[data-theme="night"] .blog-news-video iframe {
   z-index: 1000;
   border: none;
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@media (max-width: 560px) {
+  .ai-assistant-trigger {
+    right: 12px;
+    bottom: 104px;
+  }
 }
 
 .ai-assistant-trigger:hover {
@@ -3158,5 +3326,3 @@ html[data-theme="night"] .vault-badge {
   background: rgba(31, 191, 117, 0.2);
   color: #4ade80;
 }
-
-
