@@ -348,6 +348,10 @@
 
         <aside id="tools" class="panel tools">
           <h4 data-en="Tools">টুলস</h4>
+          <div class="tool" data-tool="comparison-tool">
+            <b data-en="Country Comparison">দেশ তুলনা</b>
+            <span data-en="Compare tuition, living cost, PR & visa success.">টিউশন, লিভিং কস্ট, পিআর ও ভিসা সাকসেস তুলনা।</span>
+          </div>
           <div class="tool" data-tool="cost-calculator">
             <b data-en="Cost Calculator">খরচ ক্যালকুলেটর</b>
             <span data-en="Estimated country-specific tuition + living costs.">দেশভিত্তিক টিউশন + জীবনযাত্রার আনুমানিক খরচ।</span>
@@ -365,6 +369,41 @@
             <span data-en="Country-specific guides, SOP samples, scholarship checklists.">দেশভিত্তিক গাইড, SOP নমুনা, স্কলারশিপ চেকলিস্ট।</span>
           </div>
         </aside>
+      </div>
+
+      <!-- Country Comparison Section -->
+      <div id="comparison" class="comparison-section" style="display: none; margin-top: 2rem;">
+        <div class="panel comparison-panel">
+          <div class="comparison-header">
+            <h4 data-en="Country Comparison Tool">দেশ তুলনা টুল</h4>
+            <button type="button" class="close-comparison" id="closeComparison">&times;</button>
+          </div>
+          <div class="comparison-controls">
+            <div class="control-group">
+              <label data-en="Select Countries">দেশ নির্বাচন করুন</label>
+              <div class="country-selectors">
+                <select id="compare1">
+                  <option value="usa" data-en="USA">যুক্তরাষ্ট্র</option>
+                  <option value="canada" data-en="Canada" selected>কানাডা</option>
+                  <option value="uk" data-en="UK">যুক্তরাজ্য</option>
+                  <option value="australia" data-en="Australia">অস্ট্রেলিয়া</option>
+                  <option value="germany" data-en="Germany">জার্মানি</option>
+                </select>
+                <span class="vs">VS</span>
+                <select id="compare2">
+                  <option value="usa" data-en="USA" selected>যুক্তরাষ্ট্র</option>
+                  <option value="canada" data-en="Canada">কানাডা</option>
+                  <option value="uk" data-en="UK">যুক্তরাজ্য</option>
+                  <option value="australia" data-en="Australia">অস্ট্রেলিয়া</option>
+                  <option value="germany" data-en="Germany">জার্মানি</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="comparison-results" id="comparisonTable">
+            <!-- Dynamic Table will be inserted here -->
+          </div>
+        </div>
       </div>
     </section>
 
@@ -391,6 +430,8 @@
         <span class="pill" data-resource-filter="visa" data-en="Visa">ভিসা</span>
         <span class="pill" data-resource-filter="scholarship" data-en="Scholarships">স্কলারশিপ</span>
         <span class="pill" data-resource-filter="career" data-en="Career">ক্যারিয়ার</span>
+        <span class="pill" data-resource-filter="test-prep" data-en="Test Prep">টেস্ট প্রিপারেশন</span>
+        <span class="pill" data-resource-filter="survival" data-en="Survival">সারভাইভাল</span>
       </div>
 
       <div class="resources-grid">
@@ -461,6 +502,40 @@
             <button type="button" class="tool-btn ghost resource-action" data-action="open-guide" data-en="Open Guide">গাইড খুলুন</button>
           </div>
         </article>
+
+        <article class="resource-card" data-resource-type="test-prep">
+          <div class="resource-head">
+            <h4 data-en="Test Preparation Hub">টেস্ট প্রিপারেশন হাব</h4>
+            <span class="tag" data-en="IELTS / GRE">আইইএলটিএস / জিআরই</span>
+          </div>
+          <p data-en="Complete roadmap for IELTS, GRE, and Duolingo.">আইইএলটিএস, জিআরই এবং ডুয়োলিংগো এর পূর্ণাঙ্গ রোডম্যাপ।</p>
+          <ul>
+            <li data-en="IELTS preparation roadmap">IELTS প্রস্তুতির রোডম্যাপ</li>
+            <li data-en="GRE / Duolingo guide">GRE / Duolingo গাইড</li>
+            <li data-en="Study schedule planner">স্টাডি শিডিউল প্ল্যানার</li>
+          </ul>
+          <div class="resource-actions">
+            <button type="button" class="tool-btn primary resource-action" data-action="quick-view" data-en="Quick View">কুইক ভিউ</button>
+            <button type="button" class="tool-btn ghost resource-action" data-action="open-guide" data-en="Open Guide">গাইড খুলুন</button>
+          </div>
+        </article>
+
+        <article class="resource-card" data-resource-type="survival">
+          <div class="resource-head">
+            <h4 data-en="Student Life & Survival">স্টুডেন্ট লাইফ ও সারভাইভাল</h4>
+            <span class="tag" data-en="Abroad Guide">বিদেশে সারভাইভাল</span>
+          </div>
+          <p data-en="First month checklist and accommodation finding tips.">প্রথম মাসের চেকলিস্ট এবং আবাসন খুঁজে পাওয়ার টিপস।</p>
+          <ul>
+            <li data-en="First month abroad checklist">বিদেশের প্রথম মাসের চেকলিস্ট</li>
+            <li data-en="SIM card / Bank account setup">সিম কার্ড এবং ব্যাংক অ্যাকাউন্ট সেটআপ</li>
+            <li data-en="Part-time job finding tips">পার্ট-টাইম জব খোঁজার টিপস</li>
+          </ul>
+          <div class="resource-actions">
+            <button type="button" class="tool-btn primary resource-action" data-action="quick-view" data-en="Quick View">কুইক ভিউ</button>
+            <button type="button" class="tool-btn ghost resource-action" data-action="open-guide" data-en="Open Guide">গাইড খুলুন</button>
+          </div>
+        </article>
       </div>
 
       <div class="resource-workbench">
@@ -519,6 +594,59 @@
         </article>
       </div>
     </section>
+
+      <!-- Visa Approved Sample Vault Section -->
+      <section id="sample-vault" class="section">
+        <div class="section-head">
+          <p data-en="Approved Documents">অ্যাপ্রুভড ডকুমেন্ট</p>
+          <h3 data-en="Visa Approved Sample Vault">ভিসা অ্যাপ্রুভড স্যাম্পল ভল্ট</h3>
+          <div class="muted-note" data-en="Real SOPs, Financial Files, CVs and Recommendation Letters used in successful visa applications.">
+            সফল ভিসা অ্যাপ্লিকেশনে ব্যবহৃত বাস্তব SOP, ফাইন্যান্সিয়াল ফাইল, CV এবং রিকমেন্ডেশন লেটার।
+          </div>
+        </div>
+
+        <div class="cards-grid">
+          <article class="resource-card vault-card">
+            <div class="resource-head">
+              <h4 data-en="Approved SOP Sample">অ্যাপ্রুভড SOP স্যাম্পল</h4>
+              <span class="tag" data-en="USA / Canada">USA / Canada</span>
+            </div>
+            <p data-en="Successful SOP pattern for Masters in CS.">মাস্টার্স ইন সিএস এর জন্য সফল SOP প্যাটার্ন।</p>
+            <div class="vault-badge">✅ Approved</div>
+            <button class="btn outline" style="width:100%" data-en="View Sample">স্যাম্পল দেখুন</button>
+          </article>
+
+          <article class="resource-card vault-card">
+            <div class="resource-head">
+              <h4 data-en="Financial File Kit">ফাইন্যান্সিয়াল ফাইল কিট</h4>
+              <span class="tag" data-en="Visa Ready">ভিসা রেডি</span>
+            </div>
+            <p data-en="Approved financial documentation pattern for Australia.">অস্ট্রেলিয়ার জন্য অ্যাপ্রুভড ফাইন্যান্সিয়াল ডকুমেন্ট প্যাটার্ন।</p>
+            <div class="vault-badge">✅ Visa Success</div>
+            <button class="btn outline" style="width:100%" data-en="View Sample">স্যাম্পল দেখুন</button>
+          </article>
+
+          <article class="resource-card vault-card">
+            <div class="resource-head">
+              <h4 data-en="Motivation Letter">মোটিভেশন লেটার</h4>
+              <span class="tag" data-en="Europe / Germany">ইউরোপ / জার্মানি</span>
+            </div>
+            <p data-en="Accepted motivation letter for public universities.">পাবলিক ইউনিভার্সিটির জন্য গৃহীত মোটিভেশন লেটার।</p>
+            <div class="vault-badge">✅ Accepted</div>
+            <button class="btn outline" style="width:100%" data-en="View Sample">স্যাম্পল দেখুন</button>
+          </article>
+
+          <article class="resource-card vault-card">
+            <div class="resource-head">
+              <h4 data-en="Professional CV">প্রফেশনাল CV</h4>
+              <span class="tag" data-en="International Standard">ইন্টারন্যাশনাল স্ট্যান্ডার্ড</span>
+            </div>
+            <p data-en="High standard CV for admission and part-time jobs.">অ্যাডমিশন ও পার্ট-টাইম জবের জন্য হাই স্ট্যান্ডার্ড CV।</p>
+            <div class="vault-badge">✅ High Standard</div>
+            <button class="btn outline" style="width:100%" data-en="View Sample">স্যাম্পল দেখুন</button>
+          </article>
+        </div>
+      </section>
 
     <!-- Blog/News Highlights Section -->
     <section class="blog-news-section">

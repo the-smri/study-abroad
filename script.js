@@ -800,13 +800,26 @@
         const gross = tuitionTotal + livingTotal;
         const net = Math.max(gross - s, 0);
         const monthlyNeed = y ? net / (12 * y) : 0;
+        
+        // BDT Conversion (Approx rates)
+        const rates = { USD: 120, CAD: 88, GBP: 152, AUD: 80, EUR: 130, CNY: 16 };
+        const rate = rates[currency] || 1;
+        const netBDT = net * rate;
 
         result.innerHTML = `
-          মোট টিউশন: <b>${formatMoney(tuitionTotal, currency)}</b><br/>
-          মোট জীবনযাত্রা খরচ: <b>${formatMoney(livingTotal, currency)}</b><br/>
-          মোট আনুমানিক খরচ: <b>${formatMoney(gross, currency)}</b><br/>
-          স্কলারশিপ বাদে নেট খরচ: <b>${formatMoney(net, currency)}</b><br/>
-          মাসিক গড় বাজেট: <b>${formatMoney(monthlyNeed, currency)}</b>
+          <div class="calculator-results">
+            <p>মোট টিউশন: <b>${formatMoney(tuitionTotal, currency)}</b></p>
+            <p>মোট জীবনযাত্রা খরচ: <b>${formatMoney(livingTotal, currency)}</b></p>
+            <p>মোট আনুমানিক খরচ: <b>${formatMoney(gross, currency)}</b></p>
+            <hr>
+            <p>স্কলারশিপ বাদে নেট খরচ: <b>${formatMoney(net, currency)}</b></p>
+            <p>মাসিক গড় বাজেট: <b>${formatMoney(monthlyNeed, currency)}</b></p>
+            <div class="bdt-highlight" style="background: var(--soft); padding: 10px; border-radius: 8px; margin-top: 10px; border-left: 4px solid var(--green);">
+              <p style="margin:0; font-size: 14px;">অনুমানিত মোট খরচ (BDT):</p>
+              <h4 style="margin:5px 0 0; color: var(--green);">৳ ${Math.round(netBDT).toLocaleString("en-IN")}</h4>
+            </div>
+            <p style="font-size: 11px; color: var(--muted); margin-top: 10px;">* ১ ${currency} = ${rate} BDT (Approx)</p>
+          </div>
         `;
       });
 
@@ -979,12 +992,25 @@
         });
     };
 
+    const openComparisonTool = () => {
+      const section = doc.getElementById("comparison");
+      if (section) {
+        section.style.display = "block";
+        section.scrollIntoView({ behavior: "smooth", block: "center" });
+        renderComparison();
+      }
+    };
+
     const openTool = (key) => {
       modal.hidden = false;
       if (key === "cost-calculator") openCostCalculator();
       else if (key === "ielts-checker") openIeltsChecker();
       else if (key === "visa-timeline") openVisaTimeline();
       else if (key === "pdf-guide") openPdfGuide();
+      else if (key === "comparison-tool") {
+        modal.hidden = true; // Use separate section for comparison
+        openComparisonTool();
+      }
     };
 
     tools.forEach((tool) => {
@@ -1316,6 +1342,177 @@
     }
   };
 
+  const setupComparisonTool = () => {
+    const compareData = {
+      usa: {
+        cost: "$20k - $60k",
+        scholarship: "High (Merit/Research)",
+        pr: "Moderate (H1B -> Green Card)",
+        job: "Excellent (STEM OPT 3 yrs)",
+        ielts: "6.5 - 7.5",
+        visa: "Moderate-High (Trend)",
+      },
+      canada: {
+        cost: "CAD 15k - 35k",
+        scholarship: "Moderate (Entrance/Research)",
+        pr: "Very High (Express Entry/PNP)",
+        job: "Excellent (PGWP up to 3 yrs)",
+        ielts: "6.0 - 7.0 (SDS)",
+        visa: "High (SDS Trend)",
+      },
+      uk: {
+        cost: "GBP 15k - 30k",
+        scholarship: "Moderate (Chevening/Commonwealth)",
+        pr: "Moderate (Graduate Route)",
+        job: "High (2 yrs Graduate Route)",
+        ielts: "6.0 - 7.0",
+        visa: "High",
+      },
+      australia: {
+        cost: "AUD 20k - 45k",
+        scholarship: "High (AAS/University Merit)",
+        pr: "High (189/190/491)",
+        job: "Excellent (Subclass 485)",
+        ielts: "6.0 - 7.0",
+        visa: "Moderate-High",
+      },
+      germany: {
+        cost: "EUR 0 - 3k (Public)",
+        scholarship: "High (DAAD/Stipendium)",
+        pr: "High (Blue Card)",
+        job: "Very High (18-month Jobseeker)",
+        ielts: "6.5 (English Track)",
+        visa: "High (Block Account)",
+      },
+    };
+
+    const select1 = doc.getElementById("compare1");
+    const select2 = doc.getElementById("compare2");
+    const tableEl = doc.getElementById("comparisonTable");
+    const closeBtn = doc.getElementById("closeComparison");
+    const section = doc.getElementById("comparison");
+
+    if (!select1 || !select2 || !tableEl || !section) return;
+
+    const renderComparison = () => {
+      const c1 = select1.value;
+      const c2 = select2.value;
+      const d1 = compareData[c1];
+      const d2 = compareData[c2];
+
+      const rows = [
+        { label: "Cost", key: "cost", icon: "💰" },
+        { label: "Scholarship", key: "scholarship", icon: "🎓" },
+        { label: "PR Opportunity", key: "pr", icon: "🏠" },
+        { label: "Post-Study Job", key: "job", icon: "💼" },
+        { label: "IELTS Requirement", key: "ielts", icon: "📊" },
+        { label: "Visa Success", key: "visa", icon: "✅" },
+      ];
+
+      tableEl.innerHTML = `
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>${select1.options[select1.selectedIndex].text}</th>
+              <th>${select2.options[select2.selectedIndex].text}</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rows
+              .map(
+                (row) => `
+              <tr>
+                <td>${row.icon} ${row.label}</td>
+                <td>${d1[row.key]}</td>
+                <td>${d2[row.key]}</td>
+              </tr>
+            `,
+              )
+              .join("")}
+          </tbody>
+        </table>
+      `;
+    };
+
+    window.renderComparison = renderComparison; // Make it accessible
+
+    select1.addEventListener("change", renderComparison);
+    select2.addEventListener("change", renderComparison);
+    closeBtn?.addEventListener("click", () => {
+      section.style.display = "none";
+    });
+  };
+
+  const setupCountdownTimer = () => {
+    const heroCopy = doc.querySelector(".hero-copy");
+    if (!heroCopy) return;
+
+    const countdownEl = doc.createElement("div");
+    countdownEl.className = "countdown-container";
+    countdownEl.innerHTML = `
+      <div data-en="Fall 2026 Application Deadline">ফল ২০২৬ অ্যাপ্লিকেশন ডেডলাইন</div>
+      <div class="countdown-grid">
+        <div class="countdown-item"><span class="countdown-value" id="cd-days">00</span><span class="countdown-label">Days</span></div>
+        <div class="countdown-item"><span class="countdown-value" id="cd-hours">00</span><span class="countdown-label">Hours</span></div>
+        <div class="countdown-item"><span class="countdown-value" id="cd-mins">00</span><span class="countdown-label">Mins</span></div>
+        <div class="countdown-item"><span class="countdown-value" id="cd-secs">00</span><span class="countdown-label">Secs</span></div>
+      </div>
+    `;
+    heroCopy.appendChild(countdownEl);
+
+    // Target date: Dec 15, 2026 (Typical large deadline)
+    const targetDate = new Date("December 15, 2026 23:59:59").getTime();
+
+    const updateTimer = () => {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff < 0) {
+        countdownEl.innerHTML = "Deadline Passed!";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+      const dEl = doc.getElementById("cd-days");
+      const hEl = doc.getElementById("cd-hours");
+      const mEl = doc.getElementById("cd-mins");
+      const sEl = doc.getElementById("cd-secs");
+
+      if (dEl) dEl.textContent = String(days).padStart(2, "0");
+      if (hEl) hEl.textContent = String(hours).padStart(2, "0");
+      if (mEl) mEl.textContent = String(mins).padStart(2, "0");
+      if (sEl) sEl.textContent = String(secs).padStart(2, "0");
+    };
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  };
+
+  const setupAIAssistant = () => {
+    const trigger = doc.createElement("button");
+    trigger.className = "ai-assistant-trigger";
+    trigger.innerHTML = `
+      <span>🤖</span>
+      <span class="badge" data-en="New">নতুন</span>
+    `;
+    trigger.setAttribute("aria-label", "AI Assistant");
+    trigger.setAttribute("data-en-aria-label", "AI Assistant");
+    doc.body.appendChild(trigger);
+
+    trigger.addEventListener("click", () => {
+      showToast(
+        root.getAttribute("data-lang") === "en"
+          ? "AI Assistant is being prepared for the future!"
+          : "এআই অ্যাসিস্ট্যান্ট ভবিষ্যতের জন্য প্রস্তুত করা হচ্ছে!",
+      );
+    });
+  };
+
   setupTheme();
   setupLanguage();
   setupGlobalSearch();
@@ -1329,4 +1526,7 @@
   setupTools();
   setupFlags();
   setupLogin();
+  setupComparisonTool();
+  setupCountdownTimer();
+  setupAIAssistant();
 })();
