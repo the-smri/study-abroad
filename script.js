@@ -17,7 +17,15 @@
       if (toggle) {
         const isNight = nextTheme === "night";
         toggle.setAttribute("aria-pressed", String(isNight));
-        toggle.setAttribute("aria-label", isNight ? "লাইট মোড চালু করুন" : "ডার্ক মোড চালু করুন");
+        
+        const isEnglish = root.getAttribute("data-lang") === "en";
+        const bnLabel = isNight ? "লাইট মোড চালু করুন" : "ডার্ক মোড চালু করুন";
+        const enLabel = isNight ? "Turn on Light Mode" : "Turn on Dark Mode";
+        
+        toggle.setAttribute("data-bn-aria-label", bnLabel);
+        toggle.setAttribute("data-en-aria-label", enLabel);
+        toggle.setAttribute("aria-label", isEnglish ? enLabel : bnLabel);
+        
         const label = toggle.querySelector(".theme-toggle-label");
         if (label) label.textContent = isNight ? "Light" : "Night";
       }
@@ -37,7 +45,8 @@
     applyTheme(initialTheme);
 
     toggle.addEventListener("click", () => {
-      const current = root.getAttribute("data-theme") === "night" ? "night" : "light";
+      const current =
+        root.getAttribute("data-theme") === "night" ? "night" : "light";
       applyTheme(current === "night" ? "light" : "night");
     });
   };
@@ -46,79 +55,70 @@
     const navActions = doc.querySelector(".nav-actions");
     const savedLang = localStorage.getItem(LANG_KEY);
     const initialLang = savedLang === "en" ? "en" : "bn";
-    const LANG_RELOAD_KEY = "study-abroad-lang-reload";
-    let translateLoaded = false;
 
-    const getCookie = (name) => {
-      const match = doc.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`));
-      return match ? decodeURIComponent(match[1]) : "";
-    };
+    // Function to translate all elements with data-en attributes
+    const translatePage = (lang) => {
+      const elementsToTranslate = doc.querySelectorAll("[data-en]");
 
-    const setGoogTransCookie = (targetLang) => {
-      const value = `/bn/${targetLang}`;
-      const encoded = encodeURIComponent(value);
-      const hostname = window.location.hostname;
-      doc.cookie = `googtrans=${encoded}; path=/; max-age=31536000`;
-      if (hostname && hostname.includes(".")) {
-        doc.cookie = `googtrans=${encoded}; path=/; domain=.${hostname}; max-age=31536000`;
-      }
-      return value;
-    };
-
-    const ensureGoogleTranslate = () => {
-      if (translateLoaded || doc.getElementById("googleTranslateScript")) return;
-      if (!doc.getElementById("google_translate_element")) {
-        const host = doc.createElement("div");
-        host.id = "google_translate_element";
-        host.className = "google-translate-host";
-        doc.body.appendChild(host);
-      }
-
-      window.googleTranslateElementInit = () => {
-        if (!window.google?.translate?.TranslateElement) return;
-        new window.google.translate.TranslateElement(
-          {
-            pageLanguage: "bn",
-            includedLanguages: "bn,en",
-            autoDisplay: false,
-            layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE
-          },
-          "google_translate_element"
-        );
-      };
-
-      const script = doc.createElement("script");
-      script.id = "googleTranslateScript";
-      script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-      script.async = true;
-      doc.body.appendChild(script);
-      translateLoaded = true;
-    };
-
-    const applyGoogleLanguage = (lang, { reload = true } = {}) => {
-      const target = lang === "en" ? "en" : "bn";
-      const desired = setGoogTransCookie(target);
-      const currentCookie = getCookie("googtrans");
-
-      if (reload && currentCookie !== desired) {
-        const guard = sessionStorage.getItem(LANG_RELOAD_KEY);
-        if (!guard || guard !== desired) {
-          sessionStorage.setItem(LANG_RELOAD_KEY, desired);
-          window.location.reload();
-          return;
+      elementsToTranslate.forEach((el) => {
+        // First-time setup: Save the original Bangla text to data-bn if not already saved
+        if (!el.hasAttribute("data-bn")) {
+          // Be careful not to overwrite child HTML nodes if they exist inside, so we use innerHTML
+          // or just simple textContent if there are no nested elements.
+          // Given the structure, some elements might have spans inside. Let's use innerHTML.
+          el.setAttribute("data-bn", el.innerHTML);
         }
-      }
-      sessionStorage.removeItem(LANG_RELOAD_KEY);
 
-      ensureGoogleTranslate();
-      const select = doc.querySelector(".goog-te-combo");
-      if (select) {
-        const v = target;
-        if (select.value !== v) {
-          select.value = v;
-          select.dispatchEvent(new Event("change"));
+        if (lang === "en") {
+          // Apply English translation
+          el.innerHTML = el.getAttribute("data-en");
+        } else {
+          // Revert to Bangla translation
+          el.innerHTML = el.getAttribute("data-bn");
         }
-      }
+      });
+
+      // Update placeholders for inputs
+      doc
+        .querySelectorAll(
+          "input[data-en-placeholder], textarea[data-en-placeholder]",
+        )
+        .forEach((el) => {
+          if (!el.hasAttribute("data-bn-placeholder")) {
+            el.setAttribute(
+              "data-bn-placeholder",
+              el.getAttribute("placeholder") || "",
+            );
+          }
+          if (lang === "en") {
+            el.setAttribute(
+              "placeholder",
+              el.getAttribute("data-en-placeholder"),
+            );
+          } else {
+            el.setAttribute(
+              "placeholder",
+              el.getAttribute("data-bn-placeholder"),
+            );
+          }
+        });
+
+      // Update aria-labels
+      doc
+        .querySelectorAll("[data-en-aria-label]")
+        .forEach((el) => {
+          if (!el.hasAttribute("data-bn-aria-label")) {
+            el.setAttribute(
+              "data-bn-aria-label",
+              el.getAttribute("aria-label") || "",
+            );
+          }
+          if (lang === "en") {
+            el.setAttribute("aria-label", el.getAttribute("data-en-aria-label"));
+          } else {
+            el.setAttribute("aria-label", el.getAttribute("data-bn-aria-label"));
+          }
+        });
     };
 
     const applyLanguage = (lang, { silent = false } = {}) => {
@@ -132,17 +132,29 @@
         const isEnglish = nextLang === "en";
         toggle.textContent = isEnglish ? "BN" : "EN";
         toggle.setAttribute("aria-pressed", String(isEnglish));
-        toggle.setAttribute("aria-label", isEnglish ? "বাংলা ভাষায় পরিবর্তন করুন" : "Switch to English");
+        toggle.setAttribute(
+          "aria-label",
+          isEnglish ? "বাংলা ভাষায় পরিবর্তন করুন" : "Switch to English",
+        );
       }
 
-      applyGoogleLanguage(nextLang, { reload: !silent });
-      if (!silent) showToast(nextLang === "en" ? "Language switching to English..." : "ভাষা বাংলায় পরিবর্তন হচ্ছে...");
+      translatePage(nextLang);
+
+      if (!silent) {
+        showToast(
+          nextLang === "en"
+            ? "Language switched to English"
+            : "ভাষা বাংলায় পরিবর্তন করা হয়েছে",
+        );
+      }
     };
 
+    // Apply translation on initial load
     applyLanguage(initialLang, { silent: true });
 
     if (!navActions || doc.getElementById("langToggle")) return;
 
+    // Create the toggle button in the navbar
     const toggle = doc.createElement("button");
     toggle.type = "button";
     toggle.id = "langToggle";
@@ -150,6 +162,7 @@
     navActions.prepend(toggle);
     applyLanguage(initialLang, { silent: true });
 
+    // Handle toggle click
     toggle.addEventListener("click", () => {
       const current = root.getAttribute("data-lang") === "en" ? "en" : "bn";
       applyLanguage(current === "en" ? "bn" : "en", { silent: false });
@@ -176,7 +189,9 @@
     const existing = doc.getElementById("mobileAppNav");
     if (existing) return;
 
-    const isHomePage = /index\.html$/i.test(window.location.pathname) || window.location.pathname.endsWith("/");
+    const isHomePage =
+      /index\.html$/i.test(window.location.pathname) ||
+      window.location.pathname.endsWith("/");
     const isProfilePage = /profile\.html$/i.test(window.location.pathname);
     const nav = doc.createElement("nav");
     nav.id = "mobileAppNav";
@@ -184,18 +199,42 @@
     nav.setAttribute("aria-label", "মোবাইল অ্যাপ ন্যাভিগেশন");
 
     const items = [
-      { id: "home", label: "হোম", href: isHomePage ? "#home" : "index.html#home" },
-      { id: "countries", label: "দেশ", href: isHomePage ? "#countries" : "index.html#countries" },
-      { id: "tools", label: "টুলস", href: isHomePage ? "#tools" : "index.html#tools" },
-      { id: "resources", label: "রিসোর্স", href: isHomePage ? "#resources" : "index.html#resources" },
-      { id: "profile", label: "প্রোফাইল", href: isProfilePage ? "#home" : "profile.html" }
+      {
+        id: "home",
+        label: "হোম",
+        href: isHomePage ? "#home" : "index.html#home",
+      },
+      {
+        id: "countries",
+        label: "দেশ",
+        href: isHomePage ? "#countries" : "index.html#countries",
+      },
+      {
+        id: "tools",
+        label: "টুলস",
+        href: isHomePage ? "#tools" : "index.html#tools",
+      },
+      {
+        id: "resources",
+        label: "রিসোর্স",
+        href: isHomePage ? "#resources" : "index.html#resources",
+      },
+      {
+        id: "profile",
+        label: "প্রোফাইল",
+        href: isProfilePage ? "#home" : "profile.html",
+      },
     ];
 
     const iconSvg = (name) => {
-      if (name === "home") return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5V20a1 1 0 0 1-1 1h-4.8v-5.6H9.8V21H5a1 1 0 0 1-1-1z"/></svg>`;
-      if (name === "countries") return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 0c2.6 2.3 4.1 5.6 4.1 9S14.6 18.7 12 21m0-18C9.4 5.3 7.9 8.6 7.9 12s1.5 6.7 4.1 9M4 12h16"/></svg>`;
-      if (name === "tools") return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.4 6.2 3.4 3.4-8.8 8.8H5.6v-3.4zM13 7.6 16.4 4a2.4 2.4 0 0 1 3.4 3.4L16.4 11"/></svg>`;
-      if (name === "resources") return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h10a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2V6a2 2 0 0 1 2-2Zm0 0v12"/></svg>`;
+      if (name === "home")
+        return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5V20a1 1 0 0 1-1 1h-4.8v-5.6H9.8V21H5a1 1 0 0 1-1-1z"/></svg>`;
+      if (name === "countries")
+        return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 0c2.6 2.3 4.1 5.6 4.1 9S14.6 18.7 12 21m0-18C9.4 5.3 7.9 8.6 7.9 12s1.5 6.7 4.1 9M4 12h16"/></svg>`;
+      if (name === "tools")
+        return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.4 6.2 3.4 3.4-8.8 8.8H5.6v-3.4zM13 7.6 16.4 4a2.4 2.4 0 0 1 3.4 3.4L16.4 11"/></svg>`;
+      if (name === "resources")
+        return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h10a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2V6a2 2 0 0 1 2-2Zm0 0v12"/></svg>`;
       return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Zm-7 8.4a7 7 0 0 1 14 0"/></svg>`;
     };
 
@@ -207,7 +246,7 @@
           <a class="mobile-tab" data-mobile-tab="${item.id}" href="${item.href}">
             <span class="mobile-icon">${iconSvg(item.id)}</span>
             <span class="mobile-label">${item.label}</span>
-          </a>`
+          </a>`,
           )
           .join("")}
       </div>
@@ -223,12 +262,18 @@
           showToast("প্রোফাইল ফিচার শিগগিরই আসছে");
           return;
         }
-        nav.querySelectorAll(".mobile-tab").forEach((el) => el.classList.remove("active"));
+        nav
+          .querySelectorAll(".mobile-tab")
+          .forEach((el) => el.classList.remove("active"));
         tab.classList.add("active");
       });
     });
 
-    const activeId = isProfilePage ? "profile" : (isHomePage ? "home" : "countries");
+    const activeId = isProfilePage
+      ? "profile"
+      : isHomePage
+        ? "home"
+        : "countries";
     const activeTab = nav.querySelector(`[data-mobile-tab="${activeId}"]`);
     activeTab?.classList.add("active");
   };
@@ -242,6 +287,7 @@
     searchBtn.id = "globalSearchBtn";
     searchBtn.className = "btn outline search-trigger";
     searchBtn.setAttribute("aria-label", "সার্চ");
+    searchBtn.setAttribute("data-en-aria-label", "Search");
     searchBtn.innerHTML = `
       <span class="search-trigger-orb" aria-hidden="true">
         <svg class="search-icon-svg" viewBox="0 0 24 24">
@@ -249,7 +295,7 @@
           <line x1="16.2" y1="16.2" x2="21" y2="21"></line>
         </svg>
       </span>
-      <span class="search-trigger-text">সার্চ করুন</span>
+      <span class="search-trigger-text" data-en="Search">সার্চ করুন</span>
     `;
     navActions.prepend(searchBtn);
 
@@ -259,12 +305,12 @@
     searchModal.innerHTML = `
       <div class="search-modal-card" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle">
         <div class="search-head">
-          <h5 id="searchModalTitle">ওয়েবসাইট সার্চ</h5>
-          <button type="button" class="search-close" aria-label="বন্ধ করুন">×</button>
+          <h5 id="searchModalTitle" data-en="Website Search">ওয়েবসাইট সার্চ</h5>
+          <button type="button" class="search-close" aria-label="বন্ধ করুন" data-en-aria-label="Close">×</button>
         </div>
         <div class="search-body">
-          <input id="globalSearchInput" type="search" placeholder="যেমন: ফ্রান্স, স্কলারশিপ, ভিসা, IELTS" autocomplete="off" />
-          <div id="globalSearchMeta" class="search-meta">কোনো কীওয়ার্ড লিখুন।</div>
+          <input id="globalSearchInput" type="search" placeholder="যেমন: ফ্রান্স, স্কলারশিপ, ভিসা, IELTS" data-en-placeholder="e.g. France, Scholarship, Visa, IELTS" autocomplete="off" />
+          <div id="globalSearchMeta" class="search-meta" data-en="Enter keywords.">কোনো কীওয়ার্ড লিখুন।</div>
           <div id="globalSearchResults" class="search-results"></div>
         </div>
       </div>
@@ -278,43 +324,99 @@
     const scrollTargets = new Map();
 
     const pageIndex = [
-      { url: "index.html", title: "হোম", keywords: "বিদেশে পড়তে চাই ডেস্টিনেশন স্কলারশিপ রিসোর্স টুলস" },
-      { url: "usa.html", title: "যুক্তরাষ্ট্র", keywords: "USA আমেরিকা ভিসা টিউশন OPT" },
+      {
+        url: "index.html",
+        title: "হোম",
+        keywords: "বিদেশে পড়তে চাই ডেস্টিনেশন স্কলারশিপ রিসোর্স টুলস",
+      },
+      {
+        url: "usa.html",
+        title: "যুক্তরাষ্ট্র",
+        keywords: "USA আমেরিকা ভিসা টিউশন OPT",
+      },
       { url: "canada.html", title: "কানাডা", keywords: "Canada SDS PGWP PR" },
-      { url: "uk.html", title: "যুক্তরাজ্য", keywords: "UK Graduate route মাস্টার্স" },
-      { url: "australia.html", title: "অস্ট্রেলিয়া", keywords: "Australia subclass post study work" },
-      { url: "germany.html", title: "জার্মানি", keywords: "Germany block account tuition" },
-      { url: "france.html", title: "ফ্রান্স", keywords: "France Campus France APS" },
+      {
+        url: "uk.html",
+        title: "যুক্তরাজ্য",
+        keywords: "UK Graduate route মাস্টার্স",
+      },
+      {
+        url: "australia.html",
+        title: "অস্ট্রেলিয়া",
+        keywords: "Australia subclass post study work",
+      },
+      {
+        url: "germany.html",
+        title: "জার্মানি",
+        keywords: "Germany block account tuition",
+      },
+      {
+        url: "france.html",
+        title: "ফ্রান্স",
+        keywords: "France Campus France APS",
+      },
       { url: "italy.html", title: "ইতালি", keywords: "Italy ISEE scholarship" },
-      { url: "sweden.html", title: "সুইডেন", keywords: "Sweden innovation scholarship" },
-      { url: "denmark.html", title: "ডেনমার্ক", keywords: "Denmark green tech study" },
-      { url: "china.html", title: "চীন", keywords: "China CSC scholarship Mandarin" },
-      { url: "japan.html", title: "জাপান", keywords: "Japan MEXT visa language" },
-      { url: "south-korea.html", title: "দক্ষিণ কোরিয়া", keywords: "Korea GKS visa scholarship" },
-      { url: "india.html", title: "ভারত", keywords: "India study destination tuition" }
+      {
+        url: "sweden.html",
+        title: "সুইডেন",
+        keywords: "Sweden innovation scholarship",
+      },
+      {
+        url: "denmark.html",
+        title: "ডেনমার্ক",
+        keywords: "Denmark green tech study",
+      },
+      {
+        url: "china.html",
+        title: "চীন",
+        keywords: "China CSC scholarship Mandarin",
+      },
+      {
+        url: "japan.html",
+        title: "জাপান",
+        keywords: "Japan MEXT visa language",
+      },
+      {
+        url: "south-korea.html",
+        title: "দক্ষিণ কোরিয়া",
+        keywords: "Korea GKS visa scholarship",
+      },
+      {
+        url: "india.html",
+        title: "ভারত",
+        keywords: "India study destination tuition",
+      },
     ];
 
     const sectionIndex = [];
-    doc.querySelectorAll("main h1, main h2, main h3, main h4, main p, main li").forEach((node, idx) => {
-      const text = (node.textContent || "").trim();
-      if (!text || text.length < 6) return;
-      const key = `local-${idx}`;
-      scrollTargets.set(key, node);
-      sectionIndex.push({
-        id: key,
-        type: "section",
-        title: text.slice(0, 70),
-        text,
-        url: "#"
+    doc
+      .querySelectorAll("main h1, main h2, main h3, main h4, main p, main li")
+      .forEach((node, idx) => {
+        const text = (node.textContent || "").trim();
+        if (!text || text.length < 6) return;
+        const key = `local-${idx}`;
+        scrollTargets.set(key, node);
+        sectionIndex.push({
+          id: key,
+          type: "section",
+          title: text.slice(0, 70),
+          text,
+          url: "#",
+        });
       });
-    });
 
     const dataset = [
-      ...pageIndex.map((p) => ({ type: "page", title: p.title, text: `${p.title} ${p.keywords}`, url: p.url })),
-      ...sectionIndex
+      ...pageIndex.map((p) => ({
+        type: "page",
+        title: p.title,
+        text: `${p.title} ${p.keywords}`,
+        url: p.url,
+      })),
+      ...sectionIndex,
     ];
 
-    const normalize = (value) => value.toLowerCase().replace(/\s+/g, " ").trim();
+    const normalize = (value) =>
+      value.toLowerCase().replace(/\s+/g, " ").trim();
 
     const closeSearch = () => {
       searchModal.hidden = true;
@@ -350,7 +452,9 @@
         .sort((a, b) => b.score - a.score)
         .slice(0, 10);
 
-      metaEl.textContent = ranked.length ? `${ranked.length}টি ফলাফল পাওয়া গেছে` : "কোনো ফলাফল পাওয়া যায়নি";
+      metaEl.textContent = ranked.length
+        ? `${ranked.length}টি ফলাফল পাওয়া গেছে`
+        : "কোনো ফলাফল পাওয়া যায়নি";
 
       resultsEl.innerHTML = ranked
         .map((item) => {
@@ -407,8 +511,9 @@
 
     // Put auth links inside hamburger menu for small screens.
     if (navActions && !menu.querySelector(".menu-auth-item")) {
-      const authLinks = Array.from(navActions.querySelectorAll("a.btn"))
-        .filter((link) => !link.classList.contains("search-trigger"));
+      const authLinks = Array.from(navActions.querySelectorAll("a.btn")).filter(
+        (link) => !link.classList.contains("search-trigger"),
+      );
 
       authLinks.forEach((link) => {
         const item = doc.createElement("li");
@@ -479,8 +584,12 @@
     const countriesSection = doc.getElementById("countries");
     if (!countriesSection) return;
 
-    const pills = Array.from(countriesSection.querySelectorAll(".pill-row .pill"));
-    const cards = Array.from(countriesSection.querySelectorAll(".cards-grid > .country-card"));
+    const pills = Array.from(
+      countriesSection.querySelectorAll(".pill-row .pill"),
+    );
+    const cards = Array.from(
+      countriesSection.querySelectorAll(".cards-grid > .country-card"),
+    );
     const moreBtn = countriesSection.querySelector("#countriesMoreBtn");
     if (!pills.length || !cards.length) return;
 
@@ -488,8 +597,11 @@
     let isExpanded = false;
     const isMobileView = () => window.matchMedia("(max-width: 860px)").matches;
     const getMaxVisible = () => (isMobileView() ? 4 : 5);
-    const isGermanyCard = (card) => (card.getAttribute("data-url") || "").toLowerCase() === "germany.html";
-    const allPill = pills.find((pill) => (pill.getAttribute("data-filter") || "") === "all");
+    const isGermanyCard = (card) =>
+      (card.getAttribute("data-url") || "").toLowerCase() === "germany.html";
+    const allPill = pills.find(
+      (pill) => (pill.getAttribute("data-filter") || "") === "all",
+    );
 
     const setActivePill = (filterValue) => {
       pills.forEach((pill) => {
@@ -534,25 +646,28 @@
     pills.forEach((pill) => {
       pill.addEventListener("click", () => {
         const value = pill.getAttribute("data-filter") || "";
-        const next =
-          value === "all"
-            ? ""
-            : activeFilter === value
-              ? ""
-              : value;
+        const next = value === "all" ? "" : activeFilter === value ? "" : value;
         activeFilter = next;
         isExpanded = false;
 
         setActivePill(next);
         applyFilter();
-        showToast(next ? `${pill.textContent.trim()} ডেস্টিনেশন দেখানো হচ্ছে` : "সব ডেস্টিনেশন দেখানো হচ্ছে");
+        showToast(
+          next
+            ? `${pill.textContent.trim()} ডেস্টিনেশন দেখানো হচ্ছে`
+            : "সব ডেস্টিনেশন দেখানো হচ্ছে",
+        );
       });
     });
 
     moreBtn?.addEventListener("click", () => {
       isExpanded = !isExpanded;
       applyFilter();
-      showToast(isExpanded ? "আরও ডেস্টিনেশন দেখানো হচ্ছে" : "সংক্ষিপ্ত তালিকা দেখানো হচ্ছে");
+      showToast(
+        isExpanded
+          ? "আরও ডেস্টিনেশন দেখানো হচ্ছে"
+          : "সংক্ষিপ্ত তালিকা দেখানো হচ্ছে",
+      );
     });
 
     // Initial state: show all cards under "সব দেশ".
@@ -585,7 +700,8 @@
       card.style.cursor = "pointer";
       card.addEventListener("click", () => {
         const title = card.querySelector("h4")?.textContent.trim() || "ফিচার";
-        const tag = card.querySelector(".tag")?.textContent.trim() || "বিস্তারিত";
+        const tag =
+          card.querySelector(".tag")?.textContent.trim() || "বিস্তারিত";
         showToast(`${title} - ${tag}`);
       });
     });
@@ -724,19 +840,39 @@
       `;
 
       bodyEl.querySelector("#ieltsCheckBtn")?.addEventListener("click", () => {
-        const overall = Number(bodyEl.querySelector("#ieltsOverall")?.value || 0);
+        const overall = Number(
+          bodyEl.querySelector("#ieltsOverall")?.value || 0,
+        );
         const band = Number(bodyEl.querySelector("#ieltsBand")?.value || 0);
         const result = bodyEl.querySelector("#ieltsResult");
         let tips = [];
 
         if (overall >= 7 && band >= 6.5) {
-          tips = ["যুক্তরাষ্ট্র (Top বিশ্ববিদ্যালয়)", "যুক্তরাজ্য (Russell Group)", "কানাডা (Masters/Research)", "অস্ট্রেলিয়া (Skilled programs)"];
+          tips = [
+            "যুক্তরাষ্ট্র (Top বিশ্ববিদ্যালয়)",
+            "যুক্তরাজ্য (Russell Group)",
+            "কানাডা (Masters/Research)",
+            "অস্ট্রেলিয়া (Skilled programs)",
+          ];
         } else if (overall >= 6.5 && band >= 6) {
-          tips = ["কানাডা (College/University)", "যুক্তরাজ্য (অনেক Masters প্রোগ্রাম)", "অস্ট্রেলিয়া (বেশিরভাগ UG/PG)", "জার্মানি (English-taught programs)"];
+          tips = [
+            "কানাডা (College/University)",
+            "যুক্তরাজ্য (অনেক Masters প্রোগ্রাম)",
+            "অস্ট্রেলিয়া (বেশিরভাগ UG/PG)",
+            "জার্মানি (English-taught programs)",
+          ];
         } else if (overall >= 6 && band >= 5.5) {
-          tips = ["কানাডা/UK এর pathway বা college route", "অস্ট্রেলিয়ার কিছু প্রোগ্রাম", "চীনের English medium programs"];
+          tips = [
+            "কানাডা/UK এর pathway বা college route",
+            "অস্ট্রেলিয়ার কিছু প্রোগ্রাম",
+            "চীনের English medium programs",
+          ];
         } else {
-          tips = ["প্রথমে IELTS স্কোর উন্নত করুন", "প্রস্তুতি নিন: Writing + Speaking", "প্রি-মাস্টার্স/পাথওয়ে প্রোগ্রাম বিবেচনা করুন"];
+          tips = [
+            "প্রথমে IELTS স্কোর উন্নত করুন",
+            "প্রস্তুতি নিন: Writing + Speaking",
+            "প্রি-মাস্টার্স/পাথওয়ে প্রোগ্রাম বিবেচনা করুন",
+          ];
         }
 
         result.innerHTML = `<b>আপনার স্কোর অনুযায়ী সম্ভাব্য অপশন:</b><ul>${tips.map((item) => `<li>${item}</li>`).join("")}</ul>`;
@@ -823,20 +959,24 @@
         <div class="tool-result" id="guideResult">দেশ ও গাইড টাইপ বেছে ডাউনলোড করুন।</div>
       `;
 
-      bodyEl.querySelector("#guideDownloadBtn")?.addEventListener("click", () => {
-        const country = bodyEl.querySelector("#guideCountry")?.value || "দেশ";
-        const type = bodyEl.querySelector("#guideType")?.value || "গাইড";
-        const result = bodyEl.querySelector("#guideResult");
-        const content = `বিদেশে পড়তে চাই\nদেশ: ${country}\nগাইড: ${type}\n\nচেকলিস্ট:\n1) পাসপোর্ট\n2) Academic documents\n3) ভাষা পরীক্ষার স্কোর\n4) SOP/LOR\n5) ফাইন্যান্স প্রুফ\n`;
-        const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-        const url = URL.createObjectURL(blob);
-        const link = doc.createElement("a");
-        link.href = url;
-        link.download = `${country}-${type}.txt`;
-        link.click();
-        URL.revokeObjectURL(url);
-        result.textContent = `${country} - ${type} গাইড ডাউনলোড হয়েছে।`;
-      });
+      bodyEl
+        .querySelector("#guideDownloadBtn")
+        ?.addEventListener("click", () => {
+          const country = bodyEl.querySelector("#guideCountry")?.value || "দেশ";
+          const type = bodyEl.querySelector("#guideType")?.value || "গাইড";
+          const result = bodyEl.querySelector("#guideResult");
+          const content = `বিদেশে পড়তে চাই\nদেশ: ${country}\nগাইড: ${type}\n\nচেকলিস্ট:\n1) পাসপোর্ট\n2) Academic documents\n3) ভাষা পরীক্ষার স্কোর\n4) SOP/LOR\n5) ফাইন্যান্স প্রুফ\n`;
+          const blob = new Blob([content], {
+            type: "text/plain;charset=utf-8",
+          });
+          const url = URL.createObjectURL(blob);
+          const link = doc.createElement("a");
+          link.href = url;
+          link.download = `${country}-${type}.txt`;
+          link.click();
+          URL.revokeObjectURL(url);
+          result.textContent = `${country} - ${type} গাইড ডাউনলোড হয়েছে।`;
+        });
     };
 
     const openTool = (key) => {
@@ -864,7 +1004,9 @@
     if (!section) return;
 
     const pills = Array.from(section.querySelectorAll(".resource-pills .pill"));
-    const cards = Array.from(section.querySelectorAll(".resources-grid .resource-card"));
+    const cards = Array.from(
+      section.querySelectorAll(".resources-grid .resource-card"),
+    );
     let activeFilter = "";
 
     const applyFilter = () => {
@@ -879,9 +1021,7 @@
       pills.forEach((pill) => {
         const pillValue = pill.getAttribute("data-resource-filter") || "";
         const shouldBeActive =
-          value === ""
-            ? pillValue === "all"
-            : pillValue === value;
+          value === "" ? pillValue === "all" : pillValue === value;
         pill.classList.toggle("active", shouldBeActive);
       });
     };
@@ -902,7 +1042,8 @@
       btn.addEventListener("click", (event) => {
         event.stopPropagation();
         const card = btn.closest(".resource-card");
-        const title = card?.querySelector("h4")?.textContent.trim() || "রিসোর্স";
+        const title =
+          card?.querySelector("h4")?.textContent.trim() || "রিসোর্স";
         const action = btn.getAttribute("data-action") || "";
 
         if (action === "open-guide") {
@@ -946,7 +1087,7 @@
       Array.from(countriesSection.querySelectorAll(".pill")).map((pill) => [
         pill.getAttribute("data-filter"),
         pill,
-      ])
+      ]),
     );
 
     doc.querySelectorAll(".flag-chip").forEach((chip) => {
@@ -975,7 +1116,7 @@
     const modalTitle = doc.getElementById("modalTitle");
     const sampleHint = doc.getElementById("sampleHint");
     const createAccountPrompt = doc.getElementById("createAccountPrompt");
-    
+
     // Sample credentials
     const SAMPLE_EMAIL = "demo@example.com";
     const SAMPLE_PASSWORD = "12345678";
@@ -1020,7 +1161,7 @@
       createAccountPrompt.style.display = "none";
       sampleHint.style.display = "none";
       modalTitle.textContent = "অ্যাকাউন্ট তৈরি করুন";
-      
+
       // Create account form HTML
       const createFormHTML = `
         <form id="createAccountForm">
@@ -1040,19 +1181,22 @@
           <button type="button" id="backToLoginBtn" class="btn outline" style="width: 100%; background: none; border: 1px solid #ccc; cursor: pointer;">লগইনে ফিরে যান</button>
         </form>
       `;
-      
+
       // Remove existing create form if any
       const existingForm = doc.getElementById("createAccountForm");
       if (existingForm) {
         existingForm.remove();
       }
-      
+
       // Insert new form after close button
       const closeBtn = loginForm.parentElement.querySelector(".close-btn");
       const newForm = doc.createElement("div");
       newForm.innerHTML = createFormHTML;
-      loginForm.parentElement.insertBefore(newForm.firstElementChild, createAccountPrompt);
-      
+      loginForm.parentElement.insertBefore(
+        newForm.firstElementChild,
+        createAccountPrompt,
+      );
+
       // Handle back to login button
       const backToLoginBtn = doc.getElementById("backToLoginBtn");
       if (backToLoginBtn) {
@@ -1070,43 +1214,48 @@
           modalTitle.textContent = "লগইন";
         });
       }
-      
+
       // Handle create account form submission
       const createForm = doc.getElementById("createAccountForm");
       if (createForm) {
         createForm.addEventListener("submit", (e) => {
           e.preventDefault();
-          
+
           const email = doc.getElementById("createEmail").value.trim();
           const password = doc.getElementById("createPassword").value.trim();
           const name = doc.getElementById("createName").value.trim();
-          
+
           if (password.length < 8) {
             alert("পাসওয়ার্ড কমপক্ষে ৮ অক্ষর হতে হবে।");
             return;
           }
-          
+
           // Get or create registered accounts list
-          let accounts = JSON.parse(localStorage.getItem(REGISTERED_ACCOUNTS_KEY) || "[]");
-          
+          let accounts = JSON.parse(
+            localStorage.getItem(REGISTERED_ACCOUNTS_KEY) || "[]",
+          );
+
           // Check if email already exists
-          if (accounts.some(acc => acc.email === email)) {
+          if (accounts.some((acc) => acc.email === email)) {
             alert("এই ইমেইল ইতিমধ্যে নিবন্ধিত। অন্য ইমেইল ব্যবহার করুন।");
             return;
           }
-          
+
           // Add new account
           accounts.push({
             email: email,
             password: password,
             name: name,
-            createdAt: new Date().toISOString()
+            createdAt: new Date().toISOString(),
           });
-          
-          localStorage.setItem(REGISTERED_ACCOUNTS_KEY, JSON.stringify(accounts));
-          
+
+          localStorage.setItem(
+            REGISTERED_ACCOUNTS_KEY,
+            JSON.stringify(accounts),
+          );
+
           alert("অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে! এখন লগইন করুন।");
-          
+
           // Clear form and go back to login
           createForm.remove();
           loginForm.style.display = "block";
@@ -1122,32 +1271,44 @@
     if (loginForm) {
       loginForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        
+
         const email = doc.getElementById("email").value.trim();
         const password = doc.getElementById("password").value.trim();
-        
+
         // Check registered accounts
-        let accounts = JSON.parse(localStorage.getItem(REGISTERED_ACCOUNTS_KEY) || "[]");
-        const user = accounts.find(acc => acc.email === email && acc.password === password);
+        let accounts = JSON.parse(
+          localStorage.getItem(REGISTERED_ACCOUNTS_KEY) || "[]",
+        );
+        const user = accounts.find(
+          (acc) => acc.email === email && acc.password === password,
+        );
 
         if (email === SAMPLE_EMAIL && password === SAMPLE_PASSWORD) {
           // Sample credentials
-          localStorage.setItem(LOGIN_KEY, JSON.stringify({
-            email: email,
-            loginTime: new Date().toISOString(),
-            name: "ডেমো ইউজার"
-          }));
+          localStorage.setItem(
+            LOGIN_KEY,
+            JSON.stringify({
+              email: email,
+              loginTime: new Date().toISOString(),
+              name: "ডেমো ইউজার",
+            }),
+          );
           window.location.href = "profile.html";
         } else if (user) {
           // Registered user
-          localStorage.setItem(LOGIN_KEY, JSON.stringify({
-            email: email,
-            loginTime: new Date().toISOString(),
-            name: user.name
-          }));
+          localStorage.setItem(
+            LOGIN_KEY,
+            JSON.stringify({
+              email: email,
+              loginTime: new Date().toISOString(),
+              name: user.name,
+            }),
+          );
           window.location.href = "profile.html";
         } else {
-          alert("ইমেইল বা পাসওয়ার্ড সঠিক নয়। নমুনা: demo@example.com / 12345678");
+          alert(
+            "ইমেইল বা পাসওয়ার্ড সঠিক নয়। নমুনা: demo@example.com / 12345678",
+          );
           doc.getElementById("email").value = "";
           doc.getElementById("password").value = "";
         }
@@ -1169,5 +1330,3 @@
   setupFlags();
   setupLogin();
 })();
-
-

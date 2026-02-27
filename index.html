@@ -26,15 +26,15 @@
         <button id="menuToggle" class="menu-toggle" aria-label="মেনু খুলুন"><span aria-hidden="true">&#9776;</span></button>
 
         <ul id="menu" class="menu">
-          <li><a href="#home">হোম</a></li>
-          <li><a href="#countries">ডেস্টিনেশন</a></li>
-          <li><a href="scholarships.html">স্কলারশিপ</a></li>
-          <li><a href="#resources">রিসোর্স</a></li>
-          <li><a href="#tools">টুলস</a></li>
+          <li><a href="#home" data-en="Home">হোম</a></li>
+          <li><a href="#countries" data-en="Destinations">ডেস্টিনেশন</a></li>
+          <li><a href="scholarships.html" data-en="Scholarships">স্কলারশিপ</a></li>
+          <li><a href="#resources" data-en="Resources">রিসোর্স</a></li>
+          <li><a href="#tools" data-en="Tools">টুলস</a></li>
         </ul>
 
         <div class="nav-actions">
-          <button class="btn primary" id="loginBtn">লগইন</button>
+          <button class="btn primary" id="loginBtn" data-en="Login">লগইন</button>
         </div>
       </nav>
 
@@ -42,60 +42,60 @@
       <div id="loginModal" class="modal" style="display:none;">
         <div class="modal-content login-form-container">
           <span class="close-btn" id="closeLoginModal">&times;</span>
-          <h2 id="modalTitle">লগইন</h2>
+          <h2 id="modalTitle" data-en="Login">লগইন</h2>
           
           <!-- Login Form -->
           <form id="loginForm" style="display: block;">
             <div class="form-group">
-              <label for="email">ইমেইল:</label>
+              <label for="email" data-en="Email:">ইমেইল:</label>
               <input type="email" id="email" name="email" required placeholder="name@email.com">
-              <small style="color: #666; margin-top: 5px; display: block;">নমুনা: demo@example.com</small>
+              <small style="color: #666; margin-top: 5px; display: block;" data-en="Example: demo@example.com">নমুনা: demo@example.com</small>
             </div>
             <div class="form-group">
-              <label for="password">পাসওয়ার্ড:</label>
-              <input type="password" id="password" name="password" required placeholder="আপনার পাসওয়ার্ড">
-              <small style="color: #666; margin-top: 5px; display: block;">নমুনা: 12345678</small>
+              <label for="password" data-en="Password:">পাসওয়ার্ড:</label>
+              <input type="password" id="password" name="password" required placeholder="আপনার পাসওয়ার্ড" data-en-placeholder="Your Password">
+              <small style="color: #666; margin-top: 5px; display: block;" data-en="Example: 12345678">নমুনা: 12345678</small>
             </div>
-            <button type="submit" class="btn primary" style="width: 100%;">লগইন করুন</button>
+            <button type="submit" class="btn primary" style="width: 100%;" data-en="Log In">লগইন করুন</button>
           </form>
           
           <p style="text-align: center; margin-top: 15px; color: #666;" id="sampleHint">
-            <strong>নমুনা পত্র:</strong><br>
-            ইমেইল: demo@example.com<br>
-            পাসওয়ার্ড: 12345678
+            <strong data-en="Sample Credentials:">নমুনা পত্র:</strong><br>
+            <span data-en="Email: demo@example.com">ইমেইল: demo@example.com</span><br>
+            <span data-en="Password: 12345678">পাসওয়ার্ড: 12345678</span>
           </p>
           
           <p style="text-align: center; margin-top: 20px; color: #666;" id="createAccountPrompt">
-            এখনও অ্যাকাউন্ট তৈরি করেননি?<br>
-            <button type="button" id="createAccountBtn" class="btn outline" style="margin-top: 10px; width: 100%; border: none; background: none; cursor: pointer; color: #0066cc; text-decoration: underline; padding: 5px;">অ্যাকাউন্ট তৈরি করুন</button>
+            <span data-en="Don't have an account yet?">এখনও অ্যাকাউন্ট তৈরি করেননি?</span><br>
+            <button type="button" id="createAccountBtn" class="btn outline" style="margin-top: 10px; width: 100%; border: none; background: none; cursor: pointer; color: #0066cc; text-decoration: underline; padding: 5px;" data-en="Create Account">অ্যাকাউন্ট তৈরি করুন</button>
           </p>
         </div>
       </div>
 
       <div id="home" class="hero-grid">
         <div class="hero-copy">
-          <h2>আরও এক ধাপ এগিয়ে <span>বিদেশে পড়াশোনা</span></h2>
-          <p>
+          <h2 data-en="Studying abroad one step further">আরও এক ধাপ এগিয়ে <span>বিদেশে পড়াশোনা</span></h2>
+          <p data-en="Browse 600+ international universities and colleges at once. Complete your application, scholarship documents, visa checklist, and complete preparation all on one platform.">
             ৬০০+ আন্তর্জাতিক বিশ্ববিদ্যালয় ও কলেজ একসাথে দেখুন। আপনার অ্যাপ্লিকেশন, স্কলারশিপ
             ডকুমেন্ট, ভিসা চেকলিস্ট এবং সম্পূর্ণ প্রস্তুতি এক প্ল্যাটফর্মেই সম্পন্ন করুন।
           </p>
-          <a class="btn primary" href="#countries">এখনই আবেদন করুন</a>
+          <a class="btn primary" href="#countries" data-en="Apply Now">এখনই আবেদন করুন</a>
         </div>
 
         <div class="hero-media">
           <div class="media-core student-life">
-            <div class="status-badge">ফল ২০২৬ ইনটেক প্রস্তুতি</div>
+            <div class="status-badge" data-en="Fall 2026 Intake Preparation">ফল ২০২৬ ইনটেক প্রস্তুতি</div>
             <div class="hero-portrait" role="img" aria-label="বাংলাদেশি শিক্ষার্থীর প্রস্তুতি"></div>
 
             <div class="hero-side">
               <article class="quick-panel">
-                <h4>দেশ থেকে বিদেশ</h4>
+                <h4 data-en="From home to abroad">দেশ থেকে বিদেশ</h4>
                 <ul>
-                  <li>প্রোফাইল তৈরি</li>
-                  <li>বিশ্ববিদ্যালয় ও কোর্স সিলেকশন</li>
-                  <li>SOP + LOR ডকুমেন্ট রিভিউ</li>
-                  <li>ইনটেক, ভিসা ও বাজেট টাইমলাইন</li>
-                  <li>ভিসা ও ইন্টারভিউ প্রস্তুতি</li>
+                  <li data-en="Profile creation">প্রোফাইল তৈরি</li>
+                  <li data-en="University and course selection">বিশ্ববিদ্যালয় ও কোর্স সিলেকশন</li>
+                  <li data-en="SOP + LOR Document Review">SOP + LOR ডকুমেন্ট রিভিউ</li>
+                  <li data-en="Intake, Visa and Budget Timeline">ইনটেক, ভিসা ও বাজেট টাইমলাইন</li>
+                  <li data-en="Visa and interview preparation">ভিসা ও ইন্টারভিউ প্রস্তুতি</li>
                 </ul>
               </article>
 
@@ -118,59 +118,59 @@
         <div class="partner-logos">
           <div class="flag-chip" data-filter="usa">
             <img src="https://flagcdn.com/w40/us.png" alt="যুক্তরাষ্ট্রের পতাকা" />
-            <span>যুক্তরাষ্ট্র</span>
+            <span data-en="USA">যুক্তরাষ্ট্র</span>
           </div>
           <div class="flag-chip" data-filter="canada">
             <img src="https://flagcdn.com/w40/ca.png" alt="কানাডার পতাকা" />
-            <span>কানাডা</span>
+            <span data-en="Canada">কানাডা</span>
           </div>
           <div class="flag-chip" data-filter="uk">
             <img src="https://flagcdn.com/w40/gb.png" alt="যুক্তরাজ্যের পতাকা" />
-            <span>যুক্তরাজ্য</span>
+            <span data-en="United Kingdom">যুক্তরাজ্য</span>
           </div>
           <div class="flag-chip" data-filter="europe">
             <img src="https://flagcdn.com/w40/eu.png" alt="ইউরোপের পতাকা" />
-            <span>ইউরোপ</span>
+            <span data-en="Europe">ইউরোপ</span>
           </div>
           <div class="flag-chip" data-filter="europe">
             <img src="https://flagcdn.com/w40/fr.png" alt="ফ্রান্সের পতাকা" />
-            <span>ফ্রান্স</span>
+            <span data-en="France">ফ্রান্স</span>
           </div>
           <div class="flag-chip" data-filter="europe">
             <img src="https://flagcdn.com/w40/it.png" alt="ইতালির পতাকা" />
-            <span>ইতালি</span>
+            <span data-en="Italy">ইতালি</span>
           </div>
           <div class="flag-chip" data-filter="europe">
             <img src="https://flagcdn.com/w40/dk.png" alt="ডেনমার্কের পতাকা" />
-            <span>ডেনমার্ক</span>
+            <span data-en="Denmark">ডেনমার্ক</span>
           </div>
           <div class="flag-chip" data-filter="china">
             <img src="https://flagcdn.com/w40/cn.png" alt="চীনের পতাকা" />
-            <span>চীন</span>
+            <span data-en="China">চীন</span>
           </div>
           <div class="flag-chip" data-filter="japan">
             <img src="https://flagcdn.com/w40/jp.png" alt="জাপানের পতাকা" />
-            <span>জাপান</span>
+            <span data-en="Japan">জাপান</span>
           </div>
           <div class="flag-chip" data-filter="south-korea">
             <img src="https://flagcdn.com/w40/kr.png" alt="দক্ষিণ কোরিয়ার পতাকা" />
-            <span>দক্ষিণ কোরিয়া</span>
+            <span data-en="South Korea">দক্ষিণ কোরিয়া</span>
           </div>
           <div class="flag-chip" data-filter="india">
             <img src="https://flagcdn.com/w40/in.png" alt="ভারতের পতাকা" />
-            <span>ভারত</span>
+            <span data-en="India">ভারত</span>
           </div>
           <div class="flag-chip" data-filter="australia">
             <img src="https://flagcdn.com/w40/au.png" alt="অস্ট্রেলিয়ার পতাকা" />
-            <span>অস্ট্রেলিয়া</span>
+            <span data-en="Australia">অস্ট্রেলিয়া</span>
           </div>
           <div class="flag-chip" data-filter="europe">
             <img src="https://flagcdn.com/w40/de.png" alt="জার্মানির পতাকা" />
-            <span>জার্মানি</span>
+            <span data-en="Germany">জার্মানি</span>
           </div>
           <div class="flag-chip" data-filter="europe">
             <img src="https://flagcdn.com/w40/se.png" alt="সুইডেনের পতাকা" />
-            <span>সুইডেন</span>
+            <span data-en="Sweden">সুইডেন</span>
           </div>
         </div>
       </div>
@@ -178,8 +178,8 @@
 
     <section class="section" aria-label="পরিসংখ্যান">
       <div class="section-head">
-        <h3>বিদেশে পড়াশোনা এখন সহজ</h3>
-        <p>সফলতার দ্রুততম ও সহজ পথ</p>
+        <h3 data-en="Studying Abroad is Now Easy">বিদেশে পড়াশোনা এখন সহজ</h3>
+        <p data-en="The fastest and easiest path to success">সফলতার দ্রুততম ও সহজ পথ</p>
       </div>
 
       <div class="stats-grid">
@@ -188,181 +188,181 @@
             <img src="images/icons/student-success.svg" alt="শিক্ষার্থী সাফল্য আইকন" />
           </div>
           <b>1.1K+</b>
-          <span>সন্তুষ্ট শিক্ষার্থী</span>
+          <span data-en="Satisfied Students">সন্তুষ্ট শিক্ষার্থী</span>
         </article>
         <article class="stat">
           <div class="icon">
             <img src="images/icons/global-program.svg" alt="গ্লোবাল প্রোগ্রাম আইকন" />
           </div>
           <b>600+</b>
-          <span>গ্লোবাল প্রোগ্রাম</span>
+          <span data-en="Global Programs">গ্লোবাল প্রোগ্রাম</span>
         </article>
         <article class="stat">
           <div class="icon">
             <img src="images/icons/university-partner.svg" alt="বিশ্ববিদ্যালয় পার্টনার আইকন" />
           </div>
           <b>120+</b>
-          <span>পার্টনার বিশ্ববিদ্যালয়</span>
+          <span data-en="Partner Universities">পার্টনার বিশ্ববিদ্যালয়</span>
         </article>
         <article class="stat">
           <div class="icon">
             <img src="images/icons/monthly-students.svg" alt="নতুন শিক্ষার্থী আইকন" />
           </div>
           <b>50+</b>
-          <span>নতুন শিক্ষার্থী / মাস</span>
+          <span data-en="New Students / Month">নতুন শিক্ষার্থী / মাস</span>
         </article>
       </div>
     </section>
 
     <section id="countries" class="section">
       <div class="section-head">
-        <p>পৃথিবীর যেকোনো প্রান্তে</p>
-        <h3>জনপ্রিয় স্টাডি ডেস্টিনেশনসমূহ</h3>
-        <div class="muted-note">
+        <p data-en="Anywhere in the world">পৃথিবীর যেকোনো প্রান্তে</p>
+        <h3 data-en="Popular Study Destinations">জনপ্রিয় স্টাডি ডেস্টিনেশনসমূহ</h3>
+        <div class="muted-note" data-en="USA, Canada, UK, Australia, Germany, Italy, Sweden, Denmark, China, Japan, South Korea, India - all together covering tuition fees, visa processes, scholarships, work permits and PR pathways.">
           যুক্তরাষ্ট্র, কানাডা, যুক্তরাজ্য, অস্ট্রেলিয়া, জার্মানি, ইতালি, সুইডেন, ডেনমার্ক, চীন, জাপান, দক্ষিণ কোরিয়া, ভারত -
           প্রতিটি দেশের জন্য টিউশন ফি, ভিসা প্রসেস, স্কলারশিপ, ওয়ার্ক পারমিট এবং পিআর পথ একসাথে।
         </div>
       </div>
 
       <div class="pill-row">
-        <span class="pill active" data-filter="all">সব দেশ</span>
-        <span class="pill" data-filter="canada">কানাডা</span>
-        <span class="pill" data-filter="uk">যুক্তরাজ্য</span>
-        <span class="pill" data-filter="europe">ইউরোপ</span>
-        <span class="pill" data-filter="usa">যুক্তরাষ্ট্র</span>
-        <span class="pill" data-filter="australia">অস্ট্রেলিয়া</span>
-        <span class="pill" data-filter="china">চীন</span>
-        <span class="pill" data-filter="japan">জাপান</span>
-        <span class="pill" data-filter="south-korea">দক্ষিণ কোরিয়া</span>
-        <span class="pill" data-filter="india">ভারত</span>
+        <span class="pill active" data-filter="all" data-en="All Countries">সব দেশ</span>
+        <span class="pill" data-filter="canada" data-en="Canada">কানাডা</span>
+        <span class="pill" data-filter="uk" data-en="United Kingdom">যুক্তরাজ্য</span>
+        <span class="pill" data-filter="europe" data-en="Europe">ইউরোপ</span>
+        <span class="pill" data-filter="usa" data-en="USA">যুক্তরাষ্ট্র</span>
+        <span class="pill" data-filter="australia" data-en="Australia">অস্ট্রেলিয়া</span>
+        <span class="pill" data-filter="china" data-en="China">চীন</span>
+        <span class="pill" data-filter="japan" data-en="Japan">জাপান</span>
+        <span class="pill" data-filter="south-korea" data-en="South Korea">দক্ষিণ কোরিয়া</span>
+        <span class="pill" data-filter="india" data-en="India">ভারত</span>
       </div>
 
       <div class="cards-grid">
         <article class="country-card" data-country="usa" data-url="usa.html">
           <div class="country-photo usa"></div>
-          <h4>যুক্তরাষ্ট্র</h4>
-          <p>শীর্ষ র‍্যাংকিং বিশ্ববিদ্যালয়, গবেষণা সুযোগ এবং OPT থেকে H1B ক্যারিয়ার পথ।</p>
-          <span class="tag">টিউশন: $20k-$60k</span>
-          <a class="details-link" href="usa.html">বিস্তারিত দেখুন</a>
+          <h4 data-en="USA">যুক্তরাষ্ট্র</h4>
+          <p data-en="Top ranking universities, research opportunities, and OPT to H1B career path.">শীর্ষ র‍্যাংকিং বিশ্ববিদ্যালয়, গবেষণা সুযোগ এবং OPT থেকে H1B ক্যারিয়ার পথ।</p>
+          <span class="tag" data-en="Tuition: $20k-$60k">টিউশন: $20k-$60k</span>
+          <a class="details-link" href="usa.html" data-en="View Details">বিস্তারিত দেখুন</a>
         </article>
         <article class="country-card" data-country="canada" data-url="canada.html">
           <div class="country-photo canada"></div>
-          <h4>কানাডা</h4>
-          <p>SDS ভিসা, PGWP এবং Express Entry এর মাধ্যমে পিআর-বান্ধব স্টাডি অপশন।</p>
-          <span class="tag">টিউশন: CAD 15k-35k</span>
-          <a class="details-link" href="canada.html">বিস্তারিত দেখুন</a>
+          <h4 data-en="Canada">কানাডা</h4>
+          <p data-en="PR-friendly study options through SDS visa, PGWP, and Express Entry.">SDS ভিসা, PGWP এবং Express Entry এর মাধ্যমে পিআর-বান্ধব স্টাডি অপশন।</p>
+          <span class="tag" data-en="Tuition: CAD 15k-35k">টিউশন: CAD 15k-35k</span>
+          <a class="details-link" href="canada.html" data-en="View Details">বিস্তারিত দেখুন</a>
         </article>
         <article class="country-card" data-country="uk" data-url="uk.html">
           <div class="country-photo uk"></div>
-          <h4>যুক্তরাজ্য</h4>
-          <p>১ বছরের মাস্টার্স, গ্র্যাজুয়েট রুট এবং দ্রুত বিশ্ববিদ্যালয় অফার লেটার প্রসেস।</p>
-          <span class="tag">টিউশন: GBP 15k-30k</span>
-          <a class="details-link" href="uk.html">বিস্তারিত দেখুন</a>
+          <h4 data-en="United Kingdom">যুক্তরাজ্য</h4>
+          <p data-en="1-year Masters, Graduate Route, and fast university offer letter process.">১ বছরের মাস্টার্স, গ্র্যাজুয়েট রুট এবং দ্রুত বিশ্ববিদ্যালয় অফার লেটার প্রসেস।</p>
+          <span class="tag" data-en="Tuition: GBP 15k-30k">টিউশন: GBP 15k-30k</span>
+          <a class="details-link" href="uk.html" data-en="View Details">বিস্তারিত দেখুন</a>
         </article>
         <article class="country-card" data-country="australia" data-url="australia.html">
           <div class="country-photo australia"></div>
-          <h4>অস্ট্রেলিয়া</h4>
-          <p>পোস্ট-স্টাডি ওয়ার্ক ভিসা, স্টেট নমিনেশন এবং স্কিল-ভিত্তিক ক্যারিয়ার ট্রানজিশন সুযোগ।</p>
-          <span class="tag">টিউশন: AUD 20k-45k</span>
-          <a class="details-link" href="australia.html">বিস্তারিত দেখুন</a>
+          <h4 data-en="Australia">অস্ট্রেলিয়া</h4>
+          <p data-en="Post-study work visa, state nomination, and skill-based career transition opportunities.">পোস্ট-স্টাডি ওয়ার্ক ভিসা, স্টেট নমিনেশন এবং স্কিল-ভিত্তিক ক্যারিয়ার ট্রানজিশন সুযোগ।</p>
+          <span class="tag" data-en="Tuition: AUD 20k-45k">টিউশন: AUD 20k-45k</span>
+          <a class="details-link" href="australia.html" data-en="View Details">বিস্তারিত দেখুন</a>
         </article>
         <article class="country-card" data-country="europe" data-url="germany.html">
           <div class="country-photo germany"></div>
-          <h4>জার্মানি</h4>
-          <p>পাবলিক ইউনিভার্সিটিতে কম টিউশন, ব্লক অ্যাকাউন্ট সহ স্মার্ট বাজেট স্টাডি।</p>
-          <span class="tag">টিউশন: EUR 1k-3k/Sem</span>
-          <a class="details-link" href="germany.html">বিস্তারিত দেখুন</a>
+          <h4 data-en="Germany">জার্মানি</h4>
+          <p data-en="Low tuition in public universities, smart budget study with blocked account.">পাবলিক ইউনিভার্সিটিতে কম টিউশন, ব্লক অ্যাকাউন্ট সহ স্মার্ট বাজেট স্টাডি।</p>
+          <span class="tag" data-en="Tuition: EUR 1k-3k/Sem">টিউশন: EUR 1k-3k/Sem</span>
+          <a class="details-link" href="germany.html" data-en="View Details">বিস্তারিত দেখুন</a>
         </article>
         <article class="country-card" data-country="europe" data-url="france.html">
           <div class="country-photo france"></div>
-          <h4>ফ্রান্স</h4>
-          <p>ইংরেজি ও ফরাসি ট্র্যাক, কম টিউশন পাবলিক অপশন এবং গবেষণা-সমৃদ্ধ মাস্টার্স সুযোগ।</p>
-          <span class="tag">টিউশন: EUR 2.8k-10k</span>
-          <a class="details-link" href="france.html">বিস্তারিত দেখুন</a>
+          <h4 data-en="France">ফ্রান্স</h4>
+          <p data-en="English and French tracks, low tuition public options, and research-rich Master's opportunities.">ইংরেজি ও ফরাসি ট্র্যাক, কম টিউশন পাবলিক অপশন এবং গবেষণা-সমৃদ্ধ মাস্টার্স সুযোগ।</p>
+          <span class="tag" data-en="Tuition: EUR 2.8k-10k">টিউশন: EUR 2.8k-10k</span>
+          <a class="details-link" href="france.html" data-en="View Details">বিস্তারিত দেখুন</a>
         </article>
         <article class="country-card" data-country="europe" data-url="italy.html">
           <div class="country-photo italy"></div>
-          <h4>ইতালি</h4>
-          <p>আঞ্চলিক স্কলারশিপ, ISEE-ভিত্তিক ফি কমানোর সুযোগ এবং সাশ্রয়ী ইউরোপ স্টাডি পথ।</p>
-          <span class="tag">টিউশন: EUR 1k-4k</span>
-          <a class="details-link" href="italy.html">বিস্তারিত দেখুন</a>
+          <h4 data-en="Italy">ইতালি</h4>
+          <p data-en="Regional scholarships, ISEE-based fee reduction, and affordable Europe study path.">আঞ্চলিক স্কলারশিপ, ISEE-ভিত্তিক ফি কমানোর সুযোগ এবং সাশ্রয়ী ইউরোপ স্টাডি পথ।</p>
+          <span class="tag" data-en="Tuition: EUR 1k-4k">টিউশন: EUR 1k-4k</span>
+          <a class="details-link" href="italy.html" data-en="View Details">বিস্তারিত দেখুন</a>
         </article>
         <article class="country-card" data-country="europe" data-url="sweden.html">
           <div class="country-photo sweden"></div>
-          <h4>সুইডেন</h4>
-          <p>ইনোভেশন-ফোকাসড শিক্ষা, টেক ক্যারিয়ার ইকোসিস্টেম এবং উচ্চমানের গবেষণা পরিবেশ।</p>
-          <span class="tag">টিউশন: SEK 80k-170k</span>
-          <a class="details-link" href="sweden.html">বিস্তারিত দেখুন</a>
+          <h4 data-en="Sweden">সুইডেন</h4>
+          <p data-en="Innovation-focused education, tech career ecosystem, and high-quality research environment.">ইনোভেশন-ফোকাসড শিক্ষা, টেক ক্যারিয়ার ইকোসিস্টেম এবং উচ্চমানের গবেষণা পরিবেশ।</p>
+          <span class="tag" data-en="Tuition: SEK 80k-170k">টিউশন: SEK 80k-170k</span>
+          <a class="details-link" href="sweden.html" data-en="View Details">বিস্তারিত দেখুন</a>
         </article>
         <article class="country-card" data-country="europe" data-url="denmark.html">
           <div class="country-photo denmark"></div>
-          <h4>ডেনমার্ক</h4>
-          <p>স্টুডেন্ট-ফ্রেন্ডলি শিক্ষা ব্যবস্থা, প্রজেক্ট-ভিত্তিক লার্নিং এবং শক্তিশালী গ্রিন-টেক সুযোগ।</p>
-          <span class="tag">টিউশন: DKK 45k-135k</span>
-          <a class="details-link" href="denmark.html">বিস্তারিত দেখুন</a>
+          <h4 data-en="Denmark">ডেনমার্ক</h4>
+          <p data-en="Student-friendly education system, project-based learning, and strong green-tech opportunities.">স্টুডেন্ট-ফ্রেন্ডলি শিক্ষা ব্যবস্থা, প্রজেক্ট-ভিত্তিক লার্নিং এবং শক্তিশালী গ্রিন-টেক সুযোগ।</p>
+          <span class="tag" data-en="Tuition: DKK 45k-135k">টিউশন: DKK 45k-135k</span>
+          <a class="details-link" href="denmark.html" data-en="View Details">বিস্তারিত দেখুন</a>
         </article>
         <article class="country-card" data-country="china" data-url="china.html">
           <div class="country-photo china"></div>
-          <h4>চীন</h4>
-          <p>কম খরচে মানসম্মত শিক্ষা, বিস্তৃত CSC স্কলারশিপ এবং দ্রুত বর্ধনশীল ক্যারিয়ার সুযোগ।</p>
-          <span class="tag">টিউশন: CNY 20k-45k</span>
-          <a class="details-link" href="china.html">বিস্তারিত দেখুন</a>
+          <h4 data-en="China">চীন</h4>
+          <p data-en="Quality education at low cost, extensive CSC scholarships, and fast-growing career opportunities.">কম খরচে মানসম্মত শিক্ষা, বিস্তৃত CSC স্কলারশিপ এবং দ্রুত বর্ধনশীল ক্যারিয়ার সুযোগ।</p>
+          <span class="tag" data-en="Tuition: CNY 20k-45k">টিউশন: CNY 20k-45k</span>
+          <a class="details-link" href="china.html" data-en="View Details">বিস্তারিত দেখুন</a>
         </article>
         <article class="country-card" data-country="japan" data-url="japan.html">
           <div class="country-photo japan"></div>
-          <h4>জাপান</h4>
-          <p>উচ্চ প্রযুক্তিনির্ভর শিক্ষা, MEXT স্কলারশিপ এবং গবেষণা-কেন্দ্রিক প্রোগ্রামের জন্য জনপ্রিয়।</p>
-          <span class="tag">টিউশন: JPY 500k-1.2M</span>
-          <a class="details-link" href="japan.html">বিস্তারিত দেখুন</a>
+          <h4 data-en="Japan">জাপান</h4>
+          <p data-en="High-tech education, MEXT scholarship, and popular for research-centric programs.">উচ্চ প্রযুক্তিনির্ভর শিক্ষা, MEXT স্কলারশিপ এবং গবেষণা-কেন্দ্রিক প্রোগ্রামের জন্য জনপ্রিয়।</p>
+          <span class="tag" data-en="Tuition: JPY 500k-1.2M">টিউশন: JPY 500k-1.2M</span>
+          <a class="details-link" href="japan.html" data-en="View Details">বিস্তারিত দেখুন</a>
         </article>
         <article class="country-card" data-country="south-korea" data-url="south-korea.html">
           <div class="country-photo south-korea"></div>
-          <h4>দক্ষিণ কোরিয়া</h4>
-          <p>প্রযুক্তি ও ইনোভেশন-কেন্দ্রিক বিশ্ববিদ্যালয়, GKS স্কলারশিপ এবং স্মার্ট ক্যাম্পাস পরিবেশ।</p>
-          <span class="tag">টিউশন: KRW 4M-12M</span>
-          <a class="details-link" href="south-korea.html">বিস্তারিত দেখুন</a>
+          <h4 data-en="South Korea">দক্ষিণ কোরিয়া</h4>
+          <p data-en="Tech & innovation-centric universities, GKS scholarship, and smart campus environment.">প্রযুক্তি ও ইনোভেশন-কেন্দ্রিক বিশ্ববিদ্যালয়, GKS স্কলারশিপ এবং স্মার্ট ক্যাম্পাস পরিবেশ।</p>
+          <span class="tag" data-en="Tuition: KRW 4M-12M">টিউশন: KRW 4M-12M</span>
+          <a class="details-link" href="south-korea.html" data-en="View Details">বিস্তারিত দেখুন</a>
         </article>
         <article class="country-card" data-country="india" data-url="india.html">
           <div class="country-photo india"></div>
-          <h4>ভারত</h4>
-          <p>সাশ্রয়ী টিউশন, SAARC সুবিধা এবং শক্তিশালী মেডিকেল, আইটি ও ম্যানেজমেন্ট স্টাডি অপশন।</p>
-          <span class="tag">টিউশন: INR 150k-600k</span>
-          <a class="details-link" href="india.html">বিস্তারিত দেখুন</a>
+          <h4 data-en="India">ভারত</h4>
+          <p data-en="Affordable tuition, SAARC benefits, and strong medical, IT & management study options.">সাশ্রয়ী টিউশন, SAARC সুবিধা এবং শক্তিশালী মেডিকেল, আইটি ও ম্যানেজমেন্ট স্টাডি অপশন।</p>
+          <span class="tag" data-en="Tuition: INR 150k-600k">টিউশন: INR 150k-600k</span>
+          <a class="details-link" href="india.html" data-en="View Details">বিস্তারিত দেখুন</a>
         </article>
       </div>
       <div class="countries-more-wrap">
-        <button type="button" id="countriesMoreBtn" class="countries-more-btn">বিস্তারিত দেখুন</button>
+        <button type="button" id="countriesMoreBtn" class="countries-more-btn" data-en="View More">বিস্তারিত দেখুন</button>
       </div>
 
       <div class="row-two">
         <article id="scholarship" class="panel">
-          <h4>স্কলারশিপ ও অ্যাডমিশন সাপোর্ট</h4>
+          <h4 data-en="Scholarship & Admission Support">স্কলারশিপ ও অ্যাডমিশন সাপোর্ট</h4>
           <ul class="feature-list">
-            <li>মেরিট-ভিত্তিক এবং নিড-ভিত্তিক স্কলারশিপ শর্টলিস্ট।</li>
-            <li>SOP, LOR, CV এবং ফাইন্যান্সিয়াল ডকুমেন্ট রিভিউ।</li>
-            <li>দেশভিত্তিক ভিসা চেকলিস্ট এবং ইন্টারভিউ প্রস্তুতি।</li>
-            <li>অ্যাপ্লিকেশন ডেডলাইন ট্র্যাকার ও ইনটেক পরিকল্পনা।</li>
-            <li>পোস্ট-স্টাডি ওয়ার্ক পারমিট এবং পিআর পথের সারাংশ।</li>
+            <li data-en="Merit-based and need-based scholarship shortlisting.">মেরিট-ভিত্তিক এবং নিড-ভিত্তিক স্কলারশিপ শর্টলিস্ট।</li>
+            <li data-en="SOP, LOR, CV, and Financial Document review.">SOP, LOR, CV এবং ফাইন্যান্সিয়াল ডকুমেন্ট রিভিউ।</li>
+            <li data-en="Country-specific visa checklists and interview prep.">দেশভিত্তিক ভিসা চেকলিস্ট এবং ইন্টারভিউ প্রস্তুতি।</li>
+            <li data-en="Application deadline tracking and intake planning.">অ্যাপ্লিকেশন ডেডলাইন ট্র্যাকার ও ইনটেক পরিকল্পনা।</li>
+            <li data-en="Summary of post-study work permits and PR pathways.">পোস্ট-স্টাডি ওয়ার্ক পারমিট এবং পিআর পথের সারাংশ।</li>
           </ul>
         </article>
 
         <aside id="tools" class="panel tools">
-          <h4>টুলস</h4>
+          <h4 data-en="Tools">টুলস</h4>
           <div class="tool" data-tool="cost-calculator">
-            <b>খরচ ক্যালকুলেটর</b>
-            <span>দেশভিত্তিক টিউশন + জীবনযাত্রার আনুমানিক খরচ।</span>
+            <b data-en="Cost Calculator">খরচ ক্যালকুলেটর</b>
+            <span data-en="Estimated country-specific tuition + living costs.">দেশভিত্তিক টিউশন + জীবনযাত্রার আনুমানিক খরচ।</span>
           </div>
           <div class="tool" data-tool="ielts-checker">
-            <b>আইইএলটিএস চেকার</b>
-            <span>স্কোর অনুযায়ী সম্ভাব্য বিশ্ববিদ্যালয়/কলেজ তালিকা।</span>
+            <b data-en="IELTS Checker">আইইএলটিএস চেকার</b>
+            <span data-en="Probable universities/colleges lists according to score.">স্কোর অনুযায়ী সম্ভাব্য বিশ্ববিদ্যালয়/কলেজ তালিকা।</span>
           </div>
           <div class="tool" data-tool="visa-timeline">
-            <b>ভিসা টাইমলাইন</b>
-            <span>অফার লেটার থেকে বায়োমেট্রিকস পর্যন্ত ধাপে ধাপে গাইড।</span>
+            <b data-en="Visa Timeline">ভিসা টাইমলাইন</b>
+            <span data-en="Step-by-step guide from offer letter to biometrics.">অফার লেটার থেকে বায়োমেট্রিকস পর্যন্ত ধাপে ধাপে গাইড।</span>
           </div>
           <div class="tool" data-tool="pdf-guide">
-            <b>পিডিএফ গাইড</b>
-            <span>দেশভিত্তিক গাইড, SOP নমুনা, স্কলারশিপ চেকলিস্ট।</span>
+            <b data-en="PDF Guide">পিডিএফ গাইড</b>
+            <span data-en="Country-specific guides, SOP samples, scholarship checklists.">দেশভিত্তিক গাইড, SOP নমুনা, স্কলারশিপ চেকলিস্ট।</span>
           </div>
         </aside>
       </div>
@@ -370,116 +370,116 @@
 
     <section id="resources" class="section">
       <div class="section-head">
-        <p>রিসোর্স</p>
-        <h3>হালনাগাদ তথ্য, চেকলিস্ট ও প্রস্তুতি টুল</h3>
-        <div class="muted-note">
+        <p data-en="Resources">রিসোর্স</p>
+        <h3 data-en="Updated Information, Checklists & Preparation Tools">হালনাগাদ তথ্য, চেকলিস্ট ও প্রস্তুতি টুল</h3>
+        <div class="muted-note" data-en="Admission deadlines, document templates, visa steps, interview preparation, and career plans are now more detailed and structured effectively.">
           অ্যাডমিশন ডেডলাইন, ডকুমেন্ট টেমপ্লেট, ভিসা স্টেপ, ইন্টারভিউ প্রস্তুতি এবং ক্যারিয়ার প্ল্যান
           এখন আরও বিস্তারিত ও কার্যকরভাবে সাজানো।
         </div>
       </div>
 
       <div class="resource-highlights">
-        <div class="r-highlight"><b>১২০+</b><span>ডকুমেন্ট টেমপ্লেট</span></div>
-        <div class="r-highlight"><b>৭৮+</b><span>দেশভিত্তিক আপডেট নোট</span></div>
-        <div class="r-highlight"><b>২৪/৭</b><span>চেকলিস্ট অ্যাক্সেস</span></div>
-        <div class="r-highlight"><b>১৫ ধাপ</b><span>স্ট্যান্ডার্ড ভিসা ট্র্যাক</span></div>
+        <div class="r-highlight"><b>120+</b><span data-en="Document Templates">ডকুমেন্ট টেমপ্লেট</span></div>
+        <div class="r-highlight"><b>78+</b><span data-en="Country-specific Updates">দেশভিত্তিক আপডেট নোট</span></div>
+        <div class="r-highlight"><b>24/7</b><span data-en="Checklist Access">চেকলিস্ট অ্যাক্সেস</span></div>
+        <div class="r-highlight"><b data-en="15 Steps">১৫ ধাপ</b><span data-en="Standard Visa Track">স্ট্যান্ডার্ড ভিসা ট্র্যাক</span></div>
       </div>
 
       <div class="resource-pills">
-        <span class="pill active" data-resource-filter="all">সব রিসোর্স</span>
-        <span class="pill" data-resource-filter="admission">অ্যাডমিশন</span>
-        <span class="pill" data-resource-filter="visa">ভিসা</span>
-        <span class="pill" data-resource-filter="scholarship">স্কলারশিপ</span>
-        <span class="pill" data-resource-filter="career">ক্যারিয়ার</span>
+        <span class="pill active" data-resource-filter="all" data-en="All Resources">সব রিসোর্স</span>
+        <span class="pill" data-resource-filter="admission" data-en="Admission">অ্যাডমিশন</span>
+        <span class="pill" data-resource-filter="visa" data-en="Visa">ভিসা</span>
+        <span class="pill" data-resource-filter="scholarship" data-en="Scholarships">স্কলারশিপ</span>
+        <span class="pill" data-resource-filter="career" data-en="Career">ক্যারিয়ার</span>
       </div>
 
       <div class="resources-grid">
         <article class="resource-card" data-resource-type="admission">
           <div class="resource-head">
-            <h4>অ্যাডমিশন রোডম্যাপ</h4>
-            <span class="tag">আপডেটেড ২০২৬</span>
+            <h4 data-en="Admission Roadmap">অ্যাডমিশন রোডম্যাপ</h4>
+            <span class="tag" data-en="Updated 2026">আপডেটেড ২০২৬</span>
           </div>
-          <p>ইনটেকভিত্তিক ৬-১২ মাসের স্টেপ-বাই-স্টেপ পরিকল্পনা।</p>
+          <p data-en="Intake-based 6-12 month step-by-step plan.">ইনটেকভিত্তিক ৬-১২ মাসের স্টেপ-বাই-স্টেপ পরিকল্পনা।</p>
           <ul>
-            <li>প্রোফাইল ইভ্যালুয়েশন ও দেশ নির্বাচন</li>
-            <li>ইউনিভার্সিটি শর্টলিস্ট + ডেডলাইন ট্র্যাকার</li>
-            <li>SOP/LOR/CV কাস্টম ড্রাফট স্ট্যান্ডার্ড</li>
+            <li data-en="Profile Evaluation & Country Selection">প্রোফাইল ইভ্যালুয়েশন ও দেশ নির্বাচন</li>
+            <li data-en="University Shortlist + Deadline Tracker">ইউনিভার্সিটি শর্টলিস্ট + ডেডলাইন ট্র্যাকার</li>
+            <li data-en="Custom SOP/LOR/CV Draft Standards">SOP/LOR/CV কাস্টম ড্রাফট স্ট্যান্ডার্ড</li>
           </ul>
           <div class="resource-actions">
-            <button type="button" class="tool-btn primary resource-action" data-action="quick-view">কুইক ভিউ</button>
-            <button type="button" class="tool-btn ghost resource-action" data-action="open-guide">গাইড খুলুন</button>
+            <button type="button" class="tool-btn primary resource-action" data-action="quick-view" data-en="Quick View">কুইক ভিউ</button>
+            <button type="button" class="tool-btn ghost resource-action" data-action="open-guide" data-en="Open Guide">গাইড খুলুন</button>
           </div>
         </article>
 
         <article class="resource-card" data-resource-type="visa">
           <div class="resource-head">
-            <h4>ভিসা ডকুমেন্টেশন কিট</h4>
-            <span class="tag">চেকলিস্ট</span>
+            <h4 data-en="Visa Documentation Kit">ভিসা ডকুমেন্টেশন কিট</h4>
+            <span class="tag" data-en="Checklist">চেকলিস্ট</span>
           </div>
-          <p>দেশভেদে ডকুমেন্ট ফরম্যাট, ফান্ড ফাইলিং ও এম্বাসি প্রস্তুতি।</p>
+          <p data-en="Document formats, fund filing, and embassy prep by country.">দেশভেদে ডকুমেন্ট ফরম্যাট, ফান্ড ফাইলিং ও এম্বাসি প্রস্তুতি।</p>
           <ul>
-            <li>ব্যাংক স্টেটমেন্ট ও ফান্ড সোর্সিং ফরম্যাট</li>
-            <li>ভিসা ফাইল অর্ডার ও স্ক্যানিং স্ট্যান্ডার্ড</li>
-            <li>বায়োমেট্রিক ও ইন্টারভিউ ডে চেকপয়েন্ট</li>
+            <li data-en="Bank Statement & Fund Sourcing Formats">ব্যাংক স্টেটমেন্ট ও ফান্ড সোর্সিং ফরম্যাট</li>
+            <li data-en="Visa File Order & Scanning Standards">ভিসা ফাইল অর্ডার ও স্ক্যানিং স্ট্যান্ডার্ড</li>
+            <li data-en="Biometric & Interview Day Checkpoints">বায়োমেট্রিক ও ইন্টারভিউ ডে চেকপয়েন্ট</li>
           </ul>
           <div class="resource-actions">
-            <button type="button" class="tool-btn primary resource-action" data-action="quick-view">কুইক ভিউ</button>
-            <button type="button" class="tool-btn ghost resource-action" data-action="open-guide">গাইড খুলুন</button>
+            <button type="button" class="tool-btn primary resource-action" data-action="quick-view" data-en="Quick View">কুইক ভিউ</button>
+            <button type="button" class="tool-btn ghost resource-action" data-action="open-guide" data-en="Open Guide">গাইড খুলুন</button>
           </div>
         </article>
 
         <article class="resource-card" data-resource-type="scholarship">
           <div class="resource-head">
-            <h4>স্কলারশিপ ম্যাচিং প্ল্যান</h4>
-            <span class="tag">মেরিট + নিড</span>
+            <h4 data-en="Scholarship Matching Plan">স্কলারশিপ ম্যাচিং প্ল্যান</h4>
+            <span class="tag" data-en="Merit + Need">মেরিট + নিড</span>
           </div>
-          <p>প্রোফাইল অনুযায়ী স্কলারশিপ শর্টলিস্টিং ও অ্যাপ্লিকেশন কৌশল।</p>
+          <p data-en="Profile-based scholarship shortlisting and application strategy.">প্রোফাইল অনুযায়ী স্কলারশিপ শর্টলিস্টিং ও অ্যাপ্লিকেশন কৌশল।</p>
           <ul>
-            <li>দেশভিত্তিক ফান্ডেড ও আংশিক স্কিম</li>
-            <li>ডেডলাইন, প্রয়োজনীয় স্কোর ও ডকুমেন্ট</li>
-            <li>Scholarship essay outline ও common mistakes</li>
+            <li data-en="Country-wise funded & partial schemes">দেশভিত্তিক ফান্ডেড ও আংশিক স্কিম</li>
+            <li data-en="Deadlines, required scores, and documentation">ডেডলাইন, প্রয়োজনীয় স্কোর ও ডকুমেন্ট</li>
+            <li data-en="Scholarship essay outline and common mistakes">Scholarship essay outline ও common mistakes</li>
           </ul>
           <div class="resource-actions">
-            <button type="button" class="tool-btn primary resource-action" data-action="quick-view">কুইক ভিউ</button>
-            <button type="button" class="tool-btn ghost resource-action" data-action="open-guide">গাইড খুলুন</button>
+            <button type="button" class="tool-btn primary resource-action" data-action="quick-view" data-en="Quick View">কুইক ভিউ</button>
+            <button type="button" class="tool-btn ghost resource-action" data-action="open-guide" data-en="Open Guide">গাইড খুলুন</button>
           </div>
         </article>
 
         <article class="resource-card" data-resource-type="career">
           <div class="resource-head">
-            <h4>ক্যারিয়ার ও ওয়ার্ক পথনির্দেশ</h4>
-            <span class="tag">পোস্ট-স্টাডি</span>
+            <h4 data-en="Career & Work Trajectory">ক্যারিয়ার ও ওয়ার্ক পথনির্দেশ</h4>
+            <span class="tag" data-en="Post-Study">পোস্ট-স্টাডি</span>
           </div>
-          <p>স্টাডির পর জব সার্চ, CV অপ্টিমাইজেশন এবং ওয়ার্ক ভিসা রুট।</p>
+          <p data-en="Post-study job search, CV optimization, and work visa routes.">স্টাডির পর জব সার্চ, CV অপ্টিমাইজেশন এবং ওয়ার্ক ভিসা রুট।</p>
           <ul>
-            <li>Country-wise part-time/job market snapshot</li>
-            <li>Graduate visa থেকে work permit ট্রানজিশন</li>
-            <li>LinkedIn CV checklist ও interview framework</li>
+            <li data-en="Country-wise part-time/job market snapshot">Country-wise part-time/job market snapshot</li>
+            <li data-en="Transition from graduate visa to work permit">Graduate visa থেকে work permit ট্রানজিশন</li>
+            <li data-en="LinkedIn/CV checklist & interview frameworks">LinkedIn CV checklist ও interview framework</li>
           </ul>
           <div class="resource-actions">
-            <button type="button" class="tool-btn primary resource-action" data-action="quick-view">কুইক ভিউ</button>
-            <button type="button" class="tool-btn ghost resource-action" data-action="open-guide">গাইড খুলুন</button>
+            <button type="button" class="tool-btn primary resource-action" data-action="quick-view" data-en="Quick View">কুইক ভিউ</button>
+            <button type="button" class="tool-btn ghost resource-action" data-action="open-guide" data-en="Open Guide">গাইড খুলুন</button>
           </div>
         </article>
       </div>
 
       <div class="resource-workbench">
         <article class="panel resource-builder">
-          <h4>পার্সোনাল স্টাডি প্ল্যান বিল্ডার</h4>
+          <h4 data-en="Personal Study Plan Builder">পার্সোনাল স্টাডি প্ল্যান বিল্ডার</h4>
           <div class="tool-grid">
             <div class="tool-field">
-              <label for="rCountry">টার্গেট দেশ</label>
+              <label for="rCountry" data-en="Target Country">টার্গেট দেশ</label>
               <select id="rCountry">
-                <option value="যুক্তরাষ্ট্র">যুক্তরাষ্ট্র</option>
-                <option value="কানাডা">কানাডা</option>
-                <option value="যুক্তরাজ্য">যুক্তরাজ্য</option>
-                <option value="অস্ট্রেলিয়া">অস্ট্রেলিয়া</option>
-                <option value="জার্মানি">জার্মানি</option>
-                <option value="চীন">চীন</option>
+                <option value="যুক্তরাষ্ট্র" data-en="USA">যুক্তরাষ্ট্র</option>
+                <option value="কানাডা" data-en="Canada">কানাডা</option>
+                <option value="যুক্তরাজ্য" data-en="UK">যুক্তরাজ্য</option>
+                <option value="অস্ট্রেলিয়া" data-en="Australia">অস্ট্রেলিয়া</option>
+                <option value="জার্মানি" data-en="Germany">জার্মানি</option>
+                <option value="চীন" data-en="China">চীন</option>
               </select>
             </div>
             <div class="tool-field">
-              <label for="rIntake">ইনটেক</label>
+              <label for="rIntake" data-en="Intake">ইনটেক</label>
               <select id="rIntake">
                 <option value="Fall 2026">Fall 2026</option>
                 <option value="Spring 2027">Spring 2027</option>
@@ -487,7 +487,7 @@
               </select>
             </div>
             <div class="tool-field">
-              <label for="rProfile">প্রোফাইল ফোকাস</label>
+              <label for="rProfile" data-en="Profile Focus">প্রোফাইল ফোকাস</label>
               <select id="rProfile">
                 <option value="Scholarship">Scholarship</option>
                 <option value="Budget">Budget</option>
@@ -497,24 +497,24 @@
             </div>
           </div>
           <div class="tool-actions">
-            <button type="button" class="tool-btn primary" id="resourcePlanBtn">স্টাডি প্ল্যান তৈরি করুন</button>
+            <button type="button" class="tool-btn primary" id="resourcePlanBtn" data-en="Create Study Plan">স্টাডি প্ল্যান তৈরি করুন</button>
           </div>
-          <div class="tool-result" id="resourcePlanResult">দেশ, ইনটেক ও প্রোফাইল নির্বাচন করে আপনার কাস্টম প্ল্যান দেখুন।</div>
+          <div class="tool-result" id="resourcePlanResult" data-en="Select country, intake and profile to see your custom plan.">দেশ, ইনটেক ও প্রোফাইল নির্বাচন করে আপনার কাস্টম প্ল্যান দেখুন।</div>
         </article>
 
         <article class="panel resource-faq">
-          <h4>দ্রুত জিজ্ঞাসা (FAQ)</h4>
+          <h4 data-en="Frequently Asked Questions (FAQ)">দ্রুত জিজ্ঞাসা (FAQ)</h4>
           <details>
-            <summary>কত আগে থেকে অ্যাডমিশন প্রস্তুতি শুরু করা উচিত?</summary>
-            <p>আদর্শভাবে ৮-১২ মাস আগে শুরু করুন, যাতে স্কোর, SOP/LOR এবং ফান্ডিং প্রস্তুতি সময়মতো সম্পন্ন হয়।</p>
+            <summary data-en="How early should admission preparation start?">কত আগে থেকে অ্যাডমিশন প্রস্তুতি শুরু করা উচিত?</summary>
+            <p data-en="Ideally start 8-12 months early, so that scores, SOP/LOR, and funding preparation are completed on time.">আদর্শভাবে ৮-১২ মাস আগে শুরু করুন, যাতে স্কোর, SOP/LOR এবং ফান্ডিং প্রস্তুতি সময়মতো সম্পন্ন হয়।</p>
           </details>
           <details>
-            <summary>একই সাথে কতটি বিশ্ববিদ্যালয়ে আবেদন করা ভালো?</summary>
-            <p>সাধারণত ৬-১০টি অপশন: ২-৩টি ambitious, ২-৩টি মাঝারি এবং ২-৪টি safe choice রাখা সবচেয়ে কার্যকর।</p>
+            <summary data-en="How many universities is it good to apply to at the same time?">একই সাথে কতটি বিশ্ববিদ্যালয়ে আবেদন করা ভালো?</summary>
+            <p data-en="Usually 6-10 options: keeping 2-3 ambitious, 2-3 moderate, and 2-4 safe choices is the most effective.">সাধারণত ৬-১০টি অপশন: ২-৩টি ambitious, ২-৩টি মাঝারি এবং ২-৪টি safe choice রাখা সবচেয়ে কার্যকর।</p>
           </details>
           <details>
-            <summary>ভিসার জন্য কোন ডকুমেন্টে বেশি ভুল হয়?</summary>
-            <p>ফান্ড সোর্স ব্যাখ্যা, ডকুমেন্ট আপডেট তারিখ, এবং SOP/Study plan consistency-তে বেশি ভুল হয়।</p>
+            <summary data-en="Which documents have the most mistakes for visas?">ভিসার জন্য কোন ডকুমেন্টে বেশি ভুল হয়?</summary>
+            <p data-en="Most mistakes occur in explaining fund sources, document update dates, and SOP/Study plan consistency.">ফান্ড সোর্স ব্যাখ্যা, ডকুমেন্ট আপডেট তারিখ, এবং SOP/Study plan consistency-তে বেশি ভুল হয়।</p>
           </details>
         </article>
       </div>
@@ -524,32 +524,32 @@
     <section class="blog-news-section">
       <div class="blog-news-wrap">
         <div class="blog-news-header">
-          <h2 class="blog-news-title">সর্বশেষ ব্লগ, টিপস ও নিউজ</h2>
-          <p class="blog-news-subtitle">বিদেশে পড়াশোনা সংক্রান্ত সর্বশেষ আপডেট এবং মূল্যবান টিপস</p>
+          <h2 class="blog-news-title" data-en="Latest Blog, Tips & News">সর্বশেষ ব্লগ, টিপস ও নিউজ</h2>
+          <p class="blog-news-subtitle" data-en="Latest updates and valuable tips regarding studying abroad">বিদেশে পড়াশোনা সংক্রান্ত সর্বশেষ আপডেট এবং মূল্যবান টিপস</p>
         </div>
         <div class="blog-news-list">
           <article class="blog-news-item blog-card-1">
-            <div class="blog-news-tag">টিপস</div>
-            <h3>স্কলারশিপের জন্য SOP লেখার ৫টি টিপস</h3>
-            <p>একটি শক্তিশালী SOP লেখার জন্য কী কী বিষয় মাথায় রাখা উচিত? পড়ুন আমাদের বিশেষ গাইড।</p>
-            <a href="#" class="blog-news-link">বিস্তারিত পড়ুন →</a>
+            <div class="blog-news-tag" data-en="Tips">টিপস</div>
+            <h3 data-en="5 Tips for Writing an SOP for Scholarships">স্কলারশিপের জন্য SOP লেখার ৫টি টিপস</h3>
+            <p data-en="What should be kept in mind to write a strong SOP? Read our special guide.">একটি শক্তিশালী SOP লেখার জন্য কী কী বিষয় মাথায় রাখা উচিত? পড়ুন আমাদের বিশেষ গাইড।</p>
+            <a href="#" class="blog-news-link" data-en="Read More &rarr;">বিস্তারিত পড়ুন →</a>
           </article>
           <article class="blog-news-item blog-card-2">
-            <div class="blog-news-tag">নিউজ</div>
-            <h3>২০২৬ সালের জনপ্রিয় স্টাডি ডেস্টিনেশন</h3>
-            <p>যুক্তরাষ্ট্র, কানাডা, ইউকে, অস্ট্রেলিয়া—কোন দেশে সবচেয়ে বেশি স্কলারশিপ ও সুযোগ?</p>
-            <a href="#" class="blog-news-link">বিস্তারিত পড়ুন →</a>
+            <div class="blog-news-tag" data-en="News">নিউজ</div>
+            <h3 data-en="Popular Study Destinations in 2026">২০২৬ সালের জনপ্রিয় স্টাডি ডেস্টিনেশন</h3>
+            <p data-en="USA, Canada, UK, Australia—which country has the most scholarships and opportunities?">যুক্তরাষ্ট্র, কানাডা, ইউকে, অস্ট্রেলিয়া—কোন দেশে সবচেয়ে বেশি স্কলারশিপ ও সুযোগ?</p>
+            <a href="#" class="blog-news-link" data-en="Read More &rarr;">বিস্তারিত পড়ুন →</a>
           </article>
           <article class="blog-news-item blog-card-3">
-            <div class="blog-news-tag">টিপস</div>
-            <h3>IELTS Speaking: সহজে ৭+ স্কোর পাওয়ার কৌশল</h3>
-            <p>IELTS Speaking-এ ভালো স্কোরের জন্য প্রস্তুতির সেরা কৌশল ও রিসোর্স।</p>
-            <a href="#" class="blog-news-link">বিস্তারিত পড়ুন →</a>
+            <div class="blog-news-tag" data-en="Tips">টিপস</div>
+            <h3 data-en="IELTS Speaking: Strategies to easily score 7+">IELTS Speaking: সহজে ৭+ স্কোর পাওয়ার কৌশল</h3>
+            <p data-en="Best strategies and resources to prepare for a good score in IELTS Speaking.">IELTS Speaking-এ ভালো স্কোরের জন্য প্রস্তুতির সেরা কৌশল ও রিসোর্স।</p>
+            <a href="#" class="blog-news-link" data-en="Read More &rarr;">বিস্তারিত পড়ুন →</a>
           </article>
         </div>
         <div class="blog-news-video">
-          <h4>ভিডিও: স্কলারশিপ ও অ্যাডমিশন টিপস</h4>
-          <p class="video-description">আমাদের বিশেষজ্ঞদের কাছ থেকে সরাসরি পরামর্শ এবং গাইডেন্স পান</p>
+          <h4 data-en="Video: Scholarship & Admission Tips">ভিডিও: স্কলারশিপ ও অ্যাডমিশন টিপস</h4>
+          <p class="video-description" data-en="Get direct advice and guidance from our experts">আমাদের বিশেষজ্ঞদের কাছ থেকে সরাসরি পরামর্শ এবং গাইডেন্স পান</p>
           <iframe width="360" height="203" src="https://www.youtube.com/embed/1QJkQqQKk6Y" title="Scholarship Tips" frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
@@ -559,8 +559,8 @@
     <section class="team-section">
       <div class="team-wrap">
         <div class="team-header">
-          <h2 class="team-title">আমাদের টিম</h2>
-          <p class="team-subtitle">অভিজ্ঞ পরামর্শদাতা ও মেন্টরদের একটি দক্ষ দল আপনার স্বপ্ন পূরণে সহায়তা করতে প্রস্তুত</p>
+          <h2 class="team-title" data-en="Our Team">আমাদের টিম</h2>
+          <p class="team-subtitle" data-en="A skilled team of experienced consultants and mentors ready to help you fulfill your dreams">অভিজ্ঞ পরামর্শদাতা ও মেন্টরদের একটি দক্ষ দল আপনার স্বপ্ন পূরণে সহায়তা করতে প্রস্তুত</p>
         </div>
         <div class="team-grid">
           <article class="team-member team-member-1">
@@ -568,8 +568,8 @@
               <img src="images/raisul-ceo.png" alt="টিম সদস্য" />
             </div>
             <div class="member-info">
-              <h3 class="member-name">এস এম রাইসুল ইসলাম</h3>
-              <p class="member-role">প্রতিষ্ঠাতা</p>
+              <h3 class="member-name" data-en="S M Raisul Islam">এস এম রাইসুল ইসলাম</h3>
+              <p class="member-role" data-en="Founder">প্রতিষ্ঠাতা</p>
               <p class="member-bio">SWE, Zhengzhou University, China.</p>
               <div class="member-socials">
                 <a href="#" title="LinkedIn">LinkedIn</a>
@@ -583,9 +583,9 @@
               <img src="images/bristy1.jpeg" alt="টিম সদস্য" />
             </div>
             <div class="member-info">
-              <h3 class="member-name">শেহনাজ ইসলাম বৃষ্টি</h3>
-              <p class="member-role">ক্যারিয়ার কাউন্সেলর</p>
-              <p class="member-bio">প্রোফাইল প্রক্রিয়াকরণে বিশেষজ্ঞ, ৫০+ শিক্ষার্থীকে সাহায্য করেছেন।</p>
+              <h3 class="member-name" data-en="Shehnaz Islam Bristy">শেহনাজ ইসলাম বৃষ্টি</h3>
+              <p class="member-role" data-en="Career Counselor">ক্যারিয়ার কাউন্সেলর</p>
+              <p class="member-bio" data-en="Profile processing expert, helped 50+ students.">প্রোফাইল প্রক্রিয়াকরণে বিশেষজ্ঞ, ৫০+ শিক্ষার্থীকে সাহায্য করেছেন।</p>
               <div class="member-socials">
                 <a href="#" title="LinkedIn">LinkedIn</a>
                 <a href="#" title="Email">Email</a>
@@ -599,8 +599,8 @@
     <footer class="site-footer">
       <div class="footer-grid">
         <div class="footer-brand">
-          <h4>বিদেশে পড়তে চাই</h4>
-          <p>বাংলাদেশি শিক্ষার্থীদের জন্য অ্যাডমিশন, স্কলারশিপ, ভিসা ও ক্যারিয়ার প্রস্তুতির পূর্ণাঙ্গ প্ল্যাটফর্ম।</p>
+          <h4 data-en="Study Abroad">বিদেশে পড়তে চাই</h4>
+          <p data-en="Complete platform for admission, scholarship, visa, and career preparation for Bangladeshi students.">বাংলাদেশি শিক্ষার্থীদের জন্য অ্যাডমিশন, স্কলারশিপ, ভিসা ও ক্যারিয়ার প্রস্তুতির পূর্ণাঙ্গ প্ল্যাটফর্ম।</p>
           <div class="social-links">
             <a href="#" aria-label="Facebook">Facebook</a>
             <a href="#" aria-label="YouTube">YouTube</a>
@@ -610,51 +610,51 @@
         </div>
 
         <div class="footer-links">
-          <h5>গুরুত্বপূর্ণ লিংক</h5>
-          <a href="#home">হোম</a>
-          <a href="#countries">ডেস্টিনেশন</a>
-          <a href="scholarships.html">স্কলারশিপ</a>
-          <a href="#resources">রিসোর্স</a>
-          <a href="#tools">টুলস</a>
+          <h5 data-en="Important Links">গুরুত্বপূর্ণ লিংক</h5>
+          <a href="#home" data-en="Home">হোম</a>
+          <a href="#countries" data-en="Destinations">ডেস্টিনেশন</a>
+          <a href="scholarships.html" data-en="Scholarships">স্কলারশিপ</a>
+          <a href="#resources" data-en="Resources">রিসোর্স</a>
+          <a href="#tools" data-en="Tools">টুলস</a>
         </div>
 
         <div class="footer-links countries">
-          <h5>স্টাডি ডেস্টিনেশন</h5>
+          <h5 data-en="Study Destinations">স্টাডি ডেস্টিনেশন</h5>
           <div class="footer-country-groups">
-            <p><a href="usa.html">যুক্তরাষ্ট্র</a> • <a href="canada.html">কানাডা</a> • <a href="uk.html">যুক্তরাজ্য</a> • <a href="australia.html">অস্ট্রেলিয়া</a></p>
-            <p><a href="germany.html">জার্মানি</a> • <a href="france.html">ফ্রান্স</a> • <a href="italy.html">ইতালি</a> • <a href="sweden.html">সুইডেন</a></p>
-            <p><a href="denmark.html">ডেনমার্ক</a> • <a href="china.html">চীন</a> • <a href="japan.html">জাপান</a> • <a href="south-korea.html">দক্ষিণ কোরিয়া</a></p>
-            <p><a href="india.html">ভারত</a></p>
+            <p><a href="usa.html" data-en="USA">যুক্তরাষ্ট্র</a> • <a href="canada.html" data-en="Canada">কানাডা</a> • <a href="uk.html" data-en="United Kingdom">যুক্তরাজ্য</a> • <a href="australia.html" data-en="Australia">অস্ট্রেলিয়া</a></p>
+            <p><a href="germany.html" data-en="Germany">জার্মানি</a> • <a href="france.html" data-en="France">ফ্রান্স</a> • <a href="italy.html" data-en="Italy">ইতালি</a> • <a href="sweden.html" data-en="Sweden">সুইডেন</a></p>
+            <p><a href="denmark.html" data-en="Denmark">ডেনমার্ক</a> • <a href="china.html" data-en="China">চীন</a> • <a href="japan.html" data-en="Japan">জাপান</a> • <a href="south-korea.html" data-en="South Korea">দক্ষিণ কোরিয়া</a></p>
+            <p><a href="india.html" data-en="India">ভারত</a></p>
           </div>
         </div>
 
         <div class="footer-contact">
-          <h5>যোগাযোগ</h5>
-          <p>📍 কুমিল্লা, বাংলাদেশ</p>
+          <h5 data-en="Contact">যোগাযোগ</h5>
+          <p data-en="📍 Comilla, Bangladesh">📍 কুমিল্লা, বাংলাদেশ</p>
           <p>📞 +880181919-2112</p>
           <p>✉️ hello@bidesheportechai.com</p>
           <!-- <p>🕘 শনি-বৃহস্পতি: সকাল ১০টা - রাত ৮টা</p> -->
         </div>
 
         <div class="footer-form-wrap">
-          <h5>মেসেজ পাঠান</h5>
+          <h5 data-en="Send a Message">মেসেজ পাঠান</h5>
           <form class="footer-form" action="#" method="post">
-            <label for="footerName">আপনার নাম</label>
-            <input id="footerName" type="text" name="name" placeholder="যেমন: এস এম রাইসুল ইসলাম" required />
+            <label for="footerName" data-en="Your Name">আপনার নাম</label>
+            <input id="footerName" type="text" name="name" placeholder="যেমন: এস এম রাইসুল ইসলাম" data-en-placeholder="e.g. S M Raisul Islam" required />
 
-            <label for="footerEmail">ইমেইল</label>
+            <label for="footerEmail" data-en="Email">ইমেইল</label>
             <input id="footerEmail" type="email" name="email" placeholder="name@email.com" required />
 
-            <label for="footerMessage">আপনার পরিকল্পনা</label>
-            <textarea id="footerMessage" name="message" rows="3" placeholder="কোন দেশে, কোন ইনটেকে যেতে চান?" required></textarea>
+            <label for="footerMessage" data-en="Your Plan">আপনার পরিকল্পনা</label>
+            <textarea id="footerMessage" name="message" rows="3" placeholder="কোন দেশে, কোন ইনটেকে যেতে চান?" data-en-placeholder="Which country and intake do you want to apply for?" required></textarea>
 
-            <button type="submit" class="btn primary">বার্তা পাঠান</button>
+            <button type="submit" class="btn primary" data-en="Send Message">বার্তা পাঠান</button>
           </form>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>© ২০২৬ বিদেশে পড়তে চাই • সর্বস্বত্ব সংরক্ষিত</p>
+        <p data-en="© 2026 Study Abroad • All Rights Reserved">© ২০২৬ বিদেশে পড়তে চাই • সর্বস্বত্ব সংরক্ষিত</p>
       </div>
     </footer>
   </main>

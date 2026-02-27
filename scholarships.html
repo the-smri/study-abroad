@@ -25,47 +25,47 @@
         <button id="menuToggle" class="menu-toggle" aria-label="মেনু খুলুন"><span aria-hidden="true">&#9776;</span></button>
 
         <ul id="menu" class="menu">
-          <li><a href="index.html">হোম</a></li>
-          <li><a href="index.html#countries">ডেস্টিনেশন</a></li>
-          <li><a href="scholarships.html" class="active">স্কলারশিপ</a></li>
-          <li><a href="index.html#resources">রিসোর্স</a></li>
-          <li><a href="index.html#tools">টুলস</a></li>
+          <li><a href="index.html" data-en="Home">হোম</a></li>
+          <li><a href="index.html#countries" data-en="Destinations">ডেস্টিনেশন</a></li>
+          <li><a href="scholarships.html" class="active" data-en="Scholarships">স্কলারশিপ</a></li>
+          <li><a href="index.html#resources" data-en="Resources">রিসোর্স</a></li>
+          <li><a href="index.html#tools" data-en="Tools">টুলস</a></li>
         </ul>
 
         <div class="nav-actions">
-          <button class="btn primary" id="loginBtn">লগইন</button>
+          <button class="btn primary" id="loginBtn" data-en="Login">লগইন</button>
         </div>
       </nav>
 
       <!-- Scholarship Hero -->
       <div class="sch-hero-content">
-        <h1 class="sch-hero-title">আপনার স্বপ্নের <span>স্কলারশিপ</span> খুঁজুন</h1>
-        <p class="sch-hero-subtitle">বিশ্বব্যাপী ফুলি ফান্ডেড, পার্শিয়াল ও মেরিট-ভিত্তিক স্কলারশিপ একসাথে। সার্চ করুন, ফিল্টার করুন, আবেদন করুন।</p>
+        <h1 class="sch-hero-title" data-en="Find your dream scholarship">আপনার স্বপ্নের <span>স্কলারশিপ</span> খুঁজুন</h1>
+        <p class="sch-hero-subtitle" data-en="Fully funded, partial, and merit-based scholarships worldwide all in one place. Search, filter, apply.">বিশ্বব্যাপী ফুলি ফান্ডেড, পার্শিয়াল ও মেরিট-ভিত্তিক স্কলারশিপ একসাথে। সার্চ করুন, ফিল্টার করুন, আবেদন করুন।</p>
 
         <form id="searchForm" class="sch-search-bar">
           <div class="sch-search-field">
-            <input id="qCountry" name="country" placeholder="দেশের নাম লিখুন..." autocomplete="off" />
+            <input id="qCountry" name="country" placeholder="দেশের নাম লিখুন..." data-en-placeholder="Enter country name..." autocomplete="off" />
           </div>
           <div class="sch-search-field">
             <select id="qDegree" name="degree">
-              <option value="">সকল ডিগ্রি</option>
-              <option value="Undergraduate">ব্যাচেলর</option>
-              <option value="Masters">মাস্টার্স</option>
-              <option value="PhD">পিএইচডি</option>
-              <option value="Postdoc">পোস্টডক্টরাল</option>
+              <option value="" data-en="All Degrees">সকল ডিগ্রি</option>
+              <option value="Undergraduate" data-en="Bachelor's">ব্যাচেলর</option>
+              <option value="Masters" data-en="Master's">মাস্টার্স</option>
+              <option value="PhD" data-en="PhD">পিএইচডি</option>
+              <option value="Postdoc" data-en="Postdoctoral">পোস্টডক্টরাল</option>
             </select>
           </div>
           <div class="sch-search-field">
-            <input id="qSubject" name="subject" placeholder="বিষয়ের নাম লিখুন..." />
+            <input id="qSubject" name="subject" placeholder="বিষয়ের নাম লিখুন..." data-en-placeholder="Enter subject name..." />
           </div>
-          <button type="submit" class="btn primary sch-search-btn">সার্চ করুন</button>
+          <button type="submit" class="btn primary sch-search-btn" data-en="Search">সার্চ করুন</button>
         </form>
 
         <div class="sch-filters">
-          <label class="sch-filter-chip"><input type="checkbox" id="filterFull" /> ফুলি ফান্ডেড</label>
-          <label class="sch-filter-chip"><input type="checkbox" id="filterNoIELTS" /> IELTS ছাড়া</label>
-          <label class="sch-filter-chip"><input type="checkbox" id="filterDeadlineSoon" /> ডেডলাইন শীঘ্রই</label>
-          <label class="sch-filter-chip"><input type="checkbox" id="filterGov" /> সরকারি</label>
+          <label class="sch-filter-chip"><input type="checkbox" id="filterFull" /> <span data-en="Fully Funded">ফুলি ফান্ডেড</span></label>
+          <label class="sch-filter-chip"><input type="checkbox" id="filterNoIELTS" /> <span data-en="No IELTS">IELTS ছাড়া</span></label>
+          <label class="sch-filter-chip"><input type="checkbox" id="filterDeadlineSoon" /> <span data-en="Deadline Soon">ডেডলাইন শীঘ্রই</span></label>
+          <label class="sch-filter-chip"><input type="checkbox" id="filterGov" /> <span data-en="Government">সরকারি</span></label>
         </div>
       </div>
     </section>
@@ -73,50 +73,50 @@
     <!-- Scholarship Categories -->
     <section class="section">
       <div class="section-head">
-        <p>ক্যাটাগরি অনুযায়ী</p>
-        <h3>স্কলারশিপ ক্যাটাগরি</h3>
-        <div class="muted-note">ডিগ্রি লেভেল অথবা দেশ অনুযায়ী স্কলারশিপ খুঁজুন</div>
+        <p data-en="By Category">ক্যাটাগরি অনুযায়ী</p>
+        <h3 data-en="Scholarship Categories">স্কলারশিপ ক্যাটাগরি</h3>
+        <div class="muted-note" data-en="Find scholarships by degree level or country">ডিগ্রি লেভেল অথবা দেশ অনুযায়ী স্কলারশিপ খুঁজুন</div>
       </div>
       <div class="sch-category-grid">
         <div class="sch-cat-card" data-category="Undergraduate">
           <div class="sch-cat-icon">🎓</div>
-          <h4>ব্যাচেলর</h4>
-          <p>আন্ডারগ্র্যাজুয়েট প্রোগ্রামের জন্য স্কলারশিপ</p>
+          <h4 data-en="Bachelor's">ব্যাচেলর</h4>
+          <p data-en="Scholarships for undergraduate programs">আন্ডারগ্র্যাজুয়েট প্রোগ্রামের জন্য স্কলারশিপ</p>
         </div>
         <div class="sch-cat-card" data-category="Masters">
           <div class="sch-cat-icon">📚</div>
-          <h4>মাস্টার্স</h4>
-          <p>স্নাতকোত্তর পর্যায়ের স্কলারশিপ সুযোগ</p>
+          <h4 data-en="Master's">মাস্টার্স</h4>
+          <p data-en="Postgraduate scholarship opportunities">স্নাতকোত্তর পর্যায়ের স্কলারশিপ সুযোগ</p>
         </div>
         <div class="sch-cat-card" data-category="PhD">
           <div class="sch-cat-icon">🔬</div>
-          <h4>পিএইচডি</h4>
-          <p>গবেষণা ও ডক্টরাল ফান্ডিং সুযোগ</p>
+          <h4 data-en="PhD">পিএইচডি</h4>
+          <p data-en="Research & doctoral funding opportunities">গবেষণা ও ডক্টরাল ফান্ডিং সুযোগ</p>
         </div>
         <div class="sch-cat-card" data-category="Postdoc">
           <div class="sch-cat-icon">🏅</div>
-          <h4>পোস্টডক্টরাল</h4>
-          <p>গবেষণা ফেলোশিপ ও পোস্টডক ফান্ডিং</p>
+          <h4 data-en="Postdoctoral">পোস্টডক্টরাল</h4>
+          <p data-en="Research fellowships & postdoc funding">গবেষণা ফেলোশিপ ও পোস্টডক ফান্ডিং</p>
         </div>
         <div class="sch-cat-card" data-category="USA">
           <div class="sch-cat-icon"><img src="https://flagcdn.com/w40/us.png" alt="USA" /></div>
-          <h4>যুক্তরাষ্ট্র</h4>
-          <p>আমেরিকান ইউনিভার্সিটি স্কলারশিপ</p>
+          <h4 data-en="USA">যুক্তরাষ্ট্র</h4>
+          <p data-en="American university scholarships">আমেরিকান ইউনিভার্সিটি স্কলারশিপ</p>
         </div>
         <div class="sch-cat-card" data-category="UK">
           <div class="sch-cat-icon"><img src="https://flagcdn.com/w40/gb.png" alt="UK" /></div>
-          <h4>যুক্তরাজ্য</h4>
-          <p>ব্রিটিশ স্কলারশিপ ও ফেলোশিপ</p>
+          <h4 data-en="UK">যুক্তরাজ্য</h4>
+          <p data-en="British scholarships & fellowships">ব্রিটিশ স্কলারশিপ ও ফেলোশিপ</p>
         </div>
         <div class="sch-cat-card" data-category="Canada">
           <div class="sch-cat-icon"><img src="https://flagcdn.com/w40/ca.png" alt="Canada" /></div>
-          <h4>কানাডা</h4>
-          <p>কানাডিয়ান স্কলারশিপ প্রোগ্রাম</p>
+          <h4 data-en="Canada">কানাডা</h4>
+          <p data-en="Canadian scholarship programs">কানাডিয়ান স্কলারশিপ প্রোগ্রাম</p>
         </div>
         <div class="sch-cat-card" data-category="Australia">
           <div class="sch-cat-icon"><img src="https://flagcdn.com/w40/au.png" alt="Australia" /></div>
-          <h4>অস্ট্রেলিয়া</h4>
-          <p>অস্ট্রেলিয়ান স্কলারশিপ সুযোগ</p>
+          <h4 data-en="Australia">অস্ট্রেলিয়া</h4>
+          <p data-en="Australian scholarship opportunities">অস্ট্রেলিয়ান স্কলারশিপ সুযোগ</p>
         </div>
       </div>
     </section>
@@ -124,9 +124,9 @@
     <!-- Featured Scholarships -->
     <section class="section">
       <div class="section-head">
-        <p>বিশেষ সুযোগ</p>
-        <h3>ফিচার্ড স্কলারশিপসমূহ</h3>
-        <div class="muted-note">সবচেয়ে জনপ্রিয় ও আকর্ষণীয় স্কলারশিপ সুযোগ</div>
+        <p data-en="Special Opportunities">বিশেষ সুযোগ</p>
+        <h3 data-en="Featured Scholarships">ফিচার্ড স্কলারশিপসমূহ</h3>
+        <div class="muted-note" data-en="The most popular and attractive scholarship opportunities">সবচেয়ে জনপ্রিয় ও আকর্ষণীয় স্কলারশিপ সুযোগ</div>
       </div>
       <div id="featuredList" class="sch-cards-grid"></div>
     </section>
@@ -134,9 +134,9 @@
     <!-- Deadline Alerts -->
     <section class="section">
       <div class="section-head">
-        <p>⏰ সতর্কতা</p>
-        <h3>শীঘ্রই শেষ হচ্ছে</h3>
-        <div class="muted-note">এই স্কলারশিপগুলোর ডেডলাইন আসছে শীঘ্রই — তাড়াতাড়ি আবেদন করুন!</div>
+        <p data-en="⏰ Alert">⏰ সতর্কতা</p>
+        <h3 data-en="Closing Soon">শীঘ্রই শেষ হচ্ছে</h3>
+        <div class="muted-note" data-en="These scholarships have upcoming deadlines — apply soon!">এই স্কলারশিপগুলোর ডেডলাইন আসছে শীঘ্রই — তাড়াতাড়ি আবেদন করুন!</div>
       </div>
       <div class="sch-closing-wrap">
         <ul id="closingSoon" class="sch-closing-list"></ul>
@@ -146,34 +146,34 @@
     <!-- Free Resources & Tips -->
     <section class="section">
       <div class="section-head">
-        <p>বিনামূল্যে রিসোর্স</p>
-        <h3>স্কলারশিপ প্রস্তুতি সহায়তা</h3>
-        <div class="muted-note">SOP, CV, মোটিভেশন লেটার এবং চেকলিস্ট — সব বিনামূল্যে ডাউনলোড করুন</div>
+        <p data-en="Free Resources">বিনামূল্যে রিসোর্স</p>
+        <h3 data-en="Scholarship Preparation Aid">স্কলারশিপ প্রস্তুতি সহায়তা</h3>
+        <div class="muted-note" data-en="SOP, CV, Motivation Letter, and Checklists — download all for free">SOP, CV, মোটিভেশন লেটার এবং চেকলিস্ট — সব বিনামূল্যে ডাউনলোড করুন</div>
       </div>
       <div class="sch-resource-grid">
         <a href="#" class="sch-resource-item">
           <div class="sch-res-icon">📄</div>
-          <h4>SOP নমুনা</h4>
-          <p>শক্তিশালী Statement of Purpose এর টেমপ্লেট</p>
-          <span class="tag">ডাউনলোড</span>
+          <h4 data-en="SOP Sample">SOP নমুনা</h4>
+          <p data-en="Strong Statement of Purpose template">শক্তিশালী Statement of Purpose এর টেমপ্লেট</p>
+          <span class="tag" data-en="Download">ডাউনলোড</span>
         </a>
         <a href="#" class="sch-resource-item">
           <div class="sch-res-icon">📋</div>
-          <h4>CV টেমপ্লেট</h4>
-          <p>আন্তর্জাতিক মানের CV ফরম্যাট</p>
-          <span class="tag">ডাউনলোড</span>
+          <h4 data-en="CV Template">CV টেমপ্লেট</h4>
+          <p data-en="International standard CV format">আন্তর্জাতিক মানের CV ফরম্যাট</p>
+          <span class="tag" data-en="Download">ডাউনলোড</span>
         </a>
         <a href="#" class="sch-resource-item">
           <div class="sch-res-icon">✉️</div>
-          <h4>মোটিভেশন লেটার</h4>
-          <p>প্রফেশনাল মোটিভেশন লেটার নমুনা</p>
-          <span class="tag">ডাউনলোড</span>
+          <h4 data-en="Motivation Letter">মোটিভেশন লেটার</h4>
+          <p data-en="Professional motivation letter sample">প্রফেশনাল মোটিভেশন লেটার নমুনা</p>
+          <span class="tag" data-en="Download">ডাউনলোড</span>
         </a>
         <a href="#" class="sch-resource-item">
           <div class="sch-res-icon">✅</div>
-          <h4>স্কলারশিপ চেকলিস্ট</h4>
-          <p>আবেদনের আগে সম্পূর্ণ প্রস্তুতি চেকলিস্ট</p>
-          <span class="tag">PDF</span>
+          <h4 data-en="Scholarship Checklist">স্কলারশিপ চেকলিস্ট</h4>
+          <p data-en="Complete preparation checklist before applying">আবেদনের আগে সম্পূর্ণ প্রস্তুতি চেকলিস্ট</p>
+          <span class="tag" data-en="PDF">PDF</span>
         </a>
       </div>
     </section>
@@ -182,14 +182,14 @@
     <section class="section">
       <div class="sch-subscribe-panel">
         <div class="sch-subscribe-content">
-          <h3>সাপ্তাহিক স্কলারশিপ আপডেট পান</h3>
-          <p>নতুন স্কলারশিপ, ডেডলাইন রিমাইন্ডার এবং টিপস সরাসরি আপনার ইনবক্সে!</p>
+          <h3 data-en="Get Weekly Scholarship Updates">সাপ্তাহিক স্কলারশিপ আপডেট পান</h3>
+          <p data-en="New scholarships, deadline reminders, and tips right in your inbox!">নতুন স্কলারশিপ, ডেডলাইন রিমাইন্ডার এবং টিপস সরাসরি আপনার ইনবক্সে!</p>
         </div>
         <form id="subscribeForm" class="sch-subscribe-form">
-          <input type="email" id="subEmail" placeholder="আপনার ইমেইল লিখুন" required />
-          <button type="submit" class="btn primary">সাবস্ক্রাইব</button>
+          <input type="email" id="subEmail" placeholder="আপনার ইমেইল লিখুন" data-en-placeholder="Enter your email" required />
+          <button type="submit" class="btn primary" data-en="Subscribe">সাবস্ক্রাইব</button>
           <a class="sch-whatsapp-btn" href="#">
-            <span>💬</span> WhatsApp গ্রুপে যোগ দিন
+            <span>💬</span> <span data-en="Join WhatsApp Group">WhatsApp গ্রুপে যোগ দিন</span>
           </a>
         </form>
       </div>
@@ -199,8 +199,8 @@
     <footer class="site-footer">
       <div class="footer-grid">
         <div class="footer-brand">
-          <h4>বিদেশে পড়তে চাই</h4>
-          <p>বাংলাদেশি শিক্ষার্থীদের জন্য অ্যাডমিশন, স্কলারশিপ, ভিসা ও ক্যারিয়ার প্রস্তুতির পূর্ণাঙ্গ প্ল্যাটফর্ম।</p>
+          <h4 data-en="Study Abroad">বিদেশে পড়তে চাই</h4>
+          <p data-en="Complete platform for admission, scholarship, visa, and career preparation for Bangladeshi students.">বাংলাদেশি শিক্ষার্থীদের জন্য অ্যাডমিশন, স্কলারশিপ, ভিসা ও ক্যারিয়ার প্রস্তুতির পূর্ণাঙ্গ প্ল্যাটফর্ম।</p>
           <div class="social-links">
             <a href="#" aria-label="Facebook">Facebook</a>
             <a href="#" aria-label="YouTube">YouTube</a>
@@ -210,50 +210,50 @@
         </div>
 
         <div class="footer-links">
-          <h5>গুরুত্বপূর্ণ লিংক</h5>
-          <a href="index.html">হোম</a>
-          <a href="index.html#countries">ডেস্টিনেশন</a>
-          <a href="scholarships.html">স্কলারশিপ</a>
-          <a href="index.html#resources">রিসোর্স</a>
-          <a href="index.html#tools">টুলস</a>
+          <h5 data-en="Important Links">গুরুত্বপূর্ণ লিংক</h5>
+          <a href="index.html" data-en="Home">হোম</a>
+          <a href="index.html#countries" data-en="Destinations">ডেস্টিনেশন</a>
+          <a href="scholarships.html" data-en="Scholarships">স্কলারশিপ</a>
+          <a href="index.html#resources" data-en="Resources">রিসোর্স</a>
+          <a href="index.html#tools" data-en="Tools">টুলস</a>
         </div>
 
         <div class="footer-links countries">
-          <h5>স্টাডি ডেস্টিনেশন</h5>
+          <h5 data-en="Study Destinations">স্টাডি ডেস্টিনেশন</h5>
           <div class="footer-country-groups">
-            <p><a href="usa.html">যুক্তরাষ্ট্র</a> • <a href="canada.html">কানাডা</a> • <a href="uk.html">যুক্তরাজ্য</a> • <a href="australia.html">অস্ট্রেলিয়া</a></p>
-            <p><a href="germany.html">জার্মানি</a> • <a href="france.html">ফ্রান্স</a> • <a href="italy.html">ইতালি</a> • <a href="sweden.html">সুইডেন</a></p>
-            <p><a href="denmark.html">ডেনমার্ক</a> • <a href="china.html">চীন</a> • <a href="japan.html">জাপান</a> • <a href="south-korea.html">দক্ষিণ কোরিয়া</a></p>
-            <p><a href="india.html">ভারত</a></p>
+            <p><a href="usa.html" data-en="USA">যুক্তরাষ্ট্র</a> • <a href="canada.html" data-en="Canada">কানাডা</a> • <a href="uk.html" data-en="United Kingdom">যুক্তরাজ্য</a> • <a href="australia.html" data-en="Australia">অস্ট্রেলিয়া</a></p>
+            <p><a href="germany.html" data-en="Germany">জার্মানি</a> • <a href="france.html" data-en="France">ফ্রান্স</a> • <a href="italy.html" data-en="Italy">ইতালি</a> • <a href="sweden.html" data-en="Sweden">সুইডেন</a></p>
+            <p><a href="denmark.html" data-en="Denmark">ডেনমার্ক</a> • <a href="china.html" data-en="China">চীন</a> • <a href="japan.html" data-en="Japan">জাপান</a> • <a href="south-korea.html" data-en="South Korea">দক্ষিণ কোরিয়া</a></p>
+            <p><a href="india.html" data-en="India">ভারত</a></p>
           </div>
         </div>
 
         <div class="footer-contact">
-          <h5>যোগাযোগ</h5>
-          <p>📍 কুমিল্লা, বাংলাদেশ</p>
+          <h5 data-en="Contact">যোগাযোগ</h5>
+          <p data-en="📍 Comilla, Bangladesh">📍 কুমিল্লা, বাংলাদেশ</p>
           <p>📞 +880181919-2112</p>
           <p>✉️ hello@bidesheportechai.com</p>
         </div>
 
         <div class="footer-form-wrap">
-          <h5>মেসেজ পাঠান</h5>
+          <h5 data-en="Send a Message">মেসেজ পাঠান</h5>
           <form class="footer-form" action="#" method="post">
-            <label for="footerName2">আপনার নাম</label>
-            <input id="footerName2" type="text" name="name" placeholder="যেমন: এস এম রাইসুল ইসলাম" required />
+            <label for="footerName2" data-en="Your Name">আপনার নাম</label>
+            <input id="footerName2" type="text" name="name" placeholder="যেমন: এস এম রাইসুল ইসলাম" data-en-placeholder="e.g. S M Raisul Islam" required />
 
-            <label for="footerEmail2">ইমেইল</label>
+            <label for="footerEmail2" data-en="Email">ইমেইল</label>
             <input id="footerEmail2" type="email" name="email" placeholder="name@email.com" required />
 
-            <label for="footerMessage2">আপনার পরিকল্পনা</label>
-            <textarea id="footerMessage2" name="message" rows="3" placeholder="কোন দেশে, কোন ইনটেকে যেতে চান?" required></textarea>
+            <label for="footerMessage2" data-en="Your Plan">আপনার পরিকল্পনা</label>
+            <textarea id="footerMessage2" name="message" rows="3" placeholder="কোন দেশে, কোন ইনটেকে যেতে চান?" data-en-placeholder="Which country and intake do you want to apply for?" required></textarea>
 
-            <button type="submit" class="btn primary">বার্তা পাঠান</button>
+            <button type="submit" class="btn primary" data-en="Send Message">বার্তা পাঠান</button>
           </form>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>© ২০২৬ বিদেশে পড়তে চাই • সর্বস্বত্ব সংরক্ষিত</p>
+        <p data-en="© 2026 Study Abroad • All Rights Reserved">© ২০২৬ বিদেশে পড়তে চাই • সর্বস্বত্ব সংরক্ষিত</p>
       </div>
     </footer>
   </main>
