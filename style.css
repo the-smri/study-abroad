@@ -3419,7 +3419,7 @@ html[data-theme="night"] .blog-news-video iframe {
   left: auto;
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #6366f1, #a855f7);
+  background: linear-gradient(135deg, var(--blue), var(--blue-2));
   border-radius: 50%;
   display: flex;
   align-items: center;
