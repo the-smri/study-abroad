@@ -1126,6 +1126,11 @@
     doc.querySelectorAll(".flag-chip").forEach((chip) => {
       chip.style.cursor = "pointer";
       chip.addEventListener("click", () => {
+        const directHref = chip.getAttribute("href") || "";
+        if (directHref && directHref !== "#") {
+          return; // let the native navigation occur
+        }
+
         const filter = chip.getAttribute("data-filter") || "";
         countriesSection.scrollIntoView({ behavior: "smooth", block: "start" });
 

@@ -499,6 +499,7 @@
       gap: 8px;
       box-shadow: 0 8px 18px rgba(6, 38, 95, 0.2);
       animation: floatFlag 3.4s ease-in-out infinite;
+      text-decoration: none;
     }
 
     .flag-chip:nth-child(2n) {
@@ -518,6 +519,11 @@
       object-fit: cover;
       border: 1px solid #d8e6ff;
       flex-shrink: 0;
+    }
+
+    .flag-chip:focus-visible {
+      outline: 2px solid var(--blue, #1e40af);
+      outline-offset: 2px;
     }
 
     @keyframes floatFlag {
