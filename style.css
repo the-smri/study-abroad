@@ -854,9 +854,10 @@
 
     .resource-head {
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
       gap: 10px;
-      align-items: center;
+      align-items: flex-start;
       flex-wrap: wrap;
     }
 
@@ -4124,85 +4125,7 @@ html[data-theme="night"] .vault-badge {
   border-color: #ddd6fe;
 }
 
-/* Resources + Tools Color Icon Tiles (No Homepage Impact) */
-.resources-page .resource-card,
-.tools-page .tools .tool {
-  position: relative;
-}
 
-.resources-page .resource-card h4,
-.tools-page .tools .tool b {
-  position: relative;
-  display: block;
-  padding-top: 74px;
-  margin-top: 0;
-}
-
-.resources-page .resource-card h4::before,
-.tools-page .tools .tool b::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
-  box-shadow: 0 10px 20px rgba(17, 62, 111, 0.14);
-}
-
-.resources-page .resource-card h4::after,
-.tools-page .tools .tool b::after {
-  position: absolute;
-  top: 13px;
-  left: 13px;
-  font-size: 28px;
-  line-height: 1;
-}
-
-.tools-page #comparison-tool b::before { background: #ef4444; }
-.tools-page #comparison-tool b::after { content: "🌐"; }
-
-.tools-page #cost-calculator b::before { background: #3b82f6; }
-.tools-page #cost-calculator b::after { content: "🧮"; }
-
-.tools-page #ielts-checker b::before { background: #8b5cf6; }
-.tools-page #ielts-checker b::after { content: "📝"; }
-
-.tools-page #visa-timeline b::before { background: #f97316; }
-.tools-page #visa-timeline b::after { content: "🗓️"; }
-
-.tools-page #pdf-guide b::before { background: #14b8a6; }
-.tools-page #pdf-guide b::after { content: "📂"; }
-
-.resources-page .resource-card[data-resource-type="admission"] h4::before { background: #ef4444; }
-.resources-page .resource-card[data-resource-type="admission"] h4::after { content: "🗺️"; }
-
-.resources-page .resource-card[data-resource-type="visa"] h4::before { background: #3b82f6; }
-.resources-page .resource-card[data-resource-type="visa"] h4::after { content: "🛂"; }
-
-.resources-page .resource-card[data-resource-type="scholarship"] h4::before { background: #8b5cf6; }
-.resources-page .resource-card[data-resource-type="scholarship"] h4::after { content: "🎓"; }
-
-.resources-page .resource-card[data-resource-type="career"] h4::before { background: #f97316; }
-.resources-page .resource-card[data-resource-type="career"] h4::after { content: "💼"; }
-
-.resources-page .resource-card[data-resource-type="test-prep"] h4::before { background: #14b8a6; }
-.resources-page .resource-card[data-resource-type="test-prep"] h4::after { content: "📚"; }
-
-.resources-page .resource-card[data-resource-type="survival"] h4::before { background: #ec4899; }
-.resources-page .resource-card[data-resource-type="survival"] h4::after { content: "🏠"; }
-
-.resources-page #sample-vault .vault-card:nth-child(1) h4::before { background: #3b82f6; }
-.resources-page #sample-vault .vault-card:nth-child(1) h4::after { content: "✍️"; }
-
-.resources-page #sample-vault .vault-card:nth-child(2) h4::before { background: #14b8a6; }
-.resources-page #sample-vault .vault-card:nth-child(2) h4::after { content: "💳"; }
-
-.resources-page #sample-vault .vault-card:nth-child(3) h4::before { background: #8b5cf6; }
-.resources-page #sample-vault .vault-card:nth-child(3) h4::after { content: "📨"; }
-
-.resources-page #sample-vault .vault-card:nth-child(4) h4::before { background: #f97316; }
-.resources-page #sample-vault .vault-card:nth-child(4) h4::after { content: "📄"; }
 
 /* Global Intro/Outro Scroll Animations */
 .reveal-ready {
@@ -4629,7 +4552,7 @@ html[data-theme="night"] .vault-badge {
 
 /* --- 8. Scholarship/Panel Section Accent --- */
 .panel#scholarship {
-  background: linear-gradient(145deg, #ecfdf5 0%, #d1fae5 50%, #a7f3d0 100%) !important;
+  background: var(--mc-blue-2) !important;
   border-color: rgba(16,185,129,0.25) !important;
   border-left: 4px solid #10b981 !important;
 }

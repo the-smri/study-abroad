@@ -1469,7 +1469,7 @@
     heroCopy.appendChild(countdownEl);
 
     // Target date: Dec 15, 2026 (Typical large deadline)
-    const targetDate = new Date("December 15, 2026 23:59:59").getTime();
+    const targetDate = new Date("June 15, 2026 23:59:59").getTime();
 
     const updateTimer = () => {
       const now = new Date().getTime();
