@@ -176,46 +176,71 @@
       </div>
     </section>
 
-    <section class="section" aria-label="পরিসংখ্যান">
+    <div class="section-zone-stats">
+    <section class="section" aria-label="পরিসংখ্যান" style="padding-top:0;">
       <div class="section-head">
+        <div class="section-accent-pill">✦ আমাদের অর্জন</div>
         <h3 data-en="Studying Abroad is Now Easy">বিদেশে পড়াশোনা এখন সহজ</h3>
         <p data-en="The fastest and easiest path to success">সফলতার দ্রুততম ও সহজ পথ</p>
       </div>
 
       <div class="stats-grid">
-        <article class="stat">
+        <article class="stat reveal" style="--reveal-delay:0s">
           <div class="icon">
-            <img src="images/icons/student-success.svg" alt="শিক্ষার্থী সাফল্য আইকন" />
+            <!-- Graduation cap -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10L12 5 2 10l10 5 10-5z"/>
+              <path d="M6 12v5c0 2.2 2.7 4 6 4s6-1.8 6-4v-5"/>
+              <line x1="22" y1="10" x2="22" y2="15"/>
+            </svg>
           </div>
           <b>1.1K+</b>
           <span data-en="Satisfied Students">সন্তুষ্ট শিক্ষার্থী</span>
         </article>
-        <article class="stat">
+        <article class="stat reveal" style="--reveal-delay:0.1s">
           <div class="icon">
-            <img src="images/icons/global-program.svg" alt="গ্লোবাল প্রোগ্রাম আইকন" />
+            <!-- Globe / global programs -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
           </div>
           <b>600+</b>
           <span data-en="Global Programs">গ্লোবাল প্রোগ্রাম</span>
         </article>
-        <article class="stat">
+        <article class="stat reveal" style="--reveal-delay:0.2s">
           <div class="icon">
-            <img src="images/icons/university-partner.svg" alt="বিশ্ববিদ্যালয় পার্টনার আইকন" />
+            <!-- University building -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="9" width="18" height="13" rx="1"/>
+              <path d="M3 9l9-6 9 6"/>
+              <rect x="9" y="14" width="6" height="8"/>
+              <line x1="12" y1="3" x2="12" y2="6"/>
+            </svg>
           </div>
           <b>120+</b>
           <span data-en="Partner Universities">পার্টনার বিশ্ববিদ্যালয়</span>
         </article>
-        <article class="stat">
+        <article class="stat reveal" style="--reveal-delay:0.3s">
           <div class="icon">
-            <img src="images/icons/monthly-students.svg" alt="নতুন শিক্ষার্থী আইকন" />
+            <!-- Person + rising arrow (new students) -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M3 21v-2a4 4 0 0 1 4-4h4"/>
+              <polyline points="16 17 19 20 23 14"/>
+            </svg>
           </div>
           <b>50+</b>
           <span data-en="New Students / Month">নতুন শিক্ষার্থী / মাস</span>
         </article>
       </div>
     </section>
+    </div>
 
-    <section id="countries" class="section">
+    <div class="section-zone-countries">
+    <section id="countries" class="section" style="padding-top:0;">
       <div class="section-head">
+        <div class="section-accent-pill">🌍 ডেস্টিনেশন গাইড</div>
         <p data-en="Anywhere in the world">পৃথিবীর যেকোনো প্রান্তে</p>
         <h3 data-en="Popular Study Destinations">জনপ্রিয় স্টাডি ডেস্টিনেশনসমূহ</h3>
         <div class="muted-note" data-en="USA, Canada, UK, Australia, Germany, Italy, Sweden, Denmark, China, Japan, South Korea, India - all together covering tuition fees, visa processes, scholarships, work permits and PR pathways.">
@@ -238,28 +263,28 @@
       </div>
 
       <div class="cards-grid">
-        <article class="country-card" data-country="usa" data-url="usa.html">
+        <article class="country-card reveal" data-country="usa" data-url="usa.html" style="--reveal-delay:0s">
           <div class="country-photo usa"></div>
           <h4 data-en="USA">যুক্তরাষ্ট্র</h4>
           <p data-en="Top ranking universities, research opportunities, and OPT to H1B career path.">শীর্ষ র‍্যাংকিং বিশ্ববিদ্যালয়, গবেষণা সুযোগ এবং OPT থেকে H1B ক্যারিয়ার পথ।</p>
           <span class="tag" data-en="Tuition: $20k-$60k">টিউশন: $20k-$60k</span>
           <a class="details-link" href="usa.html" data-en="View Details">বিস্তারিত দেখুন</a>
         </article>
-        <article class="country-card" data-country="canada" data-url="canada.html">
+        <article class="country-card reveal" data-country="canada" data-url="canada.html" style="--reveal-delay:0.07s">
           <div class="country-photo canada"></div>
           <h4 data-en="Canada">কানাডা</h4>
           <p data-en="PR-friendly study options through SDS visa, PGWP, and Express Entry.">SDS ভিসা, PGWP এবং Express Entry এর মাধ্যমে পিআর-বান্ধব স্টাডি অপশন।</p>
           <span class="tag" data-en="Tuition: CAD 15k-35k">টিউশন: CAD 15k-35k</span>
           <a class="details-link" href="canada.html" data-en="View Details">বিস্তারিত দেখুন</a>
         </article>
-        <article class="country-card" data-country="uk" data-url="uk.html">
+        <article class="country-card reveal" data-country="uk" data-url="uk.html" style="--reveal-delay:0.14s">
           <div class="country-photo uk"></div>
           <h4 data-en="United Kingdom">যুক্তরাজ্য</h4>
           <p data-en="1-year Masters, Graduate Route, and fast university offer letter process.">১ বছরের মাস্টার্স, গ্র্যাজুয়েট রুট এবং দ্রুত বিশ্ববিদ্যালয় অফার লেটার প্রসেস।</p>
           <span class="tag" data-en="Tuition: GBP 15k-30k">টিউশন: GBP 15k-30k</span>
           <a class="details-link" href="uk.html" data-en="View Details">বিস্তারিত দেখুন</a>
         </article>
-        <article class="country-card" data-country="australia" data-url="australia.html">
+        <article class="country-card reveal" data-country="australia" data-url="australia.html" style="--reveal-delay:0.21s">
           <div class="country-photo australia"></div>
           <h4 data-en="Australia">অস্ট্রেলিয়া</h4>
           <p data-en="Post-study work visa, state nomination, and skill-based career transition opportunities.">পোস্ট-স্টাডি ওয়ার্ক ভিসা, স্টেট নমিনেশন এবং স্কিল-ভিত্তিক ক্যারিয়ার ট্রানজিশন সুযোগ।</p>
@@ -333,11 +358,18 @@
       <div class="countries-more-wrap">
         <button type="button" id="countriesMoreBtn" class="countries-more-btn" data-en="View More">বিস্তারিত দেখুন</button>
       </div>
-      <!-- Tools Section start -->
-       <div class="section-head">
+    </section>
+    </div>
+    <!-- Tools/Resources Section -->
+    <div class="section-zone-resources">
+
+    <section id="tools-teaser" class="section tools-teaser" style="padding-top:0;">
+    <div class="section-head">
+        <div class="section-accent-pill">🎓 সাপোর্ট সেন্টার</div>
         <h3 data-en="Resources & Checklists" class="mt-4">প্লানিং টুলস</h3>
         <p data-en="Access real approved SOPs, visa documentation kits, and student survival guides on our dedicated resources page.">দেশ তুলনা, IELTS চেকার এবং অ্যাপ্লিকেশন প্রস্তুতির টুল।</p>
       </div>
+    </section>
 
       <div class="row-two">
         <article id="scholarship" class="panel">
@@ -355,9 +387,12 @@
           <!-- <h4 data-en="Planning Tools">প্ল্যানিং টুলস</h4> -->
           <p data-en="Quick Tool Access">দ্রুত টুল অ্যাক্সেস</p>
           <div class="resource-card" style="margin-top: 12px;">
-            <div class="resource-head">
-              <h4 data-en="Cost Calculator">খরচ হিসাব ক্যালকুলেটর</h4>
-              <span class="tag" data-en="Budget Planning">বাজেট পরিকল্পনা</span>
+            <div class="resource-head has-icon">
+              <div class="resource-icon resource-icon--calculator" aria-hidden="true">🧮</div>
+              <div class="resource-meta">
+                <h4 data-en="Cost Calculator">খরচ হিসাব ক্যালকুলেটর</h4>
+                <span class="tag" data-en="Budget Planning">বাজেট পরিকল্পনা</span>
+              </div>
             </div>
             <p data-en="Estimate tuition and living costs by country and build a realistic budget.">দেশ অনুযায়ী স্টাডি খরচ হিসাব ও বাজেট পরিকল্পনা</p>
             <div class="resource-actions">
@@ -365,9 +400,12 @@
             </div>
           </div>
           <div class="resource-card" style="margin-top: 12px;">
-            <div class="resource-head">
-              <h4 data-en="Country Comparison">দেশ তুলনা</h4>
-              <span class="tag" data-en="Decision Support">নির্ণয় সাপোর্ট</span>
+            <div class="resource-head has-icon">
+              <div class="resource-icon resource-icon--comparison" aria-hidden="true">🌐</div>
+              <div class="resource-meta">
+                <h4 data-en="Country Comparison">দেশ তুলনা</h4>
+                <span class="tag" data-en="Decision Support">নির্ণয় সাপোর্ট</span>
+              </div>
             </div>
             <p data-en="Compare tuition, living cost, visa success, and PR path in one place.">দেশ অনুযায়ী টিউশন, জীবন খরচ, ভিসা সাকসেস ও PR পথের তুলনা।</p>
             <div class="resource-actions">
@@ -379,9 +417,8 @@
           </div>
         </aside>
       </div>
-    </section>
 
-    <section id="resources-teaser" class="section">
+    <section id="resources-teaser" class="section" style="padding-top:8px;">
       <div class="section-head">
         <!-- <p data-en="Preparation Hub">প্রস্তুতি হাব</p> -->
         <h3 data-en="Resources & Checklists">রিসোর্স ও চেকলিস্ট</h3>
@@ -389,10 +426,13 @@
       </div>
 
       <div class="resources-grid" style="margin-top: 2rem;">
-        <article class="resource-card">
-          <div class="resource-head">
-            <h4 data-en="Admission Roadmap">অ্যাডমিশন রোডম্যাপ</h4>
-            <span class="tag" data-en="Updated 2026">আপডেটেড ২০২৬</span>
+        <article class="resource-card reveal" style="--reveal-delay:0s">
+          <div class="resource-head has-icon">
+            <div class="resource-icon resource-icon--roadmap" aria-hidden="true">🧭</div>
+            <div class="resource-meta">
+              <h4 data-en="Admission Roadmap">অ্যাডমিশন রোডম্যাপ</h4>
+              <span class="tag" data-en="Updated 2026">আপডেটেড ২০২৬</span>
+            </div>
           </div>
           <p data-en="Intake-based 6-12 month step-by-step plan.">ইনটেকভিত্তিক ৬-১২ মাসের স্টেপ-বাই-স্টেপ পরিকল্পনা।</p>
           <ul>
@@ -401,10 +441,13 @@
           </ul>
         </article>
 
-        <article class="resource-card">
-          <div class="resource-head">
-            <h4 data-en="Visa Documentation Kit">ভিসা ডকুমেন্টেশন কিট</h4>
-            <span class="tag" data-en="Checklist">চেকলিস্ট</span>
+        <article class="resource-card reveal" style="--reveal-delay:0.15s">
+          <div class="resource-head has-icon">
+            <div class="resource-icon resource-icon--visa" aria-hidden="true">🛂</div>
+            <div class="resource-meta">
+              <h4 data-en="Visa Documentation Kit">ভিসা ডকুমেন্টেশন কিট</h4>
+              <span class="tag" data-en="Checklist">চেকলিস্ট</span>
+            </div>
           </div>
           <p data-en="Document formats, fund filing, and embassy prep by country.">দেশভেদে ডকুমেন্ট ফরম্যাট, ফান্ড ফাইলিং ও এম্বাসি প্রস্তুতি।</p>
           <ul>
@@ -430,28 +473,31 @@
         <a href="resources.html" class="btn primary" data-en="View All Resources Details">সব রিসোর্স বিস্তারিত দেখুন</a>
       </div>
     </section>
+    </div>
 
     <!-- Blog/News Highlights Section -->
-    <section class="blog-news-section">
+    <div class="section-zone-blog">
+    <section class="blog-news-section" style="background:transparent;border:none;border-radius:0;margin:0;padding:0;">
       <div class="blog-news-wrap">
         <div class="blog-news-header">
+          <div class="section-accent-pill" style="margin-bottom:10px;">📰 নলেজ হাব</div>
           <h2 class="blog-news-title" data-en="Latest Blog, Tips & News">সর্বশেষ ব্লগ, টিপস ও নিউজ</h2>
           <p class="blog-news-subtitle" data-en="Latest updates and valuable tips regarding studying abroad">বিদেশে পড়াশোনা সংক্রান্ত সর্বশেষ আপডেট এবং মূল্যবান টিপস</p>
         </div>
         <div class="blog-news-list">
-          <article class="blog-news-item blog-card-1">
+          <article class="blog-news-item blog-card-1 reveal" style="--reveal-delay:0s">
             <div class="blog-news-tag" data-en="Tips">টিপস</div>
             <h3 data-en="5 Tips for Writing an SOP for Scholarships">স্কলারশিপের জন্য SOP লেখার ৫টি টিপস</h3>
             <p data-en="What should be kept in mind to write a strong SOP? Read our special guide.">একটি শক্তিশালী SOP লেখার জন্য কী কী বিষয় মাথায় রাখা উচিত? পড়ুন আমাদের বিশেষ গাইড।</p>
             <a href="#" class="blog-news-link" data-en="Read More &rarr;">বিস্তারিত পড়ুন →</a>
           </article>
-          <article class="blog-news-item blog-card-2">
+          <article class="blog-news-item blog-card-2 reveal" style="--reveal-delay:0.12s">
             <div class="blog-news-tag" data-en="News">নিউজ</div>
             <h3 data-en="Popular Study Destinations in 2026">২০২৬ সালের জনপ্রিয় স্টাডি ডেস্টিনেশন</h3>
             <p data-en="USA, Canada, UK, Australia—which country has the most scholarships and opportunities?">যুক্তরাষ্ট্র, কানাডা, ইউকে, অস্ট্রেলিয়া—কোন দেশে সবচেয়ে বেশি স্কলারশিপ ও সুযোগ?</p>
             <a href="#" class="blog-news-link" data-en="Read More &rarr;">বিস্তারিত পড়ুন →</a>
           </article>
-          <article class="blog-news-item blog-card-3">
+          <article class="blog-news-item blog-card-3 reveal" style="--reveal-delay:0.24s">
             <div class="blog-news-tag" data-en="Tips">টিপস</div>
             <h3 data-en="IELTS Speaking: Strategies to easily score 7+">IELTS Speaking: সহজে ৭+ স্কোর পাওয়ার কৌশল</h3>
             <p data-en="Best strategies and resources to prepare for a good score in IELTS Speaking.">IELTS Speaking-এ ভালো স্কোরের জন্য প্রস্তুতির সেরা কৌশল ও রিসোর্স।</p>
@@ -467,14 +513,16 @@
     </section>
 
     <!-- Team Section -->
-    <section class="team-section">
+    <div class="section-zone-team">
+    <section class="team-section" style="background:transparent;border:none;padding:0;">
       <div class="team-wrap">
         <div class="team-header">
+          <div class="section-accent-pill" style="margin-bottom:10px;">👥 আমাদের পরিবার</div>
           <h2 class="team-title" data-en="Our Team">আমাদের টিম</h2>
           <p class="team-subtitle" data-en="A skilled team of experienced consultants and mentors ready to help you fulfill your dreams">অভিজ্ঞ পরামর্শদাতা ও মেন্টরদের একটি দক্ষ দল আপনার স্বপ্ন পূরণে সহায়তা করতে প্রস্তুত</p>
         </div>
         <div class="team-grid">
-          <article class="team-member team-member-1">
+          <article class="team-member team-member-1 reveal" style="--reveal-delay:0s">
             <div class="member-photo">
               <img src="images/raisul-ceo.png" alt="টিম সদস্য" />
             </div>
@@ -489,7 +537,7 @@
             </div>
           </article>
 
-          <article class="team-member team-member-2">
+          <article class="team-member team-member-2 reveal" style="--reveal-delay:0.15s">
             <div class="member-photo">
               <img src="images/bristy1.jpeg" alt="টিম সদস্য" />
             </div>
@@ -506,6 +554,7 @@
         </div>
       </div>
     </section>
+    </div>
 
     <footer class="site-footer">
       <div class="footer-grid">

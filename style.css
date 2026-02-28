@@ -860,6 +860,39 @@
       flex-wrap: wrap;
     }
 
+    .resource-head.has-icon {
+      justify-content: flex-start;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: nowrap;
+    }
+
+    .resource-head.has-icon .resource-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      box-shadow: 0 10px 18px rgba(24, 63, 128, 0.12);
+      flex-shrink: 0;
+    }
+
+    .resource-head.has-icon .resource-meta {
+      display: grid;
+      gap: 6px;
+    }
+
+    .resource-head.has-icon .tag {
+      align-self: flex-start;
+    }
+
+    .resource-icon--calculator { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+    .resource-icon--comparison { background: linear-gradient(135deg, #e0f2fe, #c7d2fe); }
+    .resource-icon--roadmap { background: linear-gradient(135deg, #ffedd5, #fed7aa); }
+    .resource-icon--visa { background: linear-gradient(135deg, #dcfce7, #bbf7d0); }
+
     .resource-card h4 {
       margin: 0;
       font-size: 22px;
@@ -4276,3 +4309,645 @@ html[data-theme="night"] .vault-badge {
   color: #0f234f;
   border: 1px solid #ccdaef;
 }
+
+/* ============================================================
+   ✨ ENHANCED UI DESIGN SYSTEM — EXTENSION BLOCK
+   Expanded colors, card redesigns, animations, section variety
+   ============================================================ */
+
+/* --- 1. Extended CSS Design Tokens --- */
+:root {
+  /* New accent colors */
+  --teal:    #0d9488;
+  --teal-2:  #0f766e;
+  --purple:  #7c3aed;
+  --purple-2:#6d28d9;
+  --rose:    #e11d48;
+  --rose-2:  #be123c;
+  --amber:   #d97706;
+  --amber-2: #b45309;
+  --cyan:    #0891b2;
+  --cyan-2:  #0e7490;
+  --green-2: #15803d;
+
+  /* Card glow shadows per accent */
+  --glow-blue:   0 16px 40px rgba(25, 104, 222, 0.22);
+  --glow-teal:   0 16px 40px rgba(13, 148, 136, 0.22);
+  --glow-purple: 0 16px 40px rgba(124, 58, 237, 0.22);
+  --glow-rose:   0 16px 40px rgba(225, 29, 72, 0.22);
+  --glow-amber:  0 16px 40px rgba(217, 119, 6, 0.22);
+
+  /* Extra card gradients */
+  --card-c: linear-gradient(145deg, #f0fdfa 0%, #e0f2fe 100%);
+  --card-d: linear-gradient(145deg, #faf5ff 0%, #ede9fe 100%);
+  --card-e: linear-gradient(145deg, #fff7ed 0%, #fef3c7 100%);
+  --card-f: linear-gradient(145deg, #fff1f2 0%, #ffe4e6 100%);
+
+  /* Section zone backgrounds */
+  --section-stats-bg:     linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #fefce8 100%);
+  --section-countries-bg: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 50%, #f5f3ff 100%);
+  --section-resources-bg: linear-gradient(135deg, #fdf4ff 0%, #f5f3ff 50%, #eff6ff 100%);
+  --section-blog-bg:      linear-gradient(135deg, #fff7ed 0%, #fffbeb 50%, #fef9f0 100%);
+  --section-team-bg:      linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e8f0fe 100%);
+}
+
+/* --- 2. Section Background Zones --- */
+.section-zone-stats {
+  background: var(--section-stats-bg);
+  border-radius: 24px;
+  padding: 52px 22px 36px;
+  margin: 8px 0;
+  border: 1px solid rgba(209, 250, 229, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+.section-zone-stats::before {
+  content: "";
+  position: absolute;
+  right: -60px; top: -60px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16,185,129,0.12), transparent 65%);
+  pointer-events: none;
+}
+.section-zone-stats::after {
+  content: "";
+  position: absolute;
+  left: -40px; bottom: -60px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,158,11,0.1), transparent 65%);
+  pointer-events: none;
+}
+
+.section-zone-countries {
+  background: var(--section-countries-bg);
+  border-radius: 24px;
+  padding: 52px 22px 36px;
+  margin: 8px 0;
+  border: 1px solid rgba(191, 219, 254, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+.section-zone-countries::before {
+  content: "";
+  position: absolute;
+  right: -80px; top: -80px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99,102,241,0.1), transparent 65%);
+  pointer-events: none;
+}
+
+.section-zone-resources {
+  background: var(--section-resources-bg);
+  border-radius: 24px;
+  padding: 52px 22px 36px;
+  margin: 8px 0;
+  border: 1px solid rgba(216,180,254,0.5);
+  position: relative;
+  overflow: hidden;
+}
+.section-zone-resources::before {
+  content: "";
+  position: absolute;
+  left: -60px; top: -60px;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168,85,247,0.1), transparent 65%);
+  pointer-events: none;
+}
+
+.section-zone-blog {
+  background: var(--section-blog-bg);
+  border-radius: 24px 24px 0 0;
+  padding: 40px 22px 32px;
+  margin: 8px 0 0;
+  border: 1px solid rgba(253,230,138,0.6);
+  border-bottom: none;
+  position: relative;
+  overflow: hidden;
+}
+.section-zone-blog::after {
+  content: "";
+  position: absolute;
+  right: -40px; bottom: -40px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,158,11,0.1), transparent 65%);
+  pointer-events: none;
+}
+
+.section-zone-team {
+  background: var(--section-team-bg);
+  border-top: 1px solid rgba(203, 213, 225, 0.5);
+  padding: 36px 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- 3. Scroll Reveal Animation --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.93) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* --- 4. Enhanced Stat Cards --- */
+.stat {
+  transition: transform 0.28s cubic-bezier(.34,1.56,.64,1), box-shadow 0.28s ease, border-color 0.2s ease !important;
+}
+
+.stat:hover {
+  transform: translateY(-7px) scale(1.02) !important;
+}
+
+/* Vivid colored icon containers per stat child */
+.stat:nth-child(1) .icon { background: linear-gradient(135deg, #2563eb, #1d4ed8) !important; border: none !important; box-shadow: 0 8px 20px rgba(37,99,235,0.35) !important; }
+.stat:nth-child(1) .icon img, .stat:nth-child(1) .icon svg { filter: brightness(0) invert(1); color: #fff; }
+.stat:nth-child(1):hover { box-shadow: var(--glow-blue) !important; }
+
+.stat:nth-child(2) .icon { background: linear-gradient(135deg, #0d9488, #0f766e) !important; border: none !important; box-shadow: 0 8px 20px rgba(13,148,136,0.35) !important; }
+.stat:nth-child(2) .icon img, .stat:nth-child(2) .icon svg { filter: brightness(0) invert(1); color: #fff; }
+.stat:nth-child(2):hover { box-shadow: var(--glow-teal) !important; }
+
+.stat:nth-child(3) .icon { background: linear-gradient(135deg, #7c3aed, #6d28d9) !important; border: none !important; box-shadow: 0 8px 20px rgba(124,58,237,0.35) !important; }
+.stat:nth-child(3) .icon img, .stat:nth-child(3) .icon svg { filter: brightness(0) invert(1); color: #fff; }
+.stat:nth-child(3):hover { box-shadow: var(--glow-purple) !important; }
+
+.stat:nth-child(4) .icon { background: linear-gradient(135deg, #d97706, #b45309) !important; border: none !important; box-shadow: 0 8px 20px rgba(217,119,6,0.35) !important; }
+.stat:nth-child(4) .icon img, .stat:nth-child(4) .icon svg { filter: brightness(0) invert(1); color: #fff; }
+.stat:nth-child(4):hover { box-shadow: var(--glow-amber) !important; }
+
+.stat:nth-child(5) .icon { background: linear-gradient(135deg, #e11d48, #be123c) !important; border: none !important; box-shadow: 0 8px 20px rgba(225,29,72,0.35) !important; }
+.stat:nth-child(5) .icon img, .stat:nth-child(5) .icon svg { filter: brightness(0) invert(1); color: #fff; }
+.stat:nth-child(5):hover { box-shadow: var(--glow-rose) !important; }
+
+/* --- 5. Stat Counter Pulse on Reveal --- */
+@keyframes countPop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+.stat b.counted {
+  animation: countPop 0.5s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* --- 6. Country Card Enhancements --- */
+.country-photo {
+  height: 150px !important;
+  border-radius: 12px !important;
+}
+
+.country-card {
+  transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease, border-color 0.22s ease !important;
+}
+
+.country-card:nth-child(4n+1):hover { box-shadow: var(--glow-blue) !important; border-color: transparent !important; }
+.country-card:nth-child(4n+2):hover { box-shadow: var(--glow-teal) !important; border-color: transparent !important; }
+.country-card:nth-child(4n+3):hover { box-shadow: var(--glow-purple) !important; border-color: transparent !important; }
+.country-card:nth-child(4n+0):hover { box-shadow: var(--glow-amber) !important; border-color: transparent !important; }
+
+.country-card:hover {
+  transform: translateY(-7px) scale(1.015) !important;
+}
+
+/* Country photo gradient name overlay strip */
+.country-photo::after {
+  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 50%, transparent 100%) !important;
+}
+
+/* --- 7. Resource Card Large Icon Containers --- */
+/* Override the pale pastel icons with vivid gradient versions */
+.resource-icon--calculator {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+  box-shadow: 0 10px 24px rgba(37,99,235,0.38) !important;
+  width: 62px !important;
+  height: 62px !important;
+  border-radius: 16px !important;
+  font-size: 30px !important;
+}
+
+.resource-icon--comparison {
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%) !important;
+  box-shadow: 0 10px 24px rgba(124,58,237,0.38) !important;
+  width: 62px !important;
+  height: 62px !important;
+  border-radius: 16px !important;
+  font-size: 30px !important;
+}
+
+.resource-icon--roadmap {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%) !important;
+  box-shadow: 0 10px 24px rgba(249,115,22,0.38) !important;
+  width: 62px !important;
+  height: 62px !important;
+  border-radius: 16px !important;
+  font-size: 30px !important;
+}
+
+.resource-icon--visa {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  box-shadow: 0 10px 24px rgba(16,185,129,0.38) !important;
+  width: 62px !important;
+  height: 62px !important;
+  border-radius: 16px !important;
+  font-size: 30px !important;
+}
+
+/* Inline SVG resource icons */
+.resource-icon-svg {
+  width: 62px;
+  height: 62px;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 28px;
+}
+.resource-icon-svg svg {
+  width: 30px;
+  height: 30px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Resource card hover glow */
+.resource-card:nth-child(4n+1):hover { box-shadow: 0 18px 40px rgba(37,99,235,0.2) !important; border-color: transparent !important; }
+.resource-card:nth-child(4n+2):hover { box-shadow: 0 18px 40px rgba(124,58,237,0.2) !important; border-color: transparent !important; }
+.resource-card:nth-child(4n+3):hover { box-shadow: 0 18px 40px rgba(249,115,22,0.2) !important; border-color: transparent !important; }
+.resource-card:nth-child(4n+0):hover { box-shadow: 0 18px 40px rgba(16,185,129,0.2) !important; border-color: transparent !important; }
+
+.resource-card {
+  transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease, border-color 0.22s ease !important;
+}
+.resource-card:hover {
+  transform: translateY(-7px) !important;
+}
+
+/* Resource card coloured left accent bar */
+.resource-card:nth-child(4n+1) { border-left: 4px solid #2563eb !important; }
+.resource-card:nth-child(4n+2) { border-left: 4px solid #7c3aed !important; }
+.resource-card:nth-child(4n+3) { border-left: 4px solid #f97316 !important; }
+.resource-card:nth-child(4n+0) { border-left: 4px solid #10b981 !important; }
+
+/* --- 8. Scholarship/Panel Section Accent --- */
+.panel#scholarship {
+  background: linear-gradient(145deg, #ecfdf5 0%, #d1fae5 50%, #a7f3d0 100%) !important;
+  border-color: rgba(16,185,129,0.25) !important;
+  border-left: 4px solid #10b981 !important;
+}
+.panel#scholarship h4 { color: #065f46 !important; }
+.panel#scholarship .feature-list { color: #064e3b !important; }
+
+/* Tools teaser panel */
+aside.panel.tools-teaser {
+  background: linear-gradient(145deg, #faf5ff 0%, #ede9fe 50%, #ddd6fe 100%) !important;
+  border-color: rgba(124,58,237,0.2) !important;
+  border-left: 4px solid #7c3aed !important;
+}
+aside.panel.tools-teaser p { color: #4c1d95 !important; font-weight: 600; }
+
+/* --- 9. Blog Cards — Per-card accent colors --- */
+.blog-card-1 {
+  background: linear-gradient(145deg, #eff6ff 0%, #dbeafe 100%) !important;
+  border-left: 4px solid #2563eb !important;
+}
+.blog-card-1 .blog-news-tag {
+  background: rgba(37,99,235,0.14) !important;
+  color: #1d4ed8 !important;
+}
+
+.blog-card-2 {
+  background: linear-gradient(145deg, #f5f3ff 0%, #ede9fe 100%) !important;
+  border-left: 4px solid #7c3aed !important;
+}
+.blog-card-2 .blog-news-tag {
+  background: rgba(124,58,237,0.14) !important;
+  color: #6d28d9 !important;
+}
+
+.blog-card-3 {
+  background: linear-gradient(145deg, #fff7ed 0%, #fed7aa 100%) !important;
+  border-left: 4px solid #f97316 !important;
+}
+.blog-card-3 .blog-news-tag {
+  background: rgba(249,115,22,0.14) !important;
+  color: #ea580c !important;
+}
+
+.blog-news-item {
+  transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease !important;
+}
+.blog-card-1:hover { box-shadow: var(--glow-blue) !important; transform: translateY(-7px) !important; }
+.blog-card-2:hover { box-shadow: var(--glow-purple) !important; transform: translateY(-7px) !important; }
+.blog-card-3:hover { box-shadow: var(--glow-amber) !important; transform: translateY(-7px) !important; }
+
+/* --- 10. Team Cards Enhancement --- */
+.team-member-1 {
+  background: linear-gradient(145deg, #eff6ff 0%, #dbeafe 80%, #c7d2fe 100%) !important;
+  border-left: 4px solid #2563eb !important;
+}
+.team-member-2 {
+  background: linear-gradient(145deg, #fdf4ff 0%, #f3e8ff 80%, #e9d5ff 100%) !important;
+  border-left: 4px solid #7c3aed !important;
+}
+
+.team-member {
+  transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease !important;
+}
+.team-member-1:hover { box-shadow: var(--glow-blue) !important; transform: translateY(-8px) !important; }
+.team-member-2:hover { box-shadow: var(--glow-purple) !important; transform: translateY(-8px) !important; }
+
+/* --- 11. Section Heading Accent Pills --- */
+.section-accent-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(124,58,237,0.10));
+  border: 1px solid rgba(99,102,241,0.28);
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #3730a3;
+  letter-spacing: 0.4px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+/* --- 12. Glassmorphism Hero Side Panel --- */
+.quick-panel {
+  background: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.75) !important;
+  box-shadow: 0 16px 40px rgba(37, 73, 138, 0.18) !important;
+}
+
+.insight-pill {
+  background: linear-gradient(135deg, rgba(37,99,235,0.88), rgba(99,102,241,0.88)) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255,255,255,0.22) !important;
+  box-shadow: 0 12px 28px rgba(37,99,235,0.3) !important;
+}
+
+/* --- 13. Trust / Flag-chip Strip Enhancement --- */
+.trust {
+  background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 45%, #7c3aed 100%) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 14px 32px rgba(30,64,175,0.28) !important;
+  padding: 18px 22px !important;
+}
+
+.flag-chip {
+  background: rgba(255,255,255,0.18) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.35) !important;
+  backdrop-filter: blur(8px) !important;
+  transition: transform 0.22s ease, background-color 0.22s ease, box-shadow 0.22s ease !important;
+}
+.flag-chip:hover {
+  background: rgba(255,255,255,0.30) !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+}
+
+/* --- 14. Enhanced Buttons --- */
+.btn.primary {
+  background: linear-gradient(135deg, #1e40af 0%, #2563eb 55%, #4f46e5 100%) !important;
+  box-shadow: 0 10px 26px rgba(37,99,235,0.4) !important;
+  transition: transform 0.22s ease, box-shadow 0.22s ease !important;
+}
+.btn.primary:hover {
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 16px 36px rgba(37,99,235,0.48) !important;
+}
+
+.countries-more-btn {
+  background: linear-gradient(135deg, #1e40af, #7c3aed) !important;
+  box-shadow: 0 10px 26px rgba(99,102,241,0.35) !important;
+  border-radius: 12px !important;
+  padding: 12px 28px !important;
+  font-size: 15px !important;
+  transition: transform 0.22s ease, box-shadow 0.22s ease !important;
+}
+.countries-more-btn:hover {
+  transform: translateY(-3px) scale(1.03) !important;
+  box-shadow: 0 18px 36px rgba(99,102,241,0.45) !important;
+}
+
+/* --- 15. Section Head Highlight Text --- */
+.section-head p {
+  background: linear-gradient(90deg, #2563eb, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* Override for the countries section "anywhere in the world" subtitle */
+.section-zone-countries .section-head p {
+  background: linear-gradient(90deg, #0d9488, #2563eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-zone-resources .section-head p {
+  background: linear-gradient(90deg, #7c3aed, #e11d48);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- 16. Resources Teaser Section Separator --- */
+.resources-grid {
+  position: relative;
+}
+
+/* --- 17. Section Title underline decoration --- */
+.section-head h3 {
+  position: relative;
+  display: inline-block;
+}
+.section-head h3::after {
+  content: "";
+  display: block;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2563eb, #7c3aed, #e11d48);
+  margin: 10px auto 0;
+  width: 60px;
+  transition: width 0.4s ease;
+}
+.section-head:hover h3::after {
+  width: 100%;
+}
+
+/* --- 18. Pill Row Active States --- */
+.pill {
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+.pill:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 14px rgba(37,99,235,0.15) !important;
+}
+.pill.active {
+  background: linear-gradient(135deg, #2563eb, #7c3aed) !important;
+  color: #fff !important;
+  box-shadow: 0 8px 20px rgba(99,102,241,0.3) !important;
+}
+
+/* --- 19. Dark Mode Overrides for New Styles --- */
+html[data-theme="night"] .section-zone-stats {
+  background: linear-gradient(135deg, #0d1f12 0%, #0a1a10 50%, #1a1500 100%);
+  border-color: rgba(16,185,129,0.15);
+}
+html[data-theme="night"] .section-zone-countries {
+  background: linear-gradient(135deg, #0b1230 0%, #0d1628 50%, #13103a 100%);
+  border-color: rgba(99,102,241,0.2);
+}
+html[data-theme="night"] .section-zone-resources {
+  background: linear-gradient(135deg, #160d25 0%, #12102a 50%, #0d1628 100%);
+  border-color: rgba(168,85,247,0.15);
+}
+html[data-theme="night"] .section-zone-blog {
+  background: linear-gradient(135deg, #1a1200 0%, #141000 50%, #1a1200 100%);
+  border-color: rgba(245,158,11,0.12);
+}
+html[data-theme="night"] .section-zone-team {
+  background: linear-gradient(135deg, #0f172a 0%, #111827 100%);
+  border-top-color: #1e293b;
+}
+
+html[data-theme="night"] .stat:nth-child(1) { background: linear-gradient(145deg, #0f1f42, #122054) !important; }
+html[data-theme="night"] .stat:nth-child(2) { background: linear-gradient(145deg, #061a18, #0a1f1d) !important; }
+html[data-theme="night"] .stat:nth-child(3) { background: linear-gradient(145deg, #1a0d33, #1c1040) !important; }
+html[data-theme="night"] .stat:nth-child(4) { background: linear-gradient(145deg, #1a1000, #1e1400) !important; }
+html[data-theme="night"] .stat:nth-child(5) { background: linear-gradient(145deg, #2a0820, #1a0510) !important; }
+
+html[data-theme="night"] .blog-card-1 {
+  background: linear-gradient(145deg, #0f152e 0%, #121a3a 100%) !important;
+  border-left-color: #2563eb !important;
+}
+html[data-theme="night"] .blog-card-2 {
+  background: linear-gradient(145deg, #150d2a 0%, #1c1040 100%) !important;
+  border-left-color: #7c3aed !important;
+}
+html[data-theme="night"] .blog-card-3 {
+  background: linear-gradient(145deg, #1a1100 0%, #1e1500 100%) !important;
+  border-left-color: #f97316 !important;
+}
+
+html[data-theme="night"] .team-member-1 {
+  background: linear-gradient(145deg, #0f1a35, #111e40) !important;
+  border-left-color: #2563eb !important;
+}
+html[data-theme="night"] .team-member-2 {
+  background: linear-gradient(145deg, #160d28, #1a1035) !important;
+  border-left-color: #7c3aed !important;
+}
+
+html[data-theme="night"] .panel#scholarship {
+  background: linear-gradient(145deg, #071a10, #0a2015) !important;
+  border-color: rgba(16,185,129,0.2) !important;
+}
+html[data-theme="night"] .panel#scholarship h4 { color: #34d399 !important; }
+html[data-theme="night"] .panel#scholarship .feature-list { color: #a7f3d0 !important; }
+
+html[data-theme="night"] aside.panel.tools-teaser {
+  background: linear-gradient(145deg, #160d25, #1a1035) !important;
+  border-color: rgba(124,58,237,0.2) !important;
+}
+html[data-theme="night"] aside.panel.tools-teaser p { color: #c4b5fd !important; }
+
+html[data-theme="night"] .quick-panel {
+  background: rgba(17, 24, 39, 0.85) !important;
+  border-color: rgba(56,189,248,0.2) !important;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4) !important;
+}
+
+html[data-theme="night"] .trust {
+  background: linear-gradient(135deg, #0c1a4a 0%, #1e1b4b 100%) !important;
+  border: 1px solid rgba(99,102,241,0.25) !important;
+  box-shadow: 0 14px 32px rgba(0,0,0,0.3) !important;
+}
+html[data-theme="night"] .flag-chip {
+  background: rgba(255,255,255,0.08) !important;
+  color: #c6d4ec !important;
+  border-color: rgba(255,255,255,0.12) !important;
+}
+
+html[data-theme="night"] .section-head p {
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+html[data-theme="night"] .section-head h3::after {
+  background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
+}
+
+html[data-theme="night"] .pill.active {
+  background: linear-gradient(135deg, #60a5fa, #a78bfa) !important;
+  color: #060c18 !important;
+}
+
+html[data-theme="night"] .countries-more-btn {
+  background: linear-gradient(135deg, #1e3a8a, #4c1d95) !important;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.3) !important;
+}
+
+html[data-theme="night"] .btn.primary {
+  background: linear-gradient(135deg, #1d4ed8, #4338ca) !important;
+  box-shadow: 0 10px 26px rgba(37,99,235,0.3) !important;
+}
+
+html[data-theme="night"] .resource-card:nth-child(4n+1) { border-left-color: #2563eb !important; }
+html[data-theme="night"] .resource-card:nth-child(4n+2) { border-left-color: #7c3aed !important; }
+html[data-theme="night"] .resource-card:nth-child(4n+3) { border-left-color: #f97316 !important; }
+html[data-theme="night"] .resource-card:nth-child(4n+0) { border-left-color: #10b981 !important; }
+
+html[data-theme="night"] .section-accent-pill {
+  background: linear-gradient(135deg, rgba(96,165,250,0.15), rgba(167,139,250,0.12));
+  border-color: rgba(99,102,241,0.25);
+  color: #a78bfa;
+}
+

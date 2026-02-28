@@ -1521,15 +1521,32 @@
   };
 
   const setupAnimatedIcons = () => {
+    // Existing page-specific logic
     const isResourcesPage = doc.body.classList.contains("resources-page");
     const isToolsPage = doc.body.classList.contains("tools-page");
-    if (!isResourcesPage && !isToolsPage) return;
+    if (isResourcesPage || isToolsPage) {
+      const targets = doc.querySelectorAll(
+        isResourcesPage ? ".resource-card" : ".tools .tool",
+      );
+      targets.forEach((el) => {
+        el.classList.add("icon-card-ready");
+      });
+    }
 
-    const targets = doc.querySelectorAll(
-      isResourcesPage ? ".resource-card" : ".tools .tool",
-    );
-    targets.forEach((el) => {
-      el.classList.add("icon-card-ready");
+    // New: Add icon hover micro-animations for homepage vivid icon boxes
+    doc.querySelectorAll(
+      '.resource-icon--calculator, .resource-icon--comparison, .resource-icon--roadmap, .resource-icon--visa'
+    ).forEach((icon) => {
+      icon.style.transition = 'transform 0.3s cubic-bezier(.34,1.56,.64,1)';
+      const card = icon.closest('.resource-card, .resource-head');
+      card?.addEventListener('mouseenter', () => { icon.style.transform = 'scale(1.12) rotate(-4deg)'; });
+      card?.addEventListener('mouseleave', () => { icon.style.transform = ''; });
+    });
+
+    doc.querySelectorAll('.stat .icon').forEach((icon) => {
+      icon.style.transition = 'transform 0.3s cubic-bezier(.34,1.56,.64,1)';
+      icon.closest('.stat')?.addEventListener('mouseenter', () => { icon.style.transform = 'scale(1.15) rotate(6deg)'; });
+      icon.closest('.stat')?.addEventListener('mouseleave', () => { icon.style.transform = ''; });
     });
   };
 
@@ -1584,9 +1601,27 @@
     );
 
     revealTargets.forEach((el) => observer.observe(el));
+
+    // Also handle new .reveal → .visible system for section zone elements
+    const revealNew = doc.querySelectorAll('.reveal');
+    if (revealNew.length) {
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -5% 0px' }
+      );
+      revealNew.forEach((el) => revealObserver.observe(el));
+    }
   };
 
   setupTheme();
+
   setupLanguage();
   setupGlobalSearch();
   setupMobileAppChrome();
