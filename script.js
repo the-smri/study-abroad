@@ -1690,6 +1690,8 @@
       if (typeof window.renderComparison === "function") {
         window.renderComparison();
       }
+      const animPanel = section.querySelector('.comparison-panel');
+      if (animPanel) animPanel.classList.add('reveal-in');
       section.scrollIntoView({ behavior: "smooth", block: "start" });
     });
 
