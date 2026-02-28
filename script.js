@@ -1520,6 +1520,72 @@
     });
   };
 
+  const setupAnimatedIcons = () => {
+    const isResourcesPage = doc.body.classList.contains("resources-page");
+    const isToolsPage = doc.body.classList.contains("tools-page");
+    if (!isResourcesPage && !isToolsPage) return;
+
+    const targets = doc.querySelectorAll(
+      isResourcesPage ? ".resource-card" : ".tools .tool",
+    );
+    targets.forEach((el) => {
+      el.classList.add("icon-card-ready");
+    });
+  };
+
+  const setupScrollRevealAnimations = () => {
+    const revealTargets = doc.querySelectorAll(
+      ".section-head, .panel, .resource-card, .tool, .stat, .cards-grid > *, .resources-grid > *, .blog-news-item, .team-member-1, .team-member-2, .comparison-panel, .support-summary, .site-footer",
+    );
+    if (!revealTargets.length) return;
+
+    let directionIndex = 0;
+    revealTargets.forEach((el, index) => {
+      if (el.classList.contains("reveal-ready")) return;
+      el.classList.add("reveal-ready");
+
+      // Keep section wrappers subtle, animate content blocks with alternating directions.
+      if (el.classList.contains("section") || el.classList.contains("site-footer")) {
+        el.classList.add("reveal-zoom");
+        return;
+      }
+
+      if (index % 5 === 0) {
+        el.classList.add("reveal-zoom");
+        return;
+      }
+
+      const dirClass = directionIndex % 2 === 0 ? "reveal-left" : "reveal-right";
+      el.classList.add(dirClass);
+      directionIndex += 1;
+    });
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) {
+      revealTargets.forEach((el) => el.classList.add("reveal-in"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("reveal-in");
+          } else if (entry.boundingClientRect.top > 0) {
+            // Outro when user scrolls back up and item leaves viewport.
+            entry.target.classList.remove("reveal-in");
+          }
+        });
+      },
+      {
+        threshold: 0.16,
+        rootMargin: "0px 0px -8% 0px",
+      },
+    );
+
+    revealTargets.forEach((el) => observer.observe(el));
+  };
+
   setupTheme();
   setupLanguage();
   setupGlobalSearch();
@@ -1536,4 +1602,6 @@
   setupComparisonTool();
   setupCountdownTimer();
   setupAIAssistant();
+  setupAnimatedIcons();
+  setupScrollRevealAnimations();
 })();
