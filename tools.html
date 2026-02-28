@@ -75,55 +75,154 @@
         </aside>
 
         <div id="comparison-inline" class="comparison-inline-wrap">
-          <div class="panel comparison-empty-state">
-            <dotlottie-wc
-  src="https://lottie.host/27482fcf-e68b-41d9-8372-63dc0bf15a58/rVYwzhxIVH.lottie"
-  style="width: 300px;height: 300px"
-  autoplay
-  loop
-></dotlottie-wc>
+          <div class="panel comparison-empty-state comparison-preview">
+            <div class="comparison-preview-head">
+              <h4 data-en="Europe Comparison Snapshot">Europe Comparison Snapshot</h4>
+              <p data-en="Top-ranked options from 27 European countries. Click below for full dashboard.">Top-ranked options from 27 European countries. Click below for full dashboard.</p>
+            </div>
+            <div id="comparisonPreview" class="comparison-preview-grid"></div>
+            <button type="button" class="tool-btn primary comparison-open-btn" id="openDashboardBtn" data-en="Open Full Europe Dashboard">Open Full Europe Dashboard</button>
           </div>
         </div>
       </div>
 
       <div id="comparison" class="comparison-section">
-        <div class="panel comparison-panel">
+        <div class="panel comparison-panel europe-comparison-panel">
           <div class="comparison-header">
-            <h4 data-en="Country Comparison Tool">দেশ তুলনা টুল</h4>
+            <div>
+              <h4 data-en="Europe Study Comparison Dashboard">Europe Study Comparison Dashboard</h4>
+              <p class="comparison-subtitle" data-en="Visual comparison for tuition, living cost, visa success, PR time, salary and work options across 27 countries.">Visual comparison for tuition, living cost, visa success, PR time, salary and work options across 27 countries.</p>
+            </div>
             <button type="button" class="close-comparison" id="closeComparison">&times;</button>
           </div>
-          <div class="comparison-controls">
-            <div class="control-group">
-              <label data-en="Select Countries">দেশ নির্বাচন করুন</label>
-              <div class="country-selectors">
-                <select id="compare1">
-                  <option value="usa" data-en="USA">যুক্তরাষ্ট্র</option>
-                  <option value="canada" data-en="Canada" selected>কানাডা</option>
-                  <option value="uk" data-en="UK">যুক্তরাজ্য</option>
-                  <option value="australia" data-en="Australia">অস্ট্রেলিয়া</option>
-                  <option value="germany" data-en="Germany">জার্মানি</option>
-                </select>
-                <span class="vs">VS</span>
-                <select id="compare2">
-                  <option value="usa" data-en="USA" selected>যুক্তরাষ্ট্র</option>
-                  <option value="canada" data-en="Canada">কানাডা</option>
-                  <option value="uk" data-en="UK">যুক্তরাজ্য</option>
-                  <option value="australia" data-en="Australia">অস্ট্রেলিয়া</option>
-                  <option value="germany" data-en="Germany">জার্মানি</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="comparison-results" id="comparisonTable"></div>
+          <div class="comparison-results" id="comparisonDashboard"></div>
         </div>
       </div>
     </section>
   </main>
 
   <script src="script.js"></script>
-  <script
-  src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.3/dist/dotlottie-wc.js"
-  type="module"
-></script>
+  <script>
+    (() => {
+      const section = document.getElementById("comparison");
+      const dashboard = document.getElementById("comparisonDashboard");
+      const preview = document.getElementById("comparisonPreview");
+      const openBtn = document.getElementById("openDashboardBtn");
+      const closeBtn = document.getElementById("closeComparison");
+      if (!section || !dashboard) return;
+
+      const rows = [
+        { country: "Germany", rank: 1, score: 92, visa: "92%", tuition: "0 - 3,000", living: "900 - 1,100", salary: "3,500 - 4,500" },
+        { country: "Netherlands", rank: 2, score: 88, visa: "95%", tuition: "8,000 - 15,000", living: "1,100 - 1,500", salary: "3,200 - 4,200" },
+        { country: "Finland", rank: 3, score: 87, visa: "94%", tuition: "6,000 - 12,000", living: "800 - 1,000", salary: "3,000 - 4,000" },
+        { country: "Ireland", rank: 4, score: 85, visa: "90%", tuition: "10,000 - 20,000", living: "1,200 - 1,600", salary: "3,000 - 4,000" },
+        { country: "Sweden", rank: 5, score: 84, visa: "88%", tuition: "8,000 - 14,000", living: "900 - 1,200", salary: "3,300 - 4,300" },
+        { country: "France", rank: 6, score: 82, visa: "85%", tuition: "3,000 - 10,000", living: "900 - 1,300", salary: "2,800 - 3,800" },
+        { country: "Belgium", rank: 7, score: 80, visa: "85%", tuition: "1,000 - 4,000", living: "850 - 1,100", salary: "2,800 - 3,500" },
+        { country: "Austria", rank: 8, score: 78, visa: "82%", tuition: "1,500 - 3,000", living: "950 - 1,200", salary: "2,700 - 3,500" },
+        { country: "Spain", rank: 9, score: 75, visa: "80%", tuition: "2,000 - 5,000", living: "700 - 1,000", salary: "2,000 - 2,800" },
+        { country: "Poland", rank: 10, score: 74, visa: "85%", tuition: "2,000 - 4,000", living: "500 - 700", salary: "1,500 - 2,200" },
+        { country: "Italy", rank: 11, score: 73, visa: "75%", tuition: "1,000 - 4,000", living: "700 - 1,000", salary: "1,800 - 2,500" },
+        { country: "Denmark", rank: 12, score: 72, visa: "90%", tuition: "10,000 - 16,000", living: "1,100 - 1,400", salary: "3,800 - 4,800" },
+        { country: "Portugal", rank: 13, score: 70, visa: "78%", tuition: "3,000 - 7,000", living: "600 - 900", salary: "1,200 - 1,800" },
+        { country: "Czech Rep", rank: 14, score: 69, visa: "80%", tuition: "0 - 5,000", living: "600 - 850", salary: "1,600 - 2,300" },
+        { country: "Hungary", rank: 15, score: 68, visa: "85%", tuition: "2,500 - 6,000", living: "500 - 750", salary: "1,100 - 1,600" },
+        { country: "Estonia", rank: 16, score: 67, visa: "88%", tuition: "3,000 - 6,000", living: "600 - 800", salary: "1,800 - 2,500" },
+        { country: "Luxembourg", rank: 17, score: 66, visa: "85%", tuition: "400 - 1,000", living: "1,200 - 1,700", salary: "4,000 - 5,500" },
+        { country: "Lithuania", rank: 18, score: 64, visa: "82%", tuition: "2,000 - 5,000", living: "550 - 750", salary: "1,300 - 1,900" },
+        { country: "Latvia", rank: 19, score: 62, visa: "80%", tuition: "2,000 - 5,000", living: "550 - 750", salary: "1,200 - 1,700" },
+        { country: "Slovenia", rank: 20, score: 60, visa: "85%", tuition: "2,000 - 4,000", living: "600 - 850", salary: "1,600 - 2,200" },
+        { country: "Slovakia", rank: 21, score: 58, visa: "82%", tuition: "2,000 - 5,000", living: "600 - 800", salary: "1,200 - 1,700" },
+        { country: "Greece", rank: 22, score: 55, visa: "75%", tuition: "1,500 - 4,000", living: "700 - 950", salary: "1,100 - 1,600" },
+        { country: "Croatia", rank: 23, score: 54, visa: "80%", tuition: "2,000 - 5,000", living: "600 - 850", salary: "1,200 - 1,600" },
+        { country: "Romania", rank: 24, score: 53, visa: "85%", tuition: "2,000 - 5,000", living: "500 - 700", salary: "1,000 - 1,500" },
+        { country: "Bulgaria", rank: 25, score: 51, visa: "80%", tuition: "2,500 - 5,000", living: "450 - 650", salary: "900 - 1,400" },
+        { country: "Cyprus", rank: 26, score: 50, visa: "78%", tuition: "4,000 - 8,000", living: "700 - 900", salary: "1,200 - 1,800" },
+        { country: "Malta", rank: 27, score: 48, visa: "75%", tuition: "6,000 - 12,000", living: "800 - 1,100", salary: "1,500 - 2,200" }
+      ];
+
+      const scoreClass = (score) => {
+        if (score >= 85) return "score-elite";
+        if (score >= 75) return "score-strong";
+        if (score >= 65) return "score-mid";
+        return "score-base";
+      };
+
+      const visaClass = (visa) => {
+        const rate = parseInt(visa, 10) || 0;
+        if (rate >= 90) return "visa-elite";
+        if (rate >= 85) return "visa-strong";
+        if (rate >= 80) return "visa-mid";
+        return "visa-base";
+      };
+
+      const renderPreview = () => {
+        if (!preview || preview.innerHTML.trim()) return;
+        preview.innerHTML = rows.slice(0, 6).map((row) => `
+          <article class="preview-country-card ${scoreClass(row.score)}">
+            <div class="preview-country-top">
+              <span class="preview-rank">#${row.rank}</span>
+              <strong>${row.country}</strong>
+            </div>
+            <div class="preview-track"><span style="width:${row.score}%;"></span></div>
+            <div class="preview-country-meta">
+              <small>Score ${row.score}</small>
+              <small>Visa ${row.visa}</small>
+            </div>
+          </article>
+        `).join("");
+      };
+
+      const renderDashboard = () => {
+        if (dashboard.innerHTML.trim()) return;
+        const topScore = rows[0];
+        const topVisa = [...rows].sort((a, b) => parseInt(b.visa, 10) - parseInt(a.visa, 10))[0];
+        const topSalary = [...rows].sort((a, b) => parseInt(b.salary.replace(/,/g, "").split(" - ")[1], 10) - parseInt(a.salary.replace(/,/g, "").split(" - ")[1], 10))[0];
+        const lowestTuition = [...rows].sort((a, b) => parseInt(a.tuition.replace(/,/g, "").split(" - ")[0], 10) - parseInt(b.tuition.replace(/,/g, "").split(" - ")[0], 10))[0];
+
+        dashboard.innerHTML = `
+          <div class="euro-kpi-grid">
+            <article class="euro-kpi kpi-score"><span>Top Overall Score</span><strong>${topScore.country}</strong><b>${topScore.score} / 100</b></article>
+            <article class="euro-kpi kpi-visa"><span>Highest Visa Success</span><strong>${topVisa.country}</strong><b>${topVisa.visa}</b></article>
+            <article class="euro-kpi kpi-cost"><span>Lowest Avg Tuition</span><strong>${lowestTuition.country}</strong><b>EUR ${lowestTuition.tuition}</b></article>
+            <article class="euro-kpi kpi-salary"><span>Highest Grad Salary</span><strong>${topSalary.country}</strong><b>EUR ${topSalary.salary}/mo</b></article>
+          </div>
+
+          <div class="euro-bar-list">
+            ${rows.map((row) => `
+              <article class="euro-row ${scoreClass(row.score)}">
+                <div class="euro-row-head">
+                  <div class="euro-country-head"><span class="euro-rank">#${row.rank}</span><h5>${row.country}</h5></div>
+                  <span class="euro-score-chip">${row.score}</span>
+                </div>
+                <div class="euro-score-track"><span style="width:${row.score}%;"></span></div>
+                <div class="euro-row-meta">
+                  <span class="euro-pill ${visaClass(row.visa)}">Visa ${row.visa}</span>
+                  <span class="euro-pill">Tuition EUR ${row.tuition}</span>
+                  <span class="euro-pill">Living EUR ${row.living}/mo</span>
+                  <span class="euro-pill">Salary EUR ${row.salary}/mo</span>
+                </div>
+              </article>
+            `).join("")}
+          </div>
+        `;
+      };
+
+      const openDashboard = () => {
+        renderPreview();
+        renderDashboard();
+        section.style.display = "block";
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+      };
+
+      openBtn?.addEventListener("click", openDashboard);
+      closeBtn?.addEventListener("click", () => { section.style.display = "none"; });
+
+      renderPreview();
+      renderDashboard();
+    })();
+  </script>
 </body>
 </html>
+
+

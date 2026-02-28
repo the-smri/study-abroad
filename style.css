@@ -4883,3 +4883,499 @@ html[data-theme="night"] .section-accent-pill {
   color: #a78bfa;
 }
 
+/* Europe Comparison Dashboard */
+.comparison-subtitle {
+  margin: 8px 0 0;
+  color: #49688f;
+  font-size: 15px;
+  line-height: 1.45;
+  max-width: 780px;
+}
+
+.comparison-preview {
+  text-align: left;
+}
+
+.comparison-preview-head h4 {
+  margin: 0;
+  font-size: 22px;
+  color: #164373;
+}
+
+.comparison-preview-head p {
+  margin: 8px 0 0;
+  color: #55739c;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.comparison-preview-grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.preview-country-card {
+  border: 1px solid #cfe0f5;
+  border-radius: 14px;
+  padding: 10px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(236, 244, 255, 0.85));
+}
+
+.preview-country-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.preview-rank {
+  min-width: 32px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #e4eefb;
+  color: #25558e;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.preview-country-top strong {
+  font-size: 14px;
+  color: #1f4b7d;
+}
+
+.preview-track {
+  height: 7px;
+  margin-top: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(41, 96, 162, 0.16);
+}
+
+.preview-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.preview-country-meta {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: #4f6f95;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.comparison-open-btn {
+  margin-top: 14px;
+  width: 100%;
+}
+
+.europe-comparison-panel {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(236, 245, 255, 0.72));
+}
+
+.euro-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 6px 0 16px;
+}
+
+.euro-kpi {
+  border-radius: 14px;
+  border: 1px solid #c7daf4;
+  padding: 12px;
+  background: #fff;
+  display: grid;
+  gap: 4px;
+}
+
+.euro-kpi span {
+  color: #4f6d93;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.euro-kpi strong {
+  color: #1c4a7f;
+  font-size: 17px;
+}
+
+.euro-kpi b {
+  color: #0f6bb7;
+  font-size: 14px;
+}
+
+.euro-kpi.kpi-score {
+  background: linear-gradient(145deg, rgba(73, 162, 255, 0.14), rgba(129, 203, 255, 0.14));
+}
+
+.euro-kpi.kpi-visa {
+  background: linear-gradient(145deg, rgba(46, 207, 160, 0.14), rgba(109, 224, 175, 0.14));
+}
+
+.euro-kpi.kpi-cost {
+  background: linear-gradient(145deg, rgba(247, 176, 76, 0.16), rgba(255, 216, 143, 0.16));
+}
+
+.euro-kpi.kpi-salary {
+  background: linear-gradient(145deg, rgba(190, 125, 255, 0.14), rgba(237, 157, 255, 0.14));
+}
+
+.euro-controls {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.euro-control {
+  display: grid;
+  gap: 6px;
+}
+
+.euro-control span {
+  color: #2c5585;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.euro-control input,
+.euro-control select {
+  border: 1px solid #c8daf3;
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.88);
+  font-size: 14px;
+  color: #183f6d;
+  outline: none;
+}
+
+.euro-control input:focus,
+.euro-control select:focus {
+  border-color: #4f9eff;
+  box-shadow: 0 0 0 3px rgba(79, 158, 255, 0.18);
+}
+
+.euro-results-count {
+  margin: 12px 0 10px;
+  color: #496b94;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.euro-bar-list {
+  display: grid;
+  gap: 10px;
+}
+
+.euro-row {
+  border-radius: 14px;
+  border: 1px solid #cddff4;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.93), rgba(240, 248, 255, 0.85));
+  padding: 12px;
+}
+
+.euro-row-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.euro-country-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.euro-rank {
+  min-width: 36px;
+  text-align: center;
+  border-radius: 999px;
+  background: #e3eefc;
+  color: #25548d;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 9px;
+}
+
+.euro-country-head h5 {
+  margin: 0;
+  font-size: 17px;
+  color: #163f70;
+}
+
+.euro-score-chip {
+  min-width: 40px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 8px;
+  color: #0e345f;
+  background: #d7eafc;
+}
+
+.euro-score-track {
+  margin-top: 10px;
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(30, 84, 148, 0.16);
+}
+
+.euro-score-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.euro-row-meta {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.euro-pill {
+  border: 1px solid #d0e0f4;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #355d8f;
+  background: rgba(243, 248, 255, 0.9);
+}
+
+.euro-empty-state {
+  border: 1px dashed #b9d0ed;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  color: #45658d;
+  font-weight: 600;
+  background: rgba(244, 249, 255, 0.9);
+}
+
+.euro-matrix-wrap {
+  margin-top: 14px;
+  border-radius: 14px;
+  border: 1px solid #cddcf1;
+  overflow: auto;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.euro-matrix {
+  width: 100%;
+  min-width: 1120px;
+  border-collapse: collapse;
+}
+
+.euro-matrix th,
+.euro-matrix td {
+  padding: 10px;
+  border-bottom: 1px solid #dce7f7;
+  font-size: 13px;
+  text-align: left;
+  color: #264f80;
+}
+
+.euro-matrix th {
+  position: sticky;
+  top: 0;
+  background: #ecf4ff;
+  color: #1f4b7d;
+  z-index: 1;
+}
+
+.euro-matrix td strong {
+  display: block;
+  color: #15406f;
+}
+
+.euro-matrix td small {
+  color: #6083ab;
+  font-size: 11px;
+}
+
+.euro-table-chip {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid transparent;
+}
+
+.euro-row.score-elite .euro-score-track span,
+.preview-country-card.score-elite .preview-track span {
+  background: linear-gradient(90deg, #00b894, #00cec9);
+}
+
+.euro-row.score-strong .euro-score-track span,
+.preview-country-card.score-strong .preview-track span {
+  background: linear-gradient(90deg, #0984e3, #74b9ff);
+}
+
+.euro-row.score-mid .euro-score-track span,
+.preview-country-card.score-mid .preview-track span {
+  background: linear-gradient(90deg, #fdcb6e, #f39c12);
+}
+
+.euro-row.score-base .euro-score-track span,
+.preview-country-card.score-base .preview-track span {
+  background: linear-gradient(90deg, #e17055, #ff7675);
+}
+
+.euro-table-chip.score-elite {
+  color: #0f6a54;
+  background: rgba(0, 200, 151, 0.14);
+  border-color: rgba(0, 184, 148, 0.35);
+}
+
+.euro-table-chip.score-strong {
+  color: #145b99;
+  background: rgba(9, 132, 227, 0.14);
+  border-color: rgba(9, 132, 227, 0.35);
+}
+
+.euro-table-chip.score-mid {
+  color: #9a6312;
+  background: rgba(243, 156, 18, 0.18);
+  border-color: rgba(243, 156, 18, 0.35);
+}
+
+.euro-table-chip.score-base {
+  color: #9e4c4c;
+  background: rgba(255, 118, 117, 0.16);
+  border-color: rgba(225, 112, 85, 0.35);
+}
+
+.euro-pill.visa-elite,
+.euro-table-chip.visa-elite {
+  color: #0e7d61;
+  background: rgba(46, 213, 115, 0.15);
+  border-color: rgba(46, 213, 115, 0.35);
+}
+
+.euro-pill.visa-strong,
+.euro-table-chip.visa-strong {
+  color: #1f6ea5;
+  background: rgba(52, 152, 219, 0.15);
+  border-color: rgba(52, 152, 219, 0.35);
+}
+
+.euro-pill.visa-mid,
+.euro-table-chip.visa-mid {
+  color: #9a6716;
+  background: rgba(241, 196, 15, 0.2);
+  border-color: rgba(241, 196, 15, 0.35);
+}
+
+.euro-pill.visa-base,
+.euro-table-chip.visa-base {
+  color: #a75353;
+  background: rgba(231, 76, 60, 0.14);
+  border-color: rgba(231, 76, 60, 0.35);
+}
+
+@media (max-width: 1080px) {
+  .euro-kpi-grid,
+  .euro-controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .comparison-preview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .europe-comparison-panel .comparison-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 560px) {
+  .euro-kpi-grid,
+  .euro-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .euro-row-meta {
+    gap: 6px;
+  }
+
+  .euro-pill {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+}
+
+html[data-theme="night"] .comparison-subtitle,
+html[data-theme="night"] .comparison-preview-head p,
+html[data-theme="night"] .euro-results-count {
+  color: #a2b8d6;
+}
+
+html[data-theme="night"] .comparison-preview-head h4,
+html[data-theme="night"] .euro-country-head h5,
+html[data-theme="night"] .euro-kpi strong,
+html[data-theme="night"] .euro-matrix th,
+html[data-theme="night"] .euro-matrix td strong {
+  color: #d7e8ff;
+}
+
+html[data-theme="night"] .comparison-preview,
+html[data-theme="night"] .europe-comparison-panel,
+html[data-theme="night"] .euro-row,
+html[data-theme="night"] .euro-matrix-wrap,
+html[data-theme="night"] .euro-kpi,
+html[data-theme="night"] .preview-country-card {
+  background: linear-gradient(145deg, rgba(17, 25, 39, 0.92), rgba(18, 31, 52, 0.88));
+  border-color: rgba(99, 132, 175, 0.4);
+}
+
+html[data-theme="night"] .preview-rank,
+html[data-theme="night"] .euro-rank,
+html[data-theme="night"] .euro-score-chip {
+  background: rgba(64, 112, 173, 0.32);
+  color: #d9e8ff;
+}
+
+html[data-theme="night"] .euro-control span,
+html[data-theme="night"] .euro-kpi span,
+html[data-theme="night"] .euro-kpi b,
+html[data-theme="night"] .preview-country-top strong,
+html[data-theme="night"] .preview-country-meta,
+html[data-theme="night"] .euro-pill,
+html[data-theme="night"] .euro-matrix td {
+  color: #b9cde7;
+}
+
+html[data-theme="night"] .euro-control input,
+html[data-theme="night"] .euro-control select {
+  background: rgba(8, 15, 28, 0.78);
+  border-color: rgba(93, 126, 169, 0.52);
+  color: #d5e6ff;
+}
+
+html[data-theme="night"] .euro-score-track,
+html[data-theme="night"] .preview-track {
+  background: rgba(125, 163, 207, 0.25);
+}
+
+html[data-theme="night"] .euro-matrix th {
+  background: rgba(21, 35, 56, 0.95);
+}
+
+html[data-theme="night"] .euro-matrix td,
+html[data-theme="night"] .euro-matrix th {
+  border-bottom-color: rgba(90, 120, 160, 0.4);
+}
+

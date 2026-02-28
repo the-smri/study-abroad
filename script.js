@@ -1004,7 +1004,17 @@
       if (section) {
         section.style.display = "block";
         section.scrollIntoView({ behavior: "smooth", block: "center" });
-        renderComparison();
+        if (typeof window.renderComparison === "function") {
+          window.renderComparison();
+        } else {
+          const fallback =
+            doc.getElementById("comparisonDashboard") ||
+            doc.getElementById("comparisonTable");
+          if (fallback && !fallback.innerHTML.trim()) {
+            fallback.innerHTML =
+              '<div class="euro-empty-state">Dashboard is loading. Please try again.</div>';
+          }
+        }
       }
     };
 
@@ -1355,105 +1365,341 @@
   };
 
   const setupComparisonTool = () => {
-    const compareData = {
-      usa: {
-        cost: "$20k - $60k",
-        scholarship: "High (Merit/Research)",
-        pr: "Moderate (H1B -> Green Card)",
-        job: "Excellent (STEM OPT 3 yrs)",
-        ielts: "6.5 - 7.5",
-        visa: "Moderate-High (Trend)",
-      },
-      canada: {
-        cost: "CAD 15k - 35k",
-        scholarship: "Moderate (Entrance/Research)",
-        pr: "Very High (Express Entry/PNP)",
-        job: "Excellent (PGWP up to 3 yrs)",
-        ielts: "6.0 - 7.0 (SDS)",
-        visa: "High (SDS Trend)",
-      },
-      uk: {
-        cost: "GBP 15k - 30k",
-        scholarship: "Moderate (Chevening/Commonwealth)",
-        pr: "Moderate (Graduate Route)",
-        job: "High (2 yrs Graduate Route)",
-        ielts: "6.0 - 7.0",
-        visa: "High",
-      },
-      australia: {
-        cost: "AUD 20k - 45k",
-        scholarship: "High (AAS/University Merit)",
-        pr: "High (189/190/491)",
-        job: "Excellent (Subclass 485)",
-        ielts: "6.0 - 7.0",
-        visa: "Moderate-High",
-      },
-      germany: {
-        cost: "EUR 0 - 3k (Public)",
-        scholarship: "High (DAAD/Stipendium)",
-        pr: "High (Blue Card)",
-        job: "Very High (18-month Jobseeker)",
-        ielts: "6.5 (English Track)",
-        visa: "High (Block Account)",
-      },
+    const europeCountries = [
+      { country: "Germany", englishUsage: "High (Univ)", mastersScholarship: "Very High", tuition: "0 - 3,000", living: "900 - 1,100", visaSuccess: "92%", pswVisa: "18 Mo", prTime: "2-5", localLangNeeded: "High (Job)", salary: "3,500 - 4,500", taxLevel: "High", spouseWork: "Yes", partTimeHours: "20 hrs/wk", totalScore: 92, rank: 1 },
+      { country: "Netherlands", englishUsage: "Very High", mastersScholarship: "Medium", tuition: "8,000 - 15,000", living: "1,100 - 1,500", visaSuccess: "95%", pswVisa: "12 Mo", prTime: "5", localLangNeeded: "Moderate", salary: "3,200 - 4,200", taxLevel: "High", spouseWork: "Yes", partTimeHours: "16 hrs/wk", totalScore: 88, rank: 2 },
+      { country: "Finland", englishUsage: "High", mastersScholarship: "High", tuition: "6,000 - 12,000", living: "800 - 1,000", visaSuccess: "94%", pswVisa: "24 Mo", prTime: "4", localLangNeeded: "Moderate", salary: "3,000 - 4,000", taxLevel: "High", spouseWork: "Yes", partTimeHours: "30 hrs/wk", totalScore: 87, rank: 3 },
+      { country: "Ireland", englishUsage: "Native", mastersScholarship: "Medium", tuition: "10,000 - 20,000", living: "1,200 - 1,600", visaSuccess: "90%", pswVisa: "24 Mo", prTime: "5", localLangNeeded: "No", salary: "3,000 - 4,000", taxLevel: "Med", spouseWork: "Yes", partTimeHours: "20 hrs/wk", totalScore: 85, rank: 4 },
+      { country: "Sweden", englishUsage: "Very High", mastersScholarship: "High", tuition: "8,000 - 14,000", living: "900 - 1,200", visaSuccess: "88%", pswVisa: "12 Mo", prTime: "4-5", localLangNeeded: "Moderate", salary: "3,300 - 4,300", taxLevel: "High", spouseWork: "Yes", partTimeHours: "No Limit", totalScore: 84, rank: 5 },
+      { country: "France", englishUsage: "Moderate", mastersScholarship: "High", tuition: "3,000 - 10,000", living: "900 - 1,300", visaSuccess: "85%", pswVisa: "12-24 Mo", prTime: "5", localLangNeeded: "Very High", salary: "2,800 - 3,800", taxLevel: "High", spouseWork: "Yes", partTimeHours: "20 hrs/wk", totalScore: 82, rank: 6 },
+      { country: "Belgium", englishUsage: "High", mastersScholarship: "Medium", tuition: "1,000 - 4,000", living: "850 - 1,100", visaSuccess: "85%", pswVisa: "12 Mo", prTime: "5", localLangNeeded: "High", salary: "2,800 - 3,500", taxLevel: "Very High", spouseWork: "Yes", partTimeHours: "20 hrs/wk", totalScore: 80, rank: 7 },
+      { country: "Austria", englishUsage: "High", mastersScholarship: "Medium", tuition: "1,500 - 3,000", living: "950 - 1,200", visaSuccess: "82%", pswVisa: "12 Mo", prTime: "5", localLangNeeded: "High", salary: "2,700 - 3,500", taxLevel: "High", spouseWork: "Yes", partTimeHours: "20 hrs/wk", totalScore: 78, rank: 8 },
+      { country: "Spain", englishUsage: "Low-Med", mastersScholarship: "Medium", tuition: "2,000 - 5,000", living: "700 - 1,000", visaSuccess: "80%", pswVisa: "12 Mo", prTime: "5", localLangNeeded: "Very High", salary: "2,000 - 2,800", taxLevel: "Med", spouseWork: "Yes", partTimeHours: "30 hrs/wk", totalScore: 75, rank: 9 },
+      { country: "Poland", englishUsage: "Moderate", mastersScholarship: "High", tuition: "2,000 - 4,000", living: "500 - 700", visaSuccess: "85%", pswVisa: "9 Mo", prTime: "5", localLangNeeded: "High", salary: "1,500 - 2,200", taxLevel: "Low", spouseWork: "Yes", partTimeHours: "20 hrs/wk", totalScore: 74, rank: 10 },
+      { country: "Italy", englishUsage: "Low-Med", mastersScholarship: "Very High", tuition: "1,000 - 4,000", living: "700 - 1,000", visaSuccess: "75%", pswVisa: "12 Mo", prTime: "5", localLangNeeded: "Very High", salary: "1,800 - 2,500", taxLevel: "Med", spouseWork: "Yes", partTimeHours: "20 hrs/wk", totalScore: 73, rank: 11 },
+      { country: "Denmark", englishUsage: "Very High", mastersScholarship: "Low", tuition: "10,000 - 16,000", living: "1,100 - 1,400", visaSuccess: "90%", pswVisa: "6 Mo", prTime: "5-8", localLangNeeded: "Moderate", salary: "3,800 - 4,800", taxLevel: "Very High", spouseWork: "Yes", partTimeHours: "20 hrs/wk", totalScore: 72, rank: 12 },
+      { country: "Portugal", englishUsage: "Moderate", mastersScholarship: "Low", tuition: "3,000 - 7,000", living: "600 - 900", visaSuccess: "78%", pswVisa: "12 Mo", prTime: "5", localLangNeeded: "High", salary: "1,200 - 1,800", taxLevel: "Med", spouseWork: "Yes", partTimeHours: "20 hrs/wk", totalScore: 70, rank: 13 },
+      { country: "Czech Rep", englishUsage: "Moderate", mastersScholarship: "Medium", tuition: "0 - 5,000", living: "600 - 850", visaSuccess: "80%", pswVisa: "9 Mo", prTime: "5", localLangNeeded: "High", salary: "1,600 - 2,300", taxLevel: "Low", spouseWork: "Yes", partTimeHours: "20 hrs/wk", totalScore: 69, rank: 14 },
+      { country: "Hungary", englishUsage: "Low-Med", mastersScholarship: "Very High", tuition: "2,500 - 6,000", living: "500 - 750", visaSuccess: "85%", pswVisa: "9 Mo", prTime: "5", localLangNeeded: "Very High", salary: "1,100 - 1,600", taxLevel: "Low", spouseWork: "Yes", partTimeHours: "24 hrs/wk", totalScore: 68, rank: 15 },
+      { country: "Estonia", englishUsage: "High", mastersScholarship: "High", tuition: "3,000 - 6,000", living: "600 - 800", visaSuccess: "88%", pswVisa: "9 Mo", prTime: "5", localLangNeeded: "Moderate", salary: "1,800 - 2,500", taxLevel: "Low", spouseWork: "Yes", partTimeHours: "No Limit", totalScore: 67, rank: 16 },
+      { country: "Luxembourg", englishUsage: "High", mastersScholarship: "Low", tuition: "400 - 1,000", living: "1,200 - 1,700", visaSuccess: "85%", pswVisa: "9 Mo", prTime: "5", localLangNeeded: "High", salary: "4,000 - 5,500", taxLevel: "High", spouseWork: "Yes", partTimeHours: "15 hrs/wk", totalScore: 66, rank: 17 },
+      { country: "Lithuania", englishUsage: "Moderate", mastersScholarship: "Medium", tuition: "2,000 - 5,000", living: "550 - 750", visaSuccess: "82%", pswVisa: "12 Mo", prTime: "5", localLangNeeded: "High", salary: "1,300 - 1,900", taxLevel: "Low", spouseWork: "Yes", partTimeHours: "20 hrs/wk", totalScore: 64, rank: 18 },
+      { country: "Latvia", englishUsage: "Moderate", mastersScholarship: "Medium", tuition: "2,000 - 5,000", living: "550 - 750", visaSuccess: "80%", pswVisa: "6 Mo", prTime: "5", localLangNeeded: "High", salary: "1,200 - 1,700", taxLevel: "Low", spouseWork: "Yes", partTimeHours: "20 hrs/wk", totalScore: 62, rank: 19 },
+      { country: "Slovenia", englishUsage: "Moderate", mastersScholarship: "Low", tuition: "2,000 - 4,000", living: "600 - 850", visaSuccess: "85%", pswVisa: "6 Mo", prTime: "5", localLangNeeded: "High", salary: "1,600 - 2,200", taxLevel: "Med", spouseWork: "Yes", partTimeHours: "20 hrs/wk", totalScore: 60, rank: 20 },
+      { country: "Slovakia", englishUsage: "Low-Med", mastersScholarship: "Low", tuition: "2,000 - 5,000", living: "600 - 800", visaSuccess: "82%", pswVisa: "9 Mo", prTime: "5", localLangNeeded: "High", salary: "1,200 - 1,700", taxLevel: "Low", spouseWork: "Yes", partTimeHours: "20 hrs/wk", totalScore: 58, rank: 21 },
+      { country: "Greece", englishUsage: "Low-Med", mastersScholarship: "Low", tuition: "1,500 - 4,000", living: "700 - 950", visaSuccess: "75%", pswVisa: "12 Mo", prTime: "5", localLangNeeded: "Very High", salary: "1,100 - 1,600", taxLevel: "Med", spouseWork: "No", partTimeHours: "20 hrs/wk", totalScore: 55, rank: 22 },
+      { country: "Croatia", englishUsage: "Low-Med", mastersScholarship: "Low", tuition: "2,000 - 5,000", living: "600 - 850", visaSuccess: "80%", pswVisa: "12 Mo", prTime: "5", localLangNeeded: "High", salary: "1,200 - 1,600", taxLevel: "Med", spouseWork: "Yes", partTimeHours: "20 hrs/wk", totalScore: 54, rank: 23 },
+      { country: "Romania", englishUsage: "Low-Med", mastersScholarship: "Medium", tuition: "2,000 - 5,000", living: "500 - 700", visaSuccess: "85%", pswVisa: "6 Mo", prTime: "5", localLangNeeded: "High", salary: "1,000 - 1,500", taxLevel: "Low", spouseWork: "Yes", partTimeHours: "20 hrs/wk", totalScore: 53, rank: 24 },
+      { country: "Bulgaria", englishUsage: "Low-Med", mastersScholarship: "Low", tuition: "2,500 - 5,000", living: "450 - 650", visaSuccess: "80%", pswVisa: "9 Mo", prTime: "5", localLangNeeded: "High", salary: "900 - 1,400", taxLevel: "Low", spouseWork: "Yes", partTimeHours: "20 hrs/wk", totalScore: 51, rank: 25 },
+      { country: "Cyprus", englishUsage: "High", mastersScholarship: "Low", tuition: "4,000 - 8,000", living: "700 - 900", visaSuccess: "78%", pswVisa: "6 Mo", prTime: "5", localLangNeeded: "Moderate", salary: "1,200 - 1,800", taxLevel: "Low", spouseWork: "No", partTimeHours: "20 hrs/wk", totalScore: 50, rank: 26 },
+      { country: "Malta", englishUsage: "Native", mastersScholarship: "Low", tuition: "6,000 - 12,000", living: "800 - 1,100", visaSuccess: "75%", pswVisa: "6 Mo", prTime: "5", localLangNeeded: "No", salary: "1,500 - 2,200", taxLevel: "Med", spouseWork: "No", partTimeHours: "20 hrs/wk", totalScore: 48, rank: 27 },
+    ];
+
+    const dashboardEl =
+      doc.getElementById("comparisonDashboard") ||
+      doc.getElementById("comparisonTable");
+    const previewEl = doc.getElementById("comparisonPreview");
+    const section = doc.getElementById("comparison");
+    const closeBtn = doc.getElementById("closeComparison");
+    const openBtn = doc.getElementById("openDashboardBtn");
+    if (!dashboardEl || !section) return;
+
+    const parseRangeAverage = (value) => {
+      const numbers = (value.match(/\d[\d,]*/g) || []).map((part) =>
+        Number(part.replace(/,/g, "")),
+      );
+      if (!numbers.length) return 0;
+      if (numbers.length === 1) return numbers[0];
+      return (numbers[0] + numbers[numbers.length - 1]) / 2;
     };
 
-    const select1 = doc.getElementById("compare1");
-    const select2 = doc.getElementById("compare2");
-    const tableEl = doc.getElementById("comparisonTable");
-    const closeBtn = doc.getElementById("closeComparison");
-    const section = doc.getElementById("comparison");
+    const scoreClass = (score) => {
+      if (score >= 85) return "score-elite";
+      if (score >= 75) return "score-strong";
+      if (score >= 65) return "score-mid";
+      return "score-base";
+    };
 
-    if (!select1 || !select2 || !tableEl || !section) return;
+    const visaClass = (visaRate) => {
+      if (visaRate >= 90) return "visa-elite";
+      if (visaRate >= 85) return "visa-strong";
+      if (visaRate >= 80) return "visa-mid";
+      return "visa-base";
+    };
 
-    const renderComparison = () => {
-      const c1 = select1.value;
-      const c2 = select2.value;
-      const d1 = compareData[c1];
-      const d2 = compareData[c2];
+    const normalized = europeCountries.map((item) => ({
+      ...item,
+      visaRate: Number.parseInt(item.visaSuccess, 10) || 0,
+      tuitionMid: parseRangeAverage(item.tuition),
+      livingMid: parseRangeAverage(item.living),
+      salaryMid: parseRangeAverage(item.salary),
+    }));
 
-      const rows = [
-        { label: "Cost", key: "cost", icon: "💰" },
-        { label: "Scholarship", key: "scholarship", icon: "🎓" },
-        { label: "PR Opportunity", key: "pr", icon: "🏠" },
-        { label: "Post-Study Job", key: "job", icon: "💼" },
-        { label: "IELTS Requirement", key: "ielts", icon: "📊" },
-        { label: "Visa Success", key: "visa", icon: "✅" },
-      ];
+    const sorters = {
+      "score-desc": (a, b) => b.totalScore - a.totalScore || a.rank - b.rank,
+      "rank-asc": (a, b) => a.rank - b.rank,
+      "visa-desc": (a, b) => b.visaRate - a.visaRate || b.totalScore - a.totalScore,
+      "tuition-asc": (a, b) => a.tuitionMid - b.tuitionMid || b.totalScore - a.totalScore,
+      "living-asc": (a, b) => a.livingMid - b.livingMid || b.totalScore - a.totalScore,
+      "salary-desc": (a, b) => b.salaryMid - a.salaryMid || b.totalScore - a.totalScore,
+    };
 
-      tableEl.innerHTML = `
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th>Feature</th>
-              <th>${select1.options[select1.selectedIndex].text}</th>
-              <th>${select2.options[select2.selectedIndex].text}</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${rows
-              .map(
-                (row) => `
+    const state = {
+      search: "",
+      sort: "score-desc",
+      scholarship: "all",
+      spouse: "all",
+    };
+
+    const topByScore = [...normalized].sort(sorters["score-desc"])[0];
+    const topByVisa = [...normalized].sort(sorters["visa-desc"])[0];
+    const lowestTuition = [...normalized].sort(sorters["tuition-asc"])[0];
+    const highestSalary = [...normalized].sort(sorters["salary-desc"])[0];
+
+    const renderPreview = () => {
+      if (!previewEl) return;
+      const topCountries = [...normalized].sort(sorters["score-desc"]).slice(0, 6);
+      previewEl.innerHTML = topCountries
+        .map(
+          (country) => `
+          <article class="preview-country-card ${scoreClass(country.totalScore)}">
+            <div class="preview-country-top">
+              <span class="preview-rank">#${country.rank}</span>
+              <strong>${country.country}</strong>
+            </div>
+            <div class="preview-track"><span style="width: ${country.totalScore}%;"></span></div>
+            <div class="preview-country-meta">
+              <small>Score ${country.totalScore}</small>
+              <small>Visa ${country.visaSuccess}</small>
+            </div>
+          </article>
+        `,
+        )
+        .join("");
+    };
+
+    const getFilteredRows = () =>
+      normalized
+        .filter((country) => {
+          const matchesSearch =
+            !state.search ||
+            country.country.toLowerCase().includes(state.search) ||
+            country.englishUsage.toLowerCase().includes(state.search);
+          const matchesScholarship =
+            state.scholarship === "all" ||
+            country.mastersScholarship === state.scholarship;
+          const matchesSpouse =
+            state.spouse === "all" || country.spouseWork === state.spouse;
+          return matchesSearch && matchesScholarship && matchesSpouse;
+        })
+        .sort(sorters[state.sort] || sorters["score-desc"]);
+
+    const bindDashboardEvents = () => {
+      const searchInput = dashboardEl.querySelector("#euroSearch");
+      const sortSelect = dashboardEl.querySelector("#euroSort");
+      const scholarshipSelect = dashboardEl.querySelector("#euroScholarship");
+      const spouseSelect = dashboardEl.querySelector("#euroSpouse");
+
+      if (searchInput) {
+        searchInput.value = state.search;
+        searchInput.addEventListener("input", () => {
+          state.search = searchInput.value.trim().toLowerCase();
+          renderDashboard();
+        });
+      }
+
+      if (sortSelect) {
+        sortSelect.value = state.sort;
+        sortSelect.addEventListener("change", () => {
+          state.sort = sortSelect.value;
+          renderDashboard();
+        });
+      }
+
+      if (scholarshipSelect) {
+        scholarshipSelect.value = state.scholarship;
+        scholarshipSelect.addEventListener("change", () => {
+          state.scholarship = scholarshipSelect.value;
+          renderDashboard();
+        });
+      }
+
+      if (spouseSelect) {
+        spouseSelect.value = state.spouse;
+        spouseSelect.addEventListener("change", () => {
+          state.spouse = spouseSelect.value;
+          renderDashboard();
+        });
+      }
+    };
+
+    const renderDashboard = () => {
+      const rows = getFilteredRows();
+      const listMarkup = rows.length
+        ? rows
+            .map(
+              (country) => `
+              <article class="euro-row ${scoreClass(country.totalScore)}">
+                <div class="euro-row-head">
+                  <div class="euro-country-head">
+                    <span class="euro-rank">#${country.rank}</span>
+                    <h5>${country.country}</h5>
+                  </div>
+                  <span class="euro-score-chip">${country.totalScore}</span>
+                </div>
+                <div class="euro-score-track"><span style="width: ${Math.max(country.totalScore, 8)}%;"></span></div>
+                <div class="euro-row-meta">
+                  <span class="euro-pill ${visaClass(country.visaRate)}">Visa ${country.visaSuccess}</span>
+                  <span class="euro-pill">PSW ${country.pswVisa}</span>
+                  <span class="euro-pill">PR ${country.prTime} yrs</span>
+                  <span class="euro-pill">Tuition EUR ${country.tuition}</span>
+                  <span class="euro-pill">Living EUR ${country.living}/mo</span>
+                  <span class="euro-pill">Salary EUR ${country.salary}/mo</span>
+                </div>
+              </article>
+            `,
+            )
+            .join("")
+        : '<div class="euro-empty-state">No country matches these filters.</div>';
+
+      const tableRows = rows.length
+        ? rows
+            .map(
+              (country) => `
               <tr>
-                <td>${row.icon} ${row.label}</td>
-                <td>${d1[row.key]}</td>
-                <td>${d2[row.key]}</td>
+                <td><strong>${country.country}</strong><small>#${country.rank}</small></td>
+                <td><span class="euro-table-chip ${scoreClass(country.totalScore)}">${country.totalScore}</span></td>
+                <td><span class="euro-table-chip ${visaClass(country.visaRate)}">${country.visaSuccess}</span></td>
+                <td>${country.englishUsage}</td>
+                <td>${country.mastersScholarship}</td>
+                <td>EUR ${country.tuition}</td>
+                <td>EUR ${country.living}/mo</td>
+                <td>${country.pswVisa}</td>
+                <td>${country.prTime}</td>
+                <td>${country.localLangNeeded}</td>
+                <td>EUR ${country.salary}/mo</td>
+                <td>${country.taxLevel}</td>
+                <td>${country.spouseWork}</td>
+                <td>${country.partTimeHours}</td>
               </tr>
             `,
-              )
-              .join("")}
-          </tbody>
-        </table>
+            )
+            .join("")
+        : '<tr><td colspan="14">No rows to display.</td></tr>';
+
+      dashboardEl.innerHTML = `
+        <div class="euro-kpi-grid">
+          <article class="euro-kpi kpi-score">
+            <span>Top Overall Score</span>
+            <strong>${topByScore.country}</strong>
+            <b>${topByScore.totalScore} / 100</b>
+          </article>
+          <article class="euro-kpi kpi-visa">
+            <span>Highest Visa Success</span>
+            <strong>${topByVisa.country}</strong>
+            <b>${topByVisa.visaSuccess}</b>
+          </article>
+          <article class="euro-kpi kpi-cost">
+            <span>Lowest Avg Tuition</span>
+            <strong>${lowestTuition.country}</strong>
+            <b>EUR ${lowestTuition.tuition}</b>
+          </article>
+          <article class="euro-kpi kpi-salary">
+            <span>Highest Grad Salary</span>
+            <strong>${highestSalary.country}</strong>
+            <b>EUR ${highestSalary.salary}/mo</b>
+          </article>
+        </div>
+
+        <div class="euro-controls">
+          <label class="euro-control">
+            <span>Search Country</span>
+            <input id="euroSearch" type="search" placeholder="Country or English usage..." />
+          </label>
+          <label class="euro-control">
+            <span>Sort By</span>
+            <select id="euroSort">
+              <option value="score-desc">Best overall score</option>
+              <option value="rank-asc">Official rank</option>
+              <option value="visa-desc">Highest visa success</option>
+              <option value="tuition-asc">Lowest tuition</option>
+              <option value="living-asc">Lowest living cost</option>
+              <option value="salary-desc">Highest salary</option>
+            </select>
+          </label>
+          <label class="euro-control">
+            <span>Scholarship Level</span>
+            <select id="euroScholarship">
+              <option value="all">All levels</option>
+              <option value="Very High">Very High</option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+          </label>
+          <label class="euro-control">
+            <span>Spouse Work</span>
+            <select id="euroSpouse">
+              <option value="all">All</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </label>
+        </div>
+
+        <p class="euro-results-count">${rows.length} of ${normalized.length} countries shown</p>
+        <div class="euro-bar-list">${listMarkup}</div>
+
+        <div class="euro-matrix-wrap">
+          <table class="euro-matrix">
+            <thead>
+              <tr>
+                <th>Country</th>
+                <th>Score</th>
+                <th>Visa</th>
+                <th>English</th>
+                <th>Scholarship</th>
+                <th>Tuition</th>
+                <th>Living</th>
+                <th>PSW</th>
+                <th>PR (Yrs)</th>
+                <th>Local Lang</th>
+                <th>Salary</th>
+                <th>Tax</th>
+                <th>Spouse</th>
+                <th>Part-time</th>
+              </tr>
+            </thead>
+            <tbody>${tableRows}</tbody>
+          </table>
+        </div>
       `;
+
+      bindDashboardEvents();
     };
 
-    window.renderComparison = renderComparison; // Make it accessible
+    const renderComparison = () => {
+      renderPreview();
+      renderDashboard();
+    };
 
-    select1.addEventListener("change", renderComparison);
-    select2.addEventListener("change", renderComparison);
+    window.renderComparison = renderComparison;
+
+    openBtn?.addEventListener("click", () => {
+      section.style.display = "block";
+      if (typeof window.renderComparison === "function") {
+        window.renderComparison();
+      }
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
     closeBtn?.addEventListener("click", () => {
       section.style.display = "none";
     });
+
+    if (typeof window.renderComparison === "function") {
+      window.renderComparison();
+    }
   };
 
   const setupCountdownTimer = () => {
