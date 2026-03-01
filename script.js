@@ -1685,15 +1685,30 @@
 
     window.renderComparison = renderComparison;
 
-    openBtn?.addEventListener("click", () => {
+    const openDashboard = () => {
+      if (section.style.display === "block") return;
       section.style.display = "block";
       if (typeof window.renderComparison === "function") {
         window.renderComparison();
       }
       const animPanel = section.querySelector('.comparison-panel');
       if (animPanel) animPanel.classList.add('reveal-in');
+    };
+
+    openBtn?.addEventListener("click", () => {
+      openDashboard();
       section.scrollIntoView({ behavior: "smooth", block: "start" });
     });
+
+    if (openBtn) {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          openDashboard();
+          observer.disconnect();
+        }
+      }, { rootMargin: "0px 0px 200px 0px" });
+      observer.observe(openBtn);
+    }
 
     closeBtn?.addEventListener("click", () => {
       section.style.display = "none";
